@@ -13,7 +13,8 @@ entity spi_peripheral is
         data_ready      : out std_logic;
 		rw_enable   	: in std_logic;
 		data_out		: out std_logic_vector(127 downto 0);
-		data_in			: in std_logic_vector(127 downto 0)
+		data_in			: in std_logic_vector(127 downto 0);
+        led             : out std_logic
     );
 end spi_peripheral;
 
@@ -32,7 +33,7 @@ architecture synth of spi_peripheral is
 begin
     read_spi	<= controller_clk_last and (not controller_clk_last_last); -- clock crossing SPI edge detection
     -- led_array	<= shiftreg(127 downto 120);
-	-- led			<= '1' when (s = WRITE) else '0';
+	led			<= '1' when (s = WRITE) else '0';
 	--data_out	<= shiftreg; 
     process (clk) begin
         if (reset = '1') then
@@ -54,17 +55,18 @@ begin
 							
                             if (bit_counter = "0111") then -- read 8 bits
                                 byte_counter	<= byte_counter + 1;
-                            end if;	
+                            end if;
 
-							CIPO <= '1'; -- 1 is recieved. i guess
+							CIPO <= COPI; -- 1 is recieved. i guess
 						when WRITE =>
                             if (bit_counter = "0111") then -- wrote 8 bits
                                 byte_counter	<= byte_counter - 1;
                             end if;
 							
 							CIPO	<= data_in((128 - (8 * (to_integer(byte_counter)))) + to_integer(bit_counter));
+                            --CIPO <= '1';
 						when others =>
-							CIPO <= '0';
+							CIPO <= '1';
                     end case;
                 end if;
             else
@@ -80,7 +82,7 @@ begin
                         data_ready <= '1';
                     end if;
 
-                    if (rw_enable = '1') then
+                    if (data_ready = '1' and rw_enable = '1') then
                         s <= WRITE;
                     end if;
                 when WRITE =>

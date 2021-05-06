@@ -15,7 +15,10 @@
         <Source name="source/impl_1/encrypt.vhd" type="VHDL" type_short="VHDL">
             <Options top_module="Encrypt"/>
         </Source>
-        <Source name="source/impl_1/impl_1.ldc" type="LSE Design Constraints File" type_short="LDC">
+        <Source name="source/impl_1.xcf" type="Programming Project File" type_short="Programming">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/constraints.ldc" type="LSE Design Constraints File" type_short="LDC">
             <Options/>
         </Source>
         <Source name="source/impl_1/impl_1.pdc" type="Physical Constraints File" type_short="PDC">

@@ -1,0 +1,2 @@
+ldc_set_location -site {28} [get_ports led]
+ldc_set_location -site {12} [get_ports data_ready]

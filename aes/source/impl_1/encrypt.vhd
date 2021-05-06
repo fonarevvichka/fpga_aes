@@ -8,8 +8,9 @@ entity Encrypt is
 	controller_clk	: in std_logic;
 	COPI			: in std_logic;
 	CS				: in std_logic;
-	CIPO			: out std_logic
---	data_ready		: out std_logic
+	CIPO			: out std_logic;
+	led				: out std_logic;
+	data_ready		: out std_logic
   );
 end Encrypt;
 
@@ -35,10 +36,11 @@ architecture synth of Encrypt is
 			COPI			: in std_logic;
 			CS				: in std_logic;
 			CIPO			: out std_logic;
-			data_ready		: out std_logic;
-			rw_enable		: in std_logic;
+			data_ready      : out std_logic;
+			rw_enable   	: in std_logic;
 			data_out		: out std_logic_vector(127 downto 0);
-			data_in			: in std_logic_vector(127 downto 0)
+			data_in			: in std_logic_vector(127 downto 0);
+			led             : out std_logic
 		);
 	end component;
 	
@@ -56,13 +58,17 @@ architecture synth of Encrypt is
 -- component last_round is
 
 	signal clk				: std_logic;
-	signal curr				: STD_LOGIC_VECTOR(127 downto 0) := 128d"0";
+	signal curr				: STD_LOGIC_VECTOR(127 downto 0);
 	signal plain			: std_logic_vector(127 downto 0) := 128d"0";
-	signal rw_enable		: std_logic := '0';
-	signal data_ready		: std_logic;
+	signal rw_enable		: std_logic := '1';
+	signal data_received	: std_logic;
+	
+	
+	signal input			: std_logic_vector(127 downto 0);
+	signal output			: std_logic_vector(127 downto 0);
 	--signal cipher	: std_logic_vector(127 downto 0)
 begin
-
+	--led <= COPI;
 	-- process (clk) begin
 	-- 	if rising_edge(clk) then
 			
@@ -77,11 +83,11 @@ begin
 											CIPO			=> CIPO,
 											data_ready		=> data_ready,
 											rw_enable		=> rw_enable,
-											data_out		=> curr,
-											data_in			=> plain
-										);
-										
-	-- nr			: nine_rounds	port map (clk => clk, plain => plain, cipher => curr);
+											data_out		=> input,
+											data_in			=> curr,
+											led             => led
+										);					
+	nr			: nine_rounds	port map (clk => clk, plain => input, cipher => curr);
 	
 	H			: HSOSC			port map (CLKHFPU => '1', CLKHFEN => '1', CLKHF => clk);
 end;
