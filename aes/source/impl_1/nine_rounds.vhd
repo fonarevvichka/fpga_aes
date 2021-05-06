@@ -17,17 +17,17 @@ component sbox is
     --address is 1 byte into a lookup table where most significant nibble is the row, 
     --least significant nibble is the column
     addr : in  unsigned(7 downto 0);
-	sub  : out unsigned(7 downto 0)
+	sub  : out std_logic_vector(7 downto 0)
   );
 end component;
 
 signal input     : STD_LOGIC_VECTOR(127 downto 0) := (others => '0');
 
-signal curr_0    : unsigned(127 downto 0) := (others => '0');
+--signal curr_0    : unsigned(127 downto 0) := (others => '0');
 
 signal curr_byte : unsigned(7 downto 0);
 
-signal subd_byte : unsigned(7 downto 0);
+signal subd_byte : std_logic_vector(7 downto 0);
 
 signal counter   : unsigned(15 downto 0) := (others => '0');
 
@@ -39,7 +39,7 @@ begin
 
   sbx : sbox port map(addr => curr_byte, sub => subd_byte);
 
-  curr_0(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
+  cipher(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
 
   -- shf --> updated(state)
   process (clk) is 
