@@ -1,6 +1,6 @@
 #include <SPI.h>
 
-SPISettings settings(1000000, MSBFIRST, SPI_MODE0);
+SPISettings settings(1000000, LSBFIRST, SPI_MODE0);
 SPIClass vspi(VSPI);
 #define dataReadyPin 21
 
