@@ -8,7 +8,7 @@ entity nine_rounds is
 	plain  : in std_logic_vector(127 downto 0);
 	cipher : out std_logic_vector(127 downto 0)
   );
-end Encrypt;
+end nine_rounds;
 
 architecture synth of nine_rounds is
 
@@ -23,34 +23,33 @@ end component;
 
 signal input     : STD_LOGIC_VECTOR(127 downto 0) := (others => '0');
 
-signal curr_0     : STD_LOGIC_VECTOR(127 downto 0) := (others => '0');
+signal curr_0    : unsigned(127 downto 0) := (others => '0');
 
-signal curr_byte : STD_LOGIC_VECTOR(7 downto 0);
+signal curr_byte : unsigned(7 downto 0);
 
-signal subd_byte : STD_LOGIC_VECTOR(7 downto 0);
+signal subd_byte : unsigned(7 downto 0);
 
-signal counter   : STD_LOGIC_VECTOR(15 downto 0) := (others => '0');
+signal counter   : unsigned(15 downto 0) := (others => '0');
 
 begin
 
-  --sbx
-  --or have counter increment by 8
-  curr_byte <= input((127-counter) downto (120-counter))
+  -- sbx
+  -- or have counter increment by 8
+  curr_byte <= unsigned(input((to_integer(127 - counter)) downto (to_integer(120 - counter))));
 
-  sbx : sbox(addr => curr_byte, sub => subd_byte);
+  sbx : sbox port map(addr => curr_byte, sub => subd_byte);
 
-  curr_0((127-counter) downto (120-counter)) <= subd_byte
+  curr_0(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
 
-  --shf --> updated(state)
+  -- shf --> updated(state)
   process (clk) is 
   begin
       if rising_edge(clk) then
-        counter = counter + X"08"; 
-        wait for 5ns;
+        counter <= counter + X"08"; 
       end if;
   end process;
     
-  --shf
+  -- shf
   --> in place, won't have to access ROM
   --> iterate through flattened array
 
