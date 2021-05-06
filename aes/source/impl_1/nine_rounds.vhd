@@ -4,9 +4,11 @@ use IEEE.numeric_std.all;
 
 entity nine_rounds is
   port(
-    clk    : in std_logic;
-	plain  : in std_logic_vector(127 downto 0);
-	cipher : out std_logic_vector(127 downto 0)
+    clk    			: in std_logic;
+	plain  			: in std_logic_vector(127 downto 0);
+	cipher 			: out std_logic_vector(127 downto 0);
+	data_ready		: in std_logic;
+	data_encrypted 	: out std_logic
   );
 end nine_rounds;
 
@@ -35,17 +37,19 @@ begin
 
   -- sbx
   -- or have counter increment by 8
-  curr_byte <= unsigned(input((to_integer(127 - counter)) downto (to_integer(120 - counter))));
+	curr_byte <= unsigned(input((to_integer(127 - counter)) downto (to_integer(120 - counter))));
+	sbx : sbox port map(addr => curr_byte, sub => subd_byte);
 
-  sbx : sbox port map(addr => curr_byte, sub => subd_byte);
+	cipher(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
 
-  cipher(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
-
+	data_encrypted <= counter(15);
   -- shf --> updated(state)
   process (clk) is 
   begin
       if rising_edge(clk) then
-        counter <= counter + X"08"; 
+		if (data_ready = '1') then
+			counter <= counter + X"08"; 
+		end if;
       end if;
   end process;
     

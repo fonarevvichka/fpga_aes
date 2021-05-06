@@ -22,9 +22,11 @@ architecture synth of Encrypt is
 
 	component nine_rounds is
 	  port(
-		clk    : in std_logic;
-		plain  : in std_logic_vector(127 downto 0);
-		cipher : out std_logic_vector(127 downto 0)
+		clk    			: in std_logic;
+		plain  			: in std_logic_vector(127 downto 0);
+		cipher 			: out std_logic_vector(127 downto 0);
+		data_ready		: in std_logic;
+		data_encrypted 	: out std_logic
 	  );
 	end component;
 	
@@ -58,22 +60,34 @@ architecture synth of Encrypt is
 -- component last_round is
 
 	signal clk				: std_logic;
+	
 	signal curr				: STD_LOGIC_VECTOR(127 downto 0);
 	signal plain			: std_logic_vector(127 downto 0) := 128d"0";
-	signal rw_enable		: std_logic := '1';
+	signal rw_enable		: std_logic;
+	
 	signal data_received	: std_logic;
+	signal data_encrypted	: std_logic := '0';
 	
+	signal plaintext			: std_logic_vector(127 downto 0);
+	signal encrypted			: std_logic_vector(127 downto 0);
 	
-	signal input			: std_logic_vector(127 downto 0);
-	signal output			: std_logic_vector(127 downto 0);
-	--signal cipher	: std_logic_vector(127 downto 0)
+	signal plaintext_temp		: std_logic_vector(127 downto 0);
+	signal encrypted_temp		: std_logic_vector(127 downto 0);
 begin
 	--led <= COPI;
+	rw_enable	<= data_encrypted;
+	data_ready	<= rw_enable;
+	
 	-- process (clk) begin
 	-- 	if rising_edge(clk) then
+	-- 		if (data_received = '1') then
+	-- 			plaintext <= plaintext_temp;
+	-- 		else
+	-- 			plaintext <=
+    --         end if;
 			
-	-- 	end if;
-	-- end process;
+		--end if;
+	--end process;
 	
 	spi_periph	: spi_peripheral port map (	clk				=> clk,
 											reset 			=> reset,
@@ -81,13 +95,13 @@ begin
 											COPI 			=> COPI,
 											CS				=> CS,
 											CIPO			=> CIPO,
-											data_ready		=> data_ready,
+											data_ready		=> data_received,
 											rw_enable		=> rw_enable,
-											data_out		=> input,
-											data_in			=> curr,
+											data_out		=> plaintext,
+											data_in			=> encrypted,
 											led             => led
 										);					
-	nr			: nine_rounds	port map (clk => clk, plain => input, cipher => curr);
+	nr			: nine_rounds	port map (clk => clk, plain => plaintext, cipher => encrypted, data_ready => data_received, data_encrypted => data_encrypted);
 	
 	H			: HSOSC			port map (CLKHFPU => '1', CLKHFEN => '1', CLKHF => clk);
 end;
