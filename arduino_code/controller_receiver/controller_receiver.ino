@@ -22,7 +22,7 @@ void loop() {
   for (byte i = 0; i < 16; i++) {
     vspi.beginTransaction(settings);
     digitalWrite(5, LOW);
-    Serial.print("Sending Byte: ");Serial.print(i); Serial.print(" Response Byte: "); Serial.println(vspi.transfer(i));
+    Serial.print("Sending Byte: ");Serial.print(i); Serial.print(" Response Byte: "); Serial.println(vspi.transfer(0));
     delay(330);
     digitalWrite(5, HIGH);  
     vspi.endTransaction();
