@@ -2,19 +2,19 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity nine_rounds is
+entity r_nine_rounds is
   port(
     clk    			: in std_logic;
-	plain  			: in std_logic_vector(127 downto 0);
-	cipher 			: out std_logic_vector(127 downto 0);
+	cipher 			: in std_logic_vector(127 downto 0);
+	plain 			: out std_logic_vector(127 downto 0);
 	data_ready		: in std_logic;
-	data_encrypted 	: out std_logic
+	data_decrypted 	: out std_logic
   );
-end nine_rounds;
+end r_nine_rounds;
 
-architecture synth of nine_rounds is
+architecture synth of r_nine_rounds is
 
-component sbox is
+component r_sbox is
   port (
     --address is 1 byte into a lookup table where most significant nibble is the row, 
     --least significant nibble is the column
@@ -33,12 +33,12 @@ begin
 
   -- sbx
   -- or have counter increment by 8
-	curr_byte <= unsigned(plain((to_integer(127 - counter)) downto (to_integer(120 - counter))));
-	sbx : sbox port map(addr => curr_byte, sub => subd_byte);
+	curr_byte <= unsigned(cipher((to_integer(127 - counter)) downto (to_integer(120 - counter))));
+	rsbx : r_sbox port map(addr => curr_byte, sub => subd_byte);
 
-	cipher(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
+	plain(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
 
-	data_encrypted <= counter(15);
+	data_decrypted <= counter(15);
   -- shf --> updated(state)
   process (clk) is 
   begin
