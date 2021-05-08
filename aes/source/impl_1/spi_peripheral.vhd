@@ -50,8 +50,8 @@ begin
 
                     case s is
                         when READ =>
-							data_out(127 downto 1)	<= data_out(126 downto 0);
-							data_out(0)             <= COPI;
+							data_out(126 downto 0)		<= data_out(127 downto 1);
+							data_out(127)            	<= COPI;
 							
                             if (bit_counter = "0111") then -- read 8 bits
                                 byte_counter	<= byte_counter + 1;

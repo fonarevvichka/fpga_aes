@@ -23,6 +23,13 @@ component r_sbox is
   );
 end component;
 
+component r_row_shift is
+  port (
+	cipher : in std_logic_vector(127 downto 0);
+	plain  : out  std_logic_vector(127 downto 0)
+  );
+end component;
+
 --signals for S Box
 signal curr_byte : unsigned(7 downto 0);
 signal subd_byte : std_logic_vector(7 downto 0);

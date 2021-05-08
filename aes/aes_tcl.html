@@ -58,12 +58,29 @@ prj_open "C:/Users/fonar/Documents/CS Remote/es4/fpga_aes/aes/aes.rdf"
 
 
 
+<A name="pn210507174809"></A><B><U><big>pn210507174809</big></U></B>
+#Start recording tcl command: 5/7/2021 17:15:21
+#Project Location: C:/Users/fonar/Documents/CS Remote/es4/fpga_aes/aes; Project name: aes
+prj_open "C:/Users/fonar/Documents/CS Remote/es4/fpga_aes/aes/aes.rdf"
+prj_run Export -impl impl_1
+prj_run Synthesis -impl impl_1 -forceAll
+prj_run Map -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+launch_programmer_prj "C:/lscc/radiant/2.2"
+prj_run Export -impl impl_1
+launch_programmer_prj "C:/lscc/radiant/2.2"
+#Stop recording: 5/7/2021 17:48:09
+
+
+
 </PRE></DIV>
 
 <DIV id="toc" class="radiant"><span onmousemove="showTocList()">Contents</span>
 <UL id="toc_list">
 <LI><A href=#pn210506150738>pn210506150738</A></LI>
 <LI><A href=#pn210507140242>pn210507140242</A></LI>
+<LI><A href=#pn210507174809>pn210507174809</A></LI>
 </UL>
 </DIV>
 

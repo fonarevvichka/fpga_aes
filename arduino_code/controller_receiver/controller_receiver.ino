@@ -2,7 +2,7 @@
 #include <esp_now.h>
 #include <WiFi.h>
 
-SPISettings settings(1000000, LSBFIRST, SPI_MODE0);
+SPISettings settings(1000000, MSBFIRST, SPI_MODE0);
 SPIClass vspi(VSPI);
 #define dataReadyPin 21
 
@@ -13,13 +13,13 @@ typedef struct struct_message {
 
 struct_message myMessage;
 
-void charArrayToBytes(char* message, int len) {
-  byte new_message[15];
-  for (int i = 0; i < len; i++) {
-    new_message[i] = (byte) message[i];
-  }
-  return new_message;
-}
+//void charArrayToBytes(char* message, int len) {
+//  byte new_message[15];
+//  for (int i = 0; i < len; i++) {
+//    new_message[i] = (byte) message[i];
+//  }
+//  return new_message;
+//}
 void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   memcpy(&myMessage, incomingData, sizeof(myMessage));
   Serial.print("Bytes received: ");
@@ -64,8 +64,8 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   }
   digitalWrite(22, HIGH);
 
-  byte byte_message[15] = charArrayToBytes(decrypted_message, 16);
-  Serial.println(byte_message);
+//  byte byte_message[15] = charArrayToBytes(decrypted_message, 16);
+  Serial.println(decrypted_message);
   delay(1000);
 }
 

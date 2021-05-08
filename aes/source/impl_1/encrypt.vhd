@@ -56,8 +56,6 @@ architecture synth of Encrypt is
             CLKHF   : out std_logic := 'X' -- Clock output
         ); 
     end component;
-  
--- component last_round is
 
 	signal clk				: std_logic;
 	

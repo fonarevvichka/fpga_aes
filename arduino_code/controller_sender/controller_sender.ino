@@ -48,20 +48,18 @@ void setup() {
   digitalWrite(5, LOW);
   SPI.end();
   vspi.begin();         // initialize the SPI library
-
-  
 }
 
 void loop() {
   
   Serial.println("Write cycle");
   digitalWrite(22, LOW);
-  
+//  byte message[15] = {};
   for (byte i = 0; i < 16; i++) {
     vspi.beginTransaction(settings);
     digitalWrite(5, LOW);
-    Serial.print("Sending Byte: ");Serial.print(i); Serial.print(" Response Byte: "); Serial.println(vspi.transfer(0));
-    delay(330);
+    Serial.print("Sending Byte: ");Serial.print(i); Serial.print(" Response Byte: "); Serial.println(vspi.transfer(96));
+    delay(50);
     digitalWrite(5, HIGH);  
     vspi.endTransaction();
   }
@@ -83,7 +81,7 @@ void loop() {
     byte response_byte = vspi.transfer(0);
     Serial.print(" Response Byte: "); Serial.println(response_byte);
     encrypted_message[i] = response_byte;
-    delay(300);
+    delay(50);
     digitalWrite(5, HIGH);  
     vspi.endTransaction();
   }

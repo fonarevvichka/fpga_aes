@@ -5,14 +5,13 @@ use IEEE.numeric_std.all;
 entity row_shift is
   port (
     plain  : in  std_logic_vector(127 downto 0);
-	cipher : out std_logic_vector(127 downto 0)
+	  cipher : out std_logic_vector(127 downto 0)
   );
 end row_shift;
 
 architecture synth of row_shift is
 
 begin
-
   cipher(7 downto 0)   <= plain(7 downto 0);
   cipher(15 downto 8)  <= plain(47 downto 40);
   cipher(23 downto 16) <= plain(87 downto 80);
@@ -32,5 +31,4 @@ begin
   cipher(111 downto 104) <= plain(15 downto 8);
   cipher(119 downto 112) <= plain(55 downto 48);
   cipher(127 downto 120) <= plain(95 downto 88);
- 
 end;
