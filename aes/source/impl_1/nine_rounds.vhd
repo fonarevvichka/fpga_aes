@@ -46,10 +46,12 @@ begin
 	curr_byte <= unsigned(plain((to_integer(127 - counter)) downto (to_integer(120 - counter))));
 	sbx : sbox port map(addr => curr_byte, sub => subd_byte);
 
-	curr_sboxed(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
-	shf : row_shift port map(plain => curr_sboxed, cipher => cipher);
+	cipher(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
+	--curr_sboxed(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
+	--shf : row_shift port map(plain => curr_sboxed, cipher => cipher);
 
 	data_encrypted <= counter(15);
+	--data_encrypted <= '1' when (counter = "11111111111111") else '0';
   -- shf --> updated(state)
   process (clk) is 
   begin
