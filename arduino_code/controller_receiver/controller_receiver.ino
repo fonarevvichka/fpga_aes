@@ -12,6 +12,7 @@ typedef struct struct_message {
 
 
 struct_message myMessage;
+
 void charArrayToBytes(char* message, int len) {
   byte new_message[15];
   for (int i = 0; i < len; i++) {
@@ -63,8 +64,8 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   }
   digitalWrite(22, HIGH);
 
-  // convert message to byte form here
-  Serial.println(decrypted_message);
+  byte byte_message[15] = charArrayToBytes(decrypted_message, 16);
+  Serial.println(byte_message);
   delay(1000);
 }
 
@@ -88,7 +89,8 @@ void setup() {
   SPI.end();
   vspi.begin();         // initialize the SPI library
 
-  Serial.begin(115200);}
+  Serial.begin(115200);
+}
 
 void loop() {
 
