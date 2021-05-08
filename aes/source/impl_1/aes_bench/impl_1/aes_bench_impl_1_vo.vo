@@ -1,0 +1,4704 @@
+
+// Verilog netlist produced by program backanno, Version Radiant Software (64-bit) 2.2.0.97.3
+
+// backanno -o aes_bench_impl_1_vo.vo -sp High-Performance_1.2V -w -neg -gui aes_bench_impl_1.udb 
+// Netlist created on Fri May  7 21:31:59 2021
+// Netlist written on Fri May  7 21:32:14 2021
+// Design is for device iCE40UP5K
+// Design is for package SG48
+// Design is for performance grade High-Performance_1.2V
+
+`timescale 1 ns / 1 ps
+
+module test_bench ( encr );
+  output [7:0] encr;
+  wire   \enc.nr.counter_15__N_2074[7] , \enc.nr.counter_15__N_2074[6] , 
+         \enc.nr.n7217 , \enc.nr.curr_0_127__N_1[7] , \enc.nr.n5375 , 
+         \enc.nr.counter[6] , \enc.clk , \enc.nr.counter_15__N_2074[5] , 
+         \enc.nr.counter_15__N_2074[4] , \enc.nr.n7214 , \enc.nr.counter[5] , 
+         \enc.nr.n5373 , \enc.nr.counter[4] , \enc.nr.counter_15__N_2074[3] , 
+         \enc.nr.n7211 , VCC_net, \enc.nr.counter[3] , \enc.nr.sbx.n5950 , 
+         \enc.nr.curr_byte[6] , \enc.nr.sbx.n5949 , \enc.nr.sbx.n6750 , 
+         \enc.nr.sbx.n6753 , \enc.nr.sbx.n5936 , \enc.nr.sbx.n6771 , 
+         \enc.nr.curr_byte[7] , \enc.nr.sbx.n7002 , \enc.nr.curr_byte[0] , 
+         \enc.nr.curr_byte[2] , \enc.nr.curr_byte[1] , \enc.nr.sbx.n5979 , 
+         \enc.nr.sbx.n6463 , \enc.nr.sbx.n30_adj_2148 , \enc.nr.curr_byte[3] , 
+         \enc.nr.curr_byte[4] , \enc.nr.sbx.n5886 , \enc.nr.sbx.n5455 , 
+         \enc.nr.sbx.n5456 , \enc.nr.curr_byte[5] , \enc.nr.sbx.n6810 , 
+         \enc.nr.sbx.n134 , \enc.nr.sbx.n93_adj_2100 , \enc.nr.sbx.n3408 , 
+         \enc.nr.sbx.n6957 , \enc.nr.sbx.n6795 , \enc.nr.subd_byte[2] , 
+         \enc.nr.sbx.n157_adj_2115 , \enc.nr.sbx.n188_adj_2134 , 
+         \enc.nr.sbx.n173_adj_2133 , \enc.nr.sbx.n6858 , \enc.nr.sbx.n5892 , 
+         \enc.nr.sbx.n5893 , \enc.nr.sbx.n6828 , \enc.nr.sbx.n5856 , 
+         \enc.nr.sbx.n5857 , \enc.nr.sbx.n6813 , \enc.nr.sbx.n78_adj_2143 , 
+         \enc.nr.sbx.n188_adj_2147 , \enc.nr.sbx.n4918 , \enc.nr.sbx.n5803 , 
+         \enc.nr.sbx.n6816 , \enc.nr.sbx.n6801 , \enc.nr.sbx.n5807 , 
+         \enc.nr.sbx.n6819 , \enc.nr.sbx.n61 , \enc.nr.sbx.n5967 , 
+         \enc.nr.sbx.n5817 , \enc.nr.sbx.n5818 , \enc.nr.sbx.n6738 , 
+         \enc.nr.sbx.n6924 , \enc.nr.sbx.n6741 , \enc.nr.sbx.n6672 , 
+         \enc.nr.sbx.n6927 , \enc.nr.sbx.n7020 , \enc.nr.sbx.n205_adj_2092 , 
+         \enc.nr.sbx.n220_adj_2091 , \enc.nr.sbx.n7023 , \enc.nr.sbx.n251 , 
+         \enc.nr.sbx.n236 , \enc.nr.n5520 , \enc.nr.subd_byte[0] , encr_c_112, 
+         \enc.nr.sbx.n5848 , \enc.nr.sbx.n6783 , \enc.nr.sbx.n6888 , 
+         \enc.nr.sbx.n5863 , \enc.nr.sbx.n6744 , \enc.nr.sbx.n197 , 
+         \enc.nr.sbx.n6320 , \enc.nr.sbx.n6747 , \enc.nr.sbx.n6348 , 
+         \enc.nr.sbx.n6376 , \enc.nr.sbx.n60 , \enc.nr.sbx.n6978 , 
+         \enc.nr.sbx.n30 , \enc.nr.sbx.n5800 , \enc.nr.sbx.n5799 , 
+         \enc.nr.sbx.n6162 , \enc.nr.sbx.n7032 , \enc.nr.sbx.n6700 , 
+         \enc.nr.sbx.n5978 , \enc.nr.sbx.n7 , \enc.nr.sbx.n6756 , 
+         \enc.nr.sbx.n6759 , \enc.nr.sbx.n6531 , \enc.nr.sbx.n6731 , 
+         \enc.nr.sbx.n30_adj_2098 , \enc.nr.sbx.n15 , \enc.nr.sbx.n6906 , 
+         \enc.nr.sbx.n5891 , \enc.nr.sbx.n61_adj_2099 , \enc.nr.sbx.n5972 , 
+         \enc.nr.sbx.n6876 , \enc.nr.sbx.n78 , \enc.nr.sbx.n5900 , 
+         \enc.nr.sbx.n109_adj_2108 , \enc.nr.sbx.n5954 , \enc.nr.sbx.n5887 , 
+         \enc.nr.sbx.n6831 , \enc.nr.sbx.n173_adj_2107 , \enc.nr.sbx.n4490 , 
+         \enc.nr.sbx.n5839 , \enc.nr.sbx.n236_adj_2095 , 
+         \enc.nr.sbx.n220_adj_2109 , \enc.nr.sbx.n205_adj_2110 , 
+         \enc.nr.sbx.n6762 , \enc.nr.sbx.n6765 , \enc.nr.sbx.n251_adj_2119 , 
+         \enc.nr.sbx.n236_adj_2118 , \enc.nr.sbx.n6912 , \enc.nr.sbx.n6609 , 
+         \enc.nr.sbx.n6561 , \enc.nr.sbx.n6580 , \enc.nr.sbx.n6921 , 
+         \enc.nr.sbx.n6867 , \enc.nr.sbx.n6918 , \enc.nr.sbx.n5874 , 
+         \enc.nr.sbx.n5875 , \enc.nr.subd_byte[4] , \enc.nr.sbx.n5877 , 
+         \enc.nr.sbx.n5878 , \enc.nr.sbx.n6852 , \enc.nr.sbx.n5942 , 
+         \enc.nr.sbx.n220_adj_2117 , \enc.nr.sbx.n5909 , 
+         \enc.nr.sbx.n236_adj_2124 , \enc.nr.sbx.n251_adj_2125 , 
+         \enc.nr.sbx.n6768 , \enc.nr.sbx.n142 , \enc.nr.sbx.n157 , 
+         \enc.nr.sbx.n5843 , \enc.nr.sbx.n173_adj_2122 , \enc.nr.sbx.n5815 , 
+         \enc.nr.sbx.n6930 , \enc.nr.sbx.n5943 , \enc.nr.sbx.n5944 , 
+         \enc.nr.sbx.n5883 , \enc.nr.sbx.n5884 , \enc.nr.subd_byte[1] , 
+         encr_c_113, \enc.nr.sbx.n6834 , \enc.nr.sbx.n5906 , 
+         \enc.nr.sbx.n6774 , \enc.nr.sbx.n6507 , \enc.nr.sbx.n6541 , 
+         \enc.nr.sbx.n6777 , \enc.nr.sbx.n6578 , \enc.nr.sbx.n219 , 
+         \enc.nr.sbx.n6780 , \enc.nr.sbx.n5931 , \enc.nr.sbx.n5932 , 
+         \enc.nr.sbx.n5808 , \enc.nr.sbx.n5809 , \enc.nr.sbx.n6954 , 
+         \enc.nr.sbx.n5838 , \enc.nr.sbx.n142_adj_2114 , \enc.nr.sbx.n5845 , 
+         \enc.nr.sbx.n5980 , \enc.nr.sbx.n78_adj_2104 , \enc.nr.sbx.n6786 , 
+         \enc.nr.sbx.n6789 , \enc.nr.sbx.n109_adj_2097 , 
+         \enc.nr.sbx.n124_adj_2128 , \enc.nr.sbx.n5835 , \enc.nr.sbx.n6960 , 
+         \enc.nr.sbx.n5836 , \enc.nr.sbx.n5851 , \enc.nr.sbx.n5850 , 
+         \enc.nr.sbx.n157_adj_2130 , \enc.nr.sbx.n142_adj_2131 , 
+         \enc.nr.sbx.n5827 , \enc.nr.sbx.n6792 , \enc.nr.sbx.n5833 , 
+         \enc.nr.sbx.n5832 , \enc.nr.sbx.n6882 , \enc.nr.sbx.n6825 , 
+         \enc.nr.sbx.n157_adj_2132 , \enc.nr.sbx.n6885 , 
+         \enc.nr.sbx.n173_adj_2120 , \enc.nr.sbx.n188 , \enc.nr.sbx.n5865 , 
+         \enc.nr.sbx.n6864 , \enc.nr.sbx.n5866 , \enc.nr.sbx.n5872 , 
+         \enc.nr.sbx.n5871 , \enc.nr.subd_byte[5] , encr_c_117, 
+         \enc.nr.sbx.n6849 , \enc.nr.sbx.n6873 , \enc.nr.sbx.n6984 , 
+         \enc.nr.sbx.n6807 , \enc.nr.sbx.n6840 , \enc.nr.sbx.n6720 , 
+         \enc.nr.sbx.n45 , \enc.nr.sbx.n5820 , \enc.nr.sbx.n5821 , 
+         \enc.nr.sbx.n93_adj_2142 , \enc.nr.sbx.n6846 , 
+         \enc.nr.sbx.n109_adj_2111 , \enc.nr.sbx.n124 , \enc.nr.sbx.n6870 , 
+         \enc.nr.sbx.n15_adj_2135 , \enc.nr.sbx.n30_adj_2144 , 
+         \enc.nr.sbx.n61_adj_2127 , \enc.nr.sbx.n46_adj_2138 , 
+         \enc.nr.sbx.n6804 , \enc.nr.sbx.n142_adj_2139 , 
+         \enc.nr.sbx.n157_adj_2123 , \enc.nr.sbx.n188_adj_2136 , 
+         \enc.nr.sbx.n173_adj_2121 , \enc.nr.sbx.n7014 , 
+         \enc.nr.sbx.n205_adj_2141 , \enc.nr.sbx.n220_adj_2113 , 
+         \enc.nr.sbx.n6951 , \enc.nr.sbx.n6939 , \enc.nr.subd_byte[7] , 
+         encr_c_119, \enc.nr.n6 , encr_c_118, \enc.nr.subd_byte[6] , 
+         \enc.nr.sbx.n5869 , encr_c_114, encr_c_116, \enc.nr.subd_byte[3] , 
+         encr_c_115, \enc.nr.sbx.n93 , \enc.nr.sbx.n4485 , \enc.nr.sbx.n205 , 
+         \enc.nr.sbx.n220 , \enc.nr.sbx.n124_adj_2090 , \enc.nr.sbx.n109 , 
+         \enc.nr.sbx.n78_adj_2137 , \enc.nr.sbx.n93_adj_2093 , 
+         \enc.nr.sbx.n38 , \enc.nr.sbx.n6945 , \enc.nr.sbx.n78_adj_2116 , 
+         \enc.nr.sbx.n109_adj_2129 , \enc.nr.sbx.n124_adj_2094 , 
+         \enc.nr.sbx.n251_adj_2096 , \enc.nr.sbx.n4475 , \enc.nr.sbx.n173 , 
+         \enc.nr.sbx.n142_adj_2105 , \enc.nr.sbx.n30_adj_2101 , 
+         \enc.nr.sbx.n15_adj_2140 , \enc.nr.sbx.n78_adj_2146 , 
+         \enc.nr.sbx.n93_adj_2102 , \enc.nr.sbx.n6897 , 
+         \enc.nr.sbx.n236_adj_2103 , \enc.nr.sbx.n157_adj_2106 , 
+         \enc.nr.sbx.n61_adj_2112 , \enc.nr.sbx.n46 , 
+         \enc.nr.sbx.n251_adj_2126 , \enc.nr.sbx.n236_adj_2145 , 
+         \enc.nr.sbx.n4480 , \enc.nr.sbx.n6999 ;
+
+  enc_nr_SLICE_0 \enc.nr.SLICE_0 ( .DI1(\enc.nr.counter_15__N_2074[7] ), 
+    .DI0(\enc.nr.counter_15__N_2074[6] ), .D1(\enc.nr.n7217 ), 
+    .B1(\enc.nr.curr_0_127__N_1[7] ), .D0(\enc.nr.n5375 ), 
+    .B0(\enc.nr.counter[6] ), .CLK(\enc.clk ), .CIN0(\enc.nr.n5375 ), 
+    .CIN1(\enc.nr.n7217 ), .Q0(\enc.nr.counter[6] ), 
+    .Q1(\enc.nr.curr_0_127__N_1[7] ), .F0(\enc.nr.counter_15__N_2074[6] ), 
+    .F1(\enc.nr.counter_15__N_2074[7] ), .COUT0(\enc.nr.n7217 ));
+  enc_nr_SLICE_1 \enc.nr.SLICE_1 ( .DI1(\enc.nr.counter_15__N_2074[5] ), 
+    .DI0(\enc.nr.counter_15__N_2074[4] ), .D1(\enc.nr.n7214 ), 
+    .B1(\enc.nr.counter[5] ), .D0(\enc.nr.n5373 ), .B0(\enc.nr.counter[4] ), 
+    .CLK(\enc.clk ), .CIN0(\enc.nr.n5373 ), .CIN1(\enc.nr.n7214 ), 
+    .Q0(\enc.nr.counter[4] ), .Q1(\enc.nr.counter[5] ), 
+    .F0(\enc.nr.counter_15__N_2074[4] ), .F1(\enc.nr.counter_15__N_2074[5] ), 
+    .COUT1(\enc.nr.n5375 ), .COUT0(\enc.nr.n7214 ));
+  enc_nr_SLICE_2 \enc.nr.SLICE_2 ( .DI1(\enc.nr.counter_15__N_2074[3] ), 
+    .D1(\enc.nr.n7211 ), .C1(VCC_net), .B1(\enc.nr.counter[3] ), 
+    .CLK(\enc.clk ), .CIN1(\enc.nr.n7211 ), .Q1(\enc.nr.counter[3] ), 
+    .F1(\enc.nr.counter_15__N_2074[3] ), .COUT1(\enc.nr.n5373 ), 
+    .COUT0(\enc.nr.n7211 ));
+  enc_nr_SLICE_3 \enc.nr.SLICE_3 ( .D1(\enc.nr.sbx.n5950 ), 
+    .C1(\enc.nr.curr_byte[6] ), .B1(\enc.nr.sbx.n5949 ), 
+    .A1(\enc.nr.sbx.n6750 ), .D0(\enc.nr.curr_0_127__N_1[7] ), 
+    .B0(\enc.nr.curr_byte[6] ), .F0(\enc.nr.curr_byte[6] ), 
+    .F1(\enc.nr.sbx.n6753 ));
+  enc_nr_sbx_SLICE_4 \enc.nr.sbx.SLICE_4 ( .D0(\enc.nr.curr_byte[6] ), 
+    .C0(\enc.nr.sbx.n5936 ), .B0(\enc.nr.sbx.n6771 ), 
+    .A0(\enc.nr.curr_byte[7] ), .F0(\enc.nr.sbx.n7002 ));
+  enc_nr_SLICE_5 \enc.nr.SLICE_5 ( .D1(\enc.nr.curr_byte[0] ), 
+    .C1(\enc.nr.curr_byte[2] ), .A1(\enc.nr.curr_byte[1] ), 
+    .B0(\enc.nr.curr_byte[2] ), .A0(\enc.nr.curr_0_127__N_1[7] ), 
+    .F0(\enc.nr.curr_byte[2] ), .F1(\enc.nr.sbx.n5979 ));
+  enc_nr_sbx_SLICE_6 \enc.nr.sbx.SLICE_6 ( .D1(\enc.nr.sbx.n6463 ), 
+    .C1(\enc.nr.sbx.n30_adj_2148 ), .B1(\enc.nr.curr_byte[3] ), 
+    .A1(\enc.nr.curr_byte[4] ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.sbx.n30_adj_2148 ), 
+    .F1(\enc.nr.sbx.n5886 ));
+  enc_nr_SLICE_7 \enc.nr.SLICE_7 ( .B0(\enc.nr.curr_0_127__N_1[7] ), 
+    .A0(\enc.nr.curr_byte[4] ), .F0(\enc.nr.curr_byte[4] ));
+  enc_nr_sbx_SLICE_8 \enc.nr.sbx.SLICE_8 ( .D1(\enc.nr.sbx.n5455 ), 
+    .C1(\enc.nr.sbx.n5456 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.curr_byte[4] ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n5456 ), 
+    .F1(\enc.nr.sbx.n6810 ));
+  enc_nr_SLICE_9 \enc.nr.SLICE_9 ( .D1(\enc.nr.curr_byte[2] ), 
+    .C1(\enc.nr.curr_byte[0] ), .A1(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[0] ), .A0(\enc.nr.curr_0_127__N_1[7] ), 
+    .F0(\enc.nr.curr_byte[0] ), .F1(\enc.nr.sbx.n134 ));
+  enc_nr_sbx_SLICE_10 \enc.nr.sbx.SLICE_10 ( .D1(\enc.nr.curr_byte[3] ), 
+    .C1(\enc.nr.curr_byte[1] ), .A1(\enc.nr.curr_byte[0] ), 
+    .D0(\enc.nr.curr_byte[0] ), .C0(\enc.nr.curr_byte[3] ), 
+    .B0(\enc.nr.curr_byte[1] ), .A0(\enc.nr.curr_byte[2] ), 
+    .F0(\enc.nr.sbx.n93_adj_2100 ), .F1(\enc.nr.sbx.n3408 ));
+  enc_nr_SLICE_11 \enc.nr.SLICE_11 ( .D1(\enc.nr.sbx.n6957 ), 
+    .C1(\enc.nr.curr_byte[7] ), .B1(\enc.nr.sbx.n6795 ), 
+    .D0(\enc.nr.curr_0_127__N_1[7] ), .C0(\enc.nr.curr_byte[7] ), 
+    .F0(\enc.nr.curr_byte[7] ), .F1(\enc.nr.subd_byte[2] ));
+  enc_nr_SLICE_13 \enc.nr.SLICE_13 ( .D1(\enc.nr.curr_byte[2] ), 
+    .C1(\enc.nr.curr_byte[1] ), .B1(\enc.nr.curr_byte[3] ), 
+    .A1(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_0_127__N_1[7] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.curr_byte[1] ), 
+    .F1(\enc.nr.sbx.n157_adj_2115 ));
+  enc_nr_sbx_SLICE_14 \enc.nr.sbx.SLICE_14 ( .D1(\enc.nr.curr_byte[5] ), 
+    .C1(\enc.nr.sbx.n188_adj_2134 ), .B1(\enc.nr.sbx.n173_adj_2133 ), 
+    .A1(\enc.nr.curr_byte[4] ), .D0(\enc.nr.curr_byte[3] ), 
+    .C0(\enc.nr.curr_byte[1] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[2] ), .F0(\enc.nr.sbx.n188_adj_2134 ), 
+    .F1(\enc.nr.sbx.n6858 ));
+  enc_nr_SLICE_15 \enc.nr.SLICE_15 ( .D1(\enc.nr.sbx.n5892 ), 
+    .C1(\enc.nr.curr_byte[5] ), .B1(\enc.nr.sbx.n5893 ), 
+    .A1(\enc.nr.curr_byte[6] ), .D0(\enc.nr.curr_byte[5] ), 
+    .A0(\enc.nr.curr_0_127__N_1[7] ), .F0(\enc.nr.curr_byte[5] ), 
+    .F1(\enc.nr.sbx.n6828 ));
+  enc_nr_sbx_SLICE_16 \enc.nr.sbx.SLICE_16 ( .D1(\enc.nr.sbx.n6810 ), 
+    .C1(\enc.nr.sbx.n5856 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.sbx.n5857 ), .D0(\enc.nr.curr_byte[3] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n5856 ), 
+    .F1(\enc.nr.sbx.n6813 ));
+  enc_nr_SLICE_17 \enc.nr.SLICE_17 ( .D1(\enc.nr.curr_byte[2] ), 
+    .C1(\enc.nr.curr_byte[3] ), .B1(\enc.nr.curr_byte[1] ), 
+    .A1(\enc.nr.curr_byte[0] ), .D0(\enc.nr.curr_0_127__N_1[7] ), 
+    .C0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.curr_byte[3] ), 
+    .F1(\enc.nr.sbx.n78_adj_2143 ));
+  enc_nr_sbx_SLICE_18 \enc.nr.sbx.SLICE_18 ( .C1(\enc.nr.sbx.n188_adj_2147 ), 
+    .B1(\enc.nr.curr_byte[4] ), .A1(\enc.nr.sbx.n4918 ), 
+    .D0(\enc.nr.curr_byte[3] ), .C0(\enc.nr.curr_byte[2] ), 
+    .B0(\enc.nr.curr_byte[0] ), .A0(\enc.nr.curr_byte[1] ), 
+    .F0(\enc.nr.sbx.n188_adj_2147 ), .F1(\enc.nr.sbx.n5803 ));
+  enc_nr_sbx_SLICE_19 \enc.nr.sbx.SLICE_19 ( .D1(\enc.nr.sbx.n6816 ), 
+    .C1(\enc.nr.sbx.n6801 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.sbx.n5807 ), .D0(\enc.nr.curr_byte[3] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n6801 ), 
+    .F1(\enc.nr.sbx.n6819 ));
+  enc_nr_sbx_SLICE_20 \enc.nr.sbx.SLICE_20 ( .D1(\enc.nr.curr_byte[4] ), 
+    .C1(\enc.nr.sbx.n61 ), .B1(\enc.nr.curr_byte[5] ), .A1(\enc.nr.sbx.n5967 ), 
+    .D0(\enc.nr.curr_byte[0] ), .C0(\enc.nr.curr_byte[1] ), 
+    .B0(\enc.nr.curr_byte[2] ), .A0(\enc.nr.curr_byte[3] ), 
+    .F0(\enc.nr.sbx.n61 ), .F1(\enc.nr.sbx.n6816 ));
+  enc_nr_sbx_SLICE_21 \enc.nr.sbx.SLICE_21 ( .D1(\enc.nr.sbx.n5817 ), 
+    .C1(\enc.nr.sbx.n5818 ), .B1(\enc.nr.curr_byte[4] ), 
+    .A1(\enc.nr.curr_byte[3] ), .C0(\enc.nr.curr_byte[2] ), 
+    .B0(\enc.nr.curr_byte[0] ), .A0(\enc.nr.curr_byte[1] ), 
+    .F0(\enc.nr.sbx.n5818 ), .F1(\enc.nr.sbx.n6738 ));
+  enc_nr_sbx_SLICE_22 \enc.nr.sbx.SLICE_22 ( .D1(\enc.nr.sbx.n6924 ), 
+    .C1(\enc.nr.sbx.n6741 ), .B1(\enc.nr.curr_byte[6] ), 
+    .A1(\enc.nr.sbx.n5803 ), .D0(\enc.nr.sbx.n6672 ), .C0(\enc.nr.sbx.n134 ), 
+    .B0(\enc.nr.curr_byte[4] ), .A0(\enc.nr.sbx.n6738 ), 
+    .F0(\enc.nr.sbx.n6741 ), .F1(\enc.nr.sbx.n6927 ));
+  enc_nr_sbx_SLICE_23 \enc.nr.sbx.SLICE_23 ( .D1(\enc.nr.sbx.n7020 ), 
+    .C1(\enc.nr.sbx.n205_adj_2092 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.sbx.n220_adj_2091 ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[3] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[2] ), .F0(\enc.nr.sbx.n205_adj_2092 ), 
+    .F1(\enc.nr.sbx.n7023 ));
+  enc_nr_sbx_SLICE_24 \enc.nr.sbx.SLICE_24 ( .D1(\enc.nr.curr_byte[4] ), 
+    .C1(\enc.nr.sbx.n251 ), .B1(\enc.nr.curr_byte[5] ), .A1(\enc.nr.sbx.n236 ), 
+    .D0(\enc.nr.curr_byte[0] ), .C0(\enc.nr.curr_byte[2] ), 
+    .B0(\enc.nr.curr_byte[1] ), .A0(\enc.nr.curr_byte[3] ), 
+    .F0(\enc.nr.sbx.n251 ), .F1(\enc.nr.sbx.n7020 ));
+  enc_nr_sbx_SLICE_25 \enc.nr.sbx.SLICE_25 ( .D1(\enc.nr.n5520 ), 
+    .C1(\enc.nr.subd_byte[0] ), .B1(encr_c_112), .D0(\enc.nr.sbx.n5848 ), 
+    .C0(\enc.nr.sbx.n6783 ), .B0(\enc.nr.sbx.n6888 ), 
+    .A0(\enc.nr.curr_byte[7] ), .F0(\enc.nr.subd_byte[0] ), .F1(encr_c_112));
+  enc_nr_sbx_SLICE_26 \enc.nr.sbx.SLICE_26 ( .D0(\enc.nr.sbx.n6813 ), 
+    .C0(\enc.nr.sbx.n5863 ), .B0(\enc.nr.curr_byte[6] ), 
+    .A0(\enc.nr.curr_byte[7] ), .F0(\enc.nr.sbx.n6888 ));
+  enc_nr_sbx_SLICE_27 \enc.nr.sbx.SLICE_27 ( .D1(\enc.nr.sbx.n6744 ), 
+    .C1(\enc.nr.sbx.n197 ), .B1(\enc.nr.curr_byte[4] ), 
+    .A1(\enc.nr.sbx.n6320 ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[0] ), .A0(\enc.nr.curr_byte[1] ), 
+    .F0(\enc.nr.sbx.n197 ), .F1(\enc.nr.sbx.n6747 ));
+  enc_nr_sbx_SLICE_28 \enc.nr.sbx.SLICE_28 ( .D1(\enc.nr.curr_byte[4] ), 
+    .C1(\enc.nr.sbx.n6348 ), .B1(\enc.nr.sbx.n6376 ), 
+    .A1(\enc.nr.curr_byte[3] ), .C0(\enc.nr.curr_byte[0] ), 
+    .B0(\enc.nr.curr_byte[1] ), .A0(\enc.nr.curr_byte[2] ), 
+    .F0(\enc.nr.sbx.n6348 ), .F1(\enc.nr.sbx.n6744 ));
+  enc_nr_sbx_SLICE_29 \enc.nr.sbx.SLICE_29 ( .D1(\enc.nr.curr_byte[3] ), 
+    .C1(\enc.nr.sbx.n60 ), .B1(\enc.nr.curr_byte[0] ), 
+    .A1(\enc.nr.curr_byte[4] ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[1] ), .A0(\enc.nr.curr_byte[0] ), 
+    .F0(\enc.nr.sbx.n60 ), .F1(\enc.nr.sbx.n6978 ));
+  enc_nr_sbx_SLICE_31 \enc.nr.sbx.SLICE_31 ( .D1(\enc.nr.curr_byte[4] ), 
+    .C1(\enc.nr.sbx.n30 ), .B1(\enc.nr.curr_byte[2] ), .A1(\enc.nr.sbx.n3408 ), 
+    .D0(\enc.nr.curr_byte[1] ), .C0(\enc.nr.curr_byte[2] ), 
+    .B0(\enc.nr.curr_byte[3] ), .A0(\enc.nr.curr_byte[0] ), 
+    .F0(\enc.nr.sbx.n30 ), .F1(\enc.nr.sbx.n5949 ));
+  enc_nr_sbx_SLICE_34 \enc.nr.sbx.SLICE_34 ( .D1(\enc.nr.curr_byte[6] ), 
+    .C1(\enc.nr.sbx.n5800 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.sbx.n5799 ), .D0(\enc.nr.sbx.n6162 ), .C0(\enc.nr.sbx.n5979 ), 
+    .B0(\enc.nr.curr_byte[4] ), .A0(\enc.nr.sbx.n7032 ), 
+    .F0(\enc.nr.sbx.n5800 ), .F1(\enc.nr.sbx.n6750 ));
+  enc_nr_sbx_SLICE_36 \enc.nr.sbx.SLICE_36 ( .D1(\enc.nr.curr_byte[3] ), 
+    .C1(\enc.nr.sbx.n6700 ), .B1(\enc.nr.sbx.n5978 ), 
+    .A1(\enc.nr.curr_byte[4] ), .D0(\enc.nr.curr_byte[0] ), 
+    .B0(\enc.nr.curr_byte[2] ), .A0(\enc.nr.curr_byte[1] ), 
+    .F0(\enc.nr.sbx.n6700 ), .F1(\enc.nr.sbx.n7032 ));
+  enc_nr_sbx_SLICE_37 \enc.nr.sbx.SLICE_37 ( .D1(\enc.nr.sbx.n6463 ), 
+    .C1(\enc.nr.sbx.n7 ), .B1(\enc.nr.sbx.n6756 ), .A1(\enc.nr.curr_byte[4] ), 
+    .D0(\enc.nr.curr_byte[1] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[2] ), .F0(\enc.nr.sbx.n7 ), .F1(\enc.nr.sbx.n6759 ));
+  enc_nr_sbx_SLICE_38 \enc.nr.sbx.SLICE_38 ( .D1(\enc.nr.sbx.n6531 ), 
+    .C1(\enc.nr.sbx.n6731 ), .B1(\enc.nr.curr_byte[4] ), 
+    .A1(\enc.nr.curr_byte[3] ), .C0(\enc.nr.curr_byte[2] ), 
+    .B0(\enc.nr.curr_byte[1] ), .A0(\enc.nr.curr_byte[0] ), 
+    .F0(\enc.nr.sbx.n6731 ), .F1(\enc.nr.sbx.n6756 ));
+  enc_nr_sbx_SLICE_39 \enc.nr.sbx.SLICE_39 ( .D1(\enc.nr.sbx.n30_adj_2098 ), 
+    .C1(\enc.nr.sbx.n15 ), .B1(\enc.nr.sbx.n6906 ), .A1(\enc.nr.curr_byte[5] ), 
+    .D0(\enc.nr.curr_byte[3] ), .C0(\enc.nr.curr_byte[1] ), 
+    .B0(\enc.nr.curr_byte[2] ), .A0(\enc.nr.curr_byte[0] ), 
+    .F0(\enc.nr.sbx.n15 ), .F1(\enc.nr.sbx.n5891 ));
+  enc_nr_sbx_SLICE_40 \enc.nr.sbx.SLICE_40 ( .D1(\enc.nr.curr_byte[4] ), 
+    .C1(\enc.nr.sbx.n61_adj_2099 ), .B1(\enc.nr.sbx.n5972 ), 
+    .A1(\enc.nr.curr_byte[5] ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n61_adj_2099 ), 
+    .F1(\enc.nr.sbx.n6906 ));
+  enc_nr_sbx_SLICE_41 \enc.nr.sbx.SLICE_41 ( .D1(\enc.nr.sbx.n6876 ), 
+    .C1(\enc.nr.sbx.n78 ), .B1(\enc.nr.sbx.n93_adj_2100 ), 
+    .A1(\enc.nr.curr_byte[5] ), .D0(\enc.nr.curr_byte[3] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n78 ), .F1(\enc.nr.sbx.n5900 ));
+  enc_nr_sbx_SLICE_42 \enc.nr.sbx.SLICE_42 ( .D1(\enc.nr.sbx.n109_adj_2108 ), 
+    .C1(\enc.nr.sbx.n5954 ), .B1(\enc.nr.curr_byte[4] ), 
+    .A1(\enc.nr.curr_byte[5] ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n5954 ), 
+    .F1(\enc.nr.sbx.n6876 ));
+  enc_nr_sbx_SLICE_43 \enc.nr.sbx.SLICE_43 ( .D0(\enc.nr.sbx.n6828 ), 
+    .C0(\enc.nr.sbx.n5886 ), .B0(\enc.nr.curr_byte[6] ), 
+    .A0(\enc.nr.sbx.n5887 ), .F0(\enc.nr.sbx.n6831 ));
+  enc_nr_sbx_SLICE_45 \enc.nr.sbx.SLICE_45 ( .D1(\enc.nr.sbx.n173_adj_2107 ), 
+    .C1(\enc.nr.sbx.n4490 ), .B1(\enc.nr.curr_byte[0] ), 
+    .A1(\enc.nr.curr_byte[4] ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[3] ), 
+    .F0(\enc.nr.sbx.n4490 ), .F1(\enc.nr.sbx.n5839 ));
+  enc_nr_sbx_SLICE_46 \enc.nr.sbx.SLICE_46 ( .D1(\enc.nr.curr_byte[1] ), 
+    .C1(\enc.nr.curr_byte[3] ), .B1(\enc.nr.curr_byte[0] ), 
+    .A1(\enc.nr.curr_byte[2] ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n173_adj_2107 ), 
+    .F1(\enc.nr.sbx.n236_adj_2095 ));
+  enc_nr_sbx_SLICE_47 \enc.nr.sbx.SLICE_47 ( .D1(\enc.nr.sbx.n220_adj_2109 ), 
+    .C1(\enc.nr.sbx.n205_adj_2110 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.sbx.n6762 ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n205_adj_2110 ), 
+    .F1(\enc.nr.sbx.n6765 ));
+  enc_nr_sbx_SLICE_48 \enc.nr.sbx.SLICE_48 ( .D1(\enc.nr.curr_byte[5] ), 
+    .C1(\enc.nr.sbx.n251_adj_2119 ), .B1(\enc.nr.curr_byte[4] ), 
+    .A1(\enc.nr.sbx.n236_adj_2118 ), .D0(\enc.nr.curr_byte[3] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n251_adj_2119 ), 
+    .F1(\enc.nr.sbx.n6762 ));
+  enc_nr_sbx_SLICE_49 \enc.nr.sbx.SLICE_49 ( .D1(\enc.nr.sbx.n6912 ), 
+    .C1(\enc.nr.sbx.n6609 ), .B1(\enc.nr.curr_byte[4] ), 
+    .A1(\enc.nr.sbx.n6162 ), .C0(\enc.nr.curr_byte[2] ), 
+    .B0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n6609 ), 
+    .F1(\enc.nr.sbx.n5887 ));
+  enc_nr_sbx_SLICE_50 \enc.nr.sbx.SLICE_50 ( .D1(\enc.nr.curr_byte[4] ), 
+    .C1(\enc.nr.sbx.n6561 ), .B1(\enc.nr.sbx.n6580 ), 
+    .A1(\enc.nr.curr_byte[3] ), .C0(\enc.nr.curr_byte[0] ), 
+    .B0(\enc.nr.curr_byte[1] ), .A0(\enc.nr.curr_byte[2] ), 
+    .F0(\enc.nr.sbx.n6561 ), .F1(\enc.nr.sbx.n6912 ));
+  enc_nr_sbx_SLICE_51 \enc.nr.sbx.SLICE_51 ( .C1(\enc.nr.sbx.n6921 ), 
+    .B1(\enc.nr.sbx.n6867 ), .A1(\enc.nr.curr_byte[7] ), 
+    .D0(\enc.nr.sbx.n6918 ), .C0(\enc.nr.sbx.n5874 ), .B0(\enc.nr.sbx.n5875 ), 
+    .A0(\enc.nr.curr_byte[6] ), .F0(\enc.nr.sbx.n6921 ), 
+    .F1(\enc.nr.subd_byte[4] ));
+  enc_nr_sbx_SLICE_52 \enc.nr.sbx.SLICE_52 ( .D0(\enc.nr.sbx.n5877 ), 
+    .C0(\enc.nr.sbx.n5878 ), .B0(\enc.nr.curr_byte[6] ), 
+    .A0(\enc.nr.curr_byte[5] ), .F0(\enc.nr.sbx.n6918 ));
+  enc_nr_sbx_SLICE_53 \enc.nr.sbx.SLICE_53 ( .D1(\enc.nr.sbx.n6852 ), 
+    .C1(\enc.nr.sbx.n5942 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.sbx.n220_adj_2117 ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n5942 ), 
+    .F1(\enc.nr.sbx.n5909 ));
+  enc_nr_sbx_SLICE_54 \enc.nr.sbx.SLICE_54 ( .D1(\enc.nr.sbx.n236_adj_2124 ), 
+    .C1(\enc.nr.sbx.n251_adj_2125 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.curr_byte[4] ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n251_adj_2125 ), 
+    .F1(\enc.nr.sbx.n6852 ));
+  enc_nr_sbx_SLICE_55 \enc.nr.sbx.SLICE_55 ( .D1(\enc.nr.sbx.n6768 ), 
+    .C1(\enc.nr.sbx.n142 ), .B1(\enc.nr.curr_byte[5] ), .A1(\enc.nr.sbx.n157 ), 
+    .D0(\enc.nr.curr_byte[0] ), .C0(\enc.nr.curr_byte[1] ), 
+    .B0(\enc.nr.curr_byte[2] ), .A0(\enc.nr.curr_byte[3] ), 
+    .F0(\enc.nr.sbx.n142 ), .F1(\enc.nr.sbx.n6771 ));
+  enc_nr_sbx_SLICE_56 \enc.nr.sbx.SLICE_56 ( .D1(\enc.nr.curr_byte[4] ), 
+    .C1(\enc.nr.sbx.n5843 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.sbx.n173_adj_2122 ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[3] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n5843 ), 
+    .F1(\enc.nr.sbx.n6768 ));
+  enc_nr_sbx_SLICE_58 \enc.nr.sbx.SLICE_58 ( .D0(\enc.nr.sbx.n6747 ), 
+    .C0(\enc.nr.sbx.n5815 ), .B0(\enc.nr.curr_byte[6] ), 
+    .A0(\enc.nr.curr_byte[5] ), .F0(\enc.nr.sbx.n6924 ));
+  enc_nr_sbx_SLICE_59 \enc.nr.sbx.SLICE_59 ( .D1(\enc.nr.sbx.n6930 ), 
+    .C1(\enc.nr.sbx.n5943 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.sbx.n5944 ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[3] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n5943 ), 
+    .F1(\enc.nr.sbx.n5863 ));
+  enc_nr_sbx_SLICE_60 \enc.nr.sbx.SLICE_60 ( .D1(\enc.nr.sbx.n5883 ), 
+    .C1(\enc.nr.sbx.n5884 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.curr_byte[4] ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n5884 ), 
+    .F1(\enc.nr.sbx.n6930 ));
+  enc_nr_sbx_SLICE_61 \enc.nr.sbx.SLICE_61 ( .C1(\enc.nr.subd_byte[1] ), 
+    .B1(encr_c_113), .A1(\enc.nr.n5520 ), .D0(\enc.nr.sbx.n5900 ), 
+    .C0(\enc.nr.sbx.n5891 ), .B0(\enc.nr.sbx.n6834 ), 
+    .A0(\enc.nr.curr_byte[7] ), .F0(\enc.nr.subd_byte[1] ), .F1(encr_c_113));
+  enc_nr_sbx_SLICE_62 \enc.nr.sbx.SLICE_62 ( .D0(\enc.nr.sbx.n5906 ), 
+    .C0(\enc.nr.sbx.n5909 ), .B0(\enc.nr.curr_byte[7] ), 
+    .A0(\enc.nr.curr_byte[6] ), .F0(\enc.nr.sbx.n6834 ));
+  enc_nr_sbx_SLICE_63 \enc.nr.sbx.SLICE_63 ( .D1(\enc.nr.sbx.n6774 ), 
+    .C1(\enc.nr.sbx.n6507 ), .B1(\enc.nr.curr_byte[4] ), 
+    .A1(\enc.nr.sbx.n6541 ), .C0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n6507 ), 
+    .F1(\enc.nr.sbx.n6777 ));
+  enc_nr_sbx_SLICE_64 \enc.nr.sbx.SLICE_64 ( .D1(\enc.nr.sbx.n6578 ), 
+    .C1(\enc.nr.sbx.n219 ), .B1(\enc.nr.curr_byte[3] ), 
+    .A1(\enc.nr.curr_byte[4] ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[1] ), .B0(\enc.nr.curr_byte[2] ), 
+    .F0(\enc.nr.sbx.n219 ), .F1(\enc.nr.sbx.n6774 ));
+  enc_nr_sbx_SLICE_65 \enc.nr.sbx.SLICE_65 ( .D1(\enc.nr.sbx.n6780 ), 
+    .C1(\enc.nr.sbx.n5931 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.sbx.n5932 ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n5931 ), 
+    .F1(\enc.nr.sbx.n6783 ));
+  enc_nr_sbx_SLICE_66 \enc.nr.sbx.SLICE_66 ( .D1(\enc.nr.sbx.n5808 ), 
+    .C1(\enc.nr.sbx.n5809 ), .B1(\enc.nr.curr_byte[4] ), 
+    .A1(\enc.nr.curr_byte[5] ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[1] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.sbx.n5809 ), 
+    .F1(\enc.nr.sbx.n6780 ));
+  enc_nr_sbx_SLICE_67 \enc.nr.sbx.SLICE_67 ( .D1(\enc.nr.sbx.n6954 ), 
+    .C1(\enc.nr.sbx.n5838 ), .B1(\enc.nr.sbx.n5839 ), 
+    .A1(\enc.nr.curr_byte[6] ), .D0(\enc.nr.curr_byte[4] ), 
+    .C0(\enc.nr.sbx.n157_adj_2115 ), .A0(\enc.nr.sbx.n142_adj_2114 ), 
+    .F0(\enc.nr.sbx.n5838 ), .F1(\enc.nr.sbx.n6957 ));
+  enc_nr_sbx_SLICE_68 \enc.nr.sbx.SLICE_68 ( .D0(\enc.nr.sbx.n6777 ), 
+    .C0(\enc.nr.sbx.n5845 ), .B0(\enc.nr.curr_byte[6] ), 
+    .A0(\enc.nr.curr_byte[5] ), .F0(\enc.nr.sbx.n6954 ));
+  enc_nr_sbx_SLICE_69 \enc.nr.sbx.SLICE_69 ( .D1(\enc.nr.sbx.n5980 ), 
+    .C1(\enc.nr.sbx.n78_adj_2104 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.sbx.n6786 ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.sbx.n78_adj_2104 ), 
+    .F1(\enc.nr.sbx.n6789 ));
+  enc_nr_sbx_SLICE_70 \enc.nr.sbx.SLICE_70 ( .D1(\enc.nr.sbx.n109_adj_2097 ), 
+    .C1(\enc.nr.sbx.n124_adj_2128 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.curr_byte[4] ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[3] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n124_adj_2128 ), 
+    .F1(\enc.nr.sbx.n6786 ));
+  enc_nr_sbx_SLICE_71 \enc.nr.sbx.SLICE_71 ( .D1(\enc.nr.curr_byte[5] ), 
+    .C1(\enc.nr.sbx.n5835 ), .B1(\enc.nr.sbx.n6960 ), .A1(\enc.nr.sbx.n5836 ), 
+    .D0(\enc.nr.curr_byte[0] ), .C0(\enc.nr.curr_byte[1] ), 
+    .B0(\enc.nr.curr_byte[3] ), .A0(\enc.nr.curr_byte[2] ), 
+    .F0(\enc.nr.sbx.n5835 ), .F1(\enc.nr.sbx.n5848 ));
+  enc_nr_sbx_SLICE_72 \enc.nr.sbx.SLICE_72 ( .D1(\enc.nr.curr_byte[5] ), 
+    .C1(\enc.nr.sbx.n5851 ), .B1(\enc.nr.curr_byte[4] ), 
+    .A1(\enc.nr.sbx.n5850 ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[3] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n5851 ), 
+    .F1(\enc.nr.sbx.n6960 ));
+  enc_nr_sbx_SLICE_73 \enc.nr.sbx.SLICE_73 ( .D1(\enc.nr.sbx.n157_adj_2130 ), 
+    .C1(\enc.nr.sbx.n142_adj_2131 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.sbx.n6858 ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[1] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[2] ), .F0(\enc.nr.sbx.n142_adj_2131 ), 
+    .F1(\enc.nr.sbx.n5906 ));
+  enc_nr_sbx_SLICE_75 \enc.nr.sbx.SLICE_75 ( .D0(\enc.nr.sbx.n5827 ), 
+    .C0(\enc.nr.sbx.n6759 ), .B0(\enc.nr.sbx.n6792 ), 
+    .A0(\enc.nr.curr_byte[6] ), .F0(\enc.nr.sbx.n6795 ));
+  enc_nr_sbx_SLICE_76 \enc.nr.sbx.SLICE_76 ( .D0(\enc.nr.curr_byte[5] ), 
+    .C0(\enc.nr.sbx.n5833 ), .B0(\enc.nr.curr_byte[6] ), 
+    .A0(\enc.nr.sbx.n5832 ), .F0(\enc.nr.sbx.n6792 ));
+  enc_nr_sbx_SLICE_77 \enc.nr.sbx.SLICE_77 ( .D1(\enc.nr.sbx.n6882 ), 
+    .C1(\enc.nr.sbx.n6825 ), .B1(\enc.nr.sbx.n157_adj_2132 ), 
+    .A1(\enc.nr.curr_byte[5] ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n6825 ), 
+    .F1(\enc.nr.sbx.n6885 ));
+  enc_nr_sbx_SLICE_78 \enc.nr.sbx.SLICE_78 ( .D1(\enc.nr.sbx.n173_adj_2120 ), 
+    .C1(\enc.nr.sbx.n188 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.curr_byte[4] ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[3] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n188 ), 
+    .F1(\enc.nr.sbx.n6882 ));
+  enc_nr_sbx_SLICE_79 \enc.nr.sbx.SLICE_79 ( .D0(\enc.nr.curr_byte[6] ), 
+    .C0(\enc.nr.sbx.n5865 ), .B0(\enc.nr.sbx.n6864 ), .A0(\enc.nr.sbx.n5866 ), 
+    .F0(\enc.nr.sbx.n6867 ));
+  enc_nr_sbx_SLICE_80 \enc.nr.sbx.SLICE_80 ( .D0(\enc.nr.curr_byte[5] ), 
+    .C0(\enc.nr.sbx.n5872 ), .B0(\enc.nr.curr_byte[6] ), 
+    .A0(\enc.nr.sbx.n5871 ), .F0(\enc.nr.sbx.n6864 ));
+  enc_nr_sbx_SLICE_81 \enc.nr.sbx.SLICE_81 ( .D1(\enc.nr.n5520 ), 
+    .C1(\enc.nr.subd_byte[5] ), .B1(encr_c_117), .D0(\enc.nr.sbx.n6849 ), 
+    .C0(\enc.nr.sbx.n6873 ), .B0(\enc.nr.curr_byte[7] ), 
+    .A0(\enc.nr.sbx.n6984 ), .F0(\enc.nr.subd_byte[5] ), .F1(encr_c_117));
+  enc_nr_sbx_SLICE_82 \enc.nr.sbx.SLICE_82 ( .D0(\enc.nr.curr_byte[7] ), 
+    .C0(\enc.nr.sbx.n6765 ), .B0(\enc.nr.curr_byte[6] ), 
+    .A0(\enc.nr.sbx.n6807 ), .F0(\enc.nr.sbx.n6984 ));
+  enc_nr_sbx_SLICE_83 \enc.nr.sbx.SLICE_83 ( .D1(\enc.nr.sbx.n6840 ), 
+    .C1(\enc.nr.sbx.n6720 ), .B1(\enc.nr.curr_byte[4] ), .A1(\enc.nr.sbx.n45 ), 
+    .D0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[2] ), .F0(\enc.nr.sbx.n6720 ), 
+    .F1(\enc.nr.sbx.n5827 ));
+  enc_nr_sbx_SLICE_84 \enc.nr.sbx.SLICE_84 ( .D1(\enc.nr.sbx.n5820 ), 
+    .C1(\enc.nr.sbx.n5821 ), .B1(\enc.nr.curr_byte[3] ), 
+    .A1(\enc.nr.curr_byte[4] ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[0] ), .A0(\enc.nr.curr_byte[1] ), 
+    .F0(\enc.nr.sbx.n5821 ), .F1(\enc.nr.sbx.n6840 ));
+  enc_nr_sbx_SLICE_85 \enc.nr.sbx.SLICE_85 ( .D1(\enc.nr.curr_byte[5] ), 
+    .C1(\enc.nr.sbx.n93_adj_2142 ), .B1(\enc.nr.sbx.n78_adj_2143 ), 
+    .A1(\enc.nr.sbx.n6846 ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[3] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n93_adj_2142 ), 
+    .F1(\enc.nr.sbx.n6849 ));
+  enc_nr_sbx_SLICE_86 \enc.nr.sbx.SLICE_86 ( .D1(\enc.nr.sbx.n109_adj_2111 ), 
+    .C1(\enc.nr.sbx.n124 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.curr_byte[4] ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[1] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.sbx.n124 ), 
+    .F1(\enc.nr.sbx.n6846 ));
+  enc_nr_sbx_SLICE_87 \enc.nr.sbx.SLICE_87 ( .D1(\enc.nr.sbx.n6870 ), 
+    .C1(\enc.nr.sbx.n15_adj_2135 ), .B1(\enc.nr.sbx.n30_adj_2144 ), 
+    .A1(\enc.nr.curr_byte[5] ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.sbx.n15_adj_2135 ), 
+    .F1(\enc.nr.sbx.n6873 ));
+  enc_nr_sbx_SLICE_88 \enc.nr.sbx.SLICE_88 ( .D1(\enc.nr.curr_byte[5] ), 
+    .C1(\enc.nr.sbx.n61_adj_2127 ), .B1(\enc.nr.sbx.n46_adj_2138 ), 
+    .A1(\enc.nr.curr_byte[4] ), .D0(\enc.nr.curr_byte[3] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n61_adj_2127 ), 
+    .F1(\enc.nr.sbx.n6870 ));
+  enc_nr_sbx_SLICE_89 \enc.nr.sbx.SLICE_89 ( .D1(\enc.nr.sbx.n6804 ), 
+    .C1(\enc.nr.sbx.n142_adj_2139 ), .B1(\enc.nr.sbx.n157_adj_2123 ), 
+    .A1(\enc.nr.curr_byte[5] ), .D0(\enc.nr.curr_byte[3] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n142_adj_2139 ), 
+    .F1(\enc.nr.sbx.n6807 ));
+  enc_nr_sbx_SLICE_90 \enc.nr.sbx.SLICE_90 ( .D1(\enc.nr.curr_byte[5] ), 
+    .C1(\enc.nr.sbx.n188_adj_2136 ), .B1(\enc.nr.curr_byte[4] ), 
+    .A1(\enc.nr.sbx.n173_adj_2121 ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[2] ), .F0(\enc.nr.sbx.n188_adj_2136 ), 
+    .F1(\enc.nr.sbx.n6804 ));
+  enc_nr_sbx_SLICE_91 \enc.nr.sbx.SLICE_91 ( .D1(\enc.nr.sbx.n7014 ), 
+    .C1(\enc.nr.sbx.n205_adj_2141 ), .B1(\enc.nr.curr_byte[5] ), 
+    .A1(\enc.nr.sbx.n220_adj_2113 ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n205_adj_2141 ), 
+    .F1(\enc.nr.sbx.n5936 ));
+  enc_nr_sbx_SLICE_92 \enc.nr.sbx.SLICE_92 ( .D1(\enc.nr.curr_byte[5] ), 
+    .C1(\enc.nr.sbx.n6951 ), .B1(\enc.nr.curr_byte[4] ), 
+    .A1(\enc.nr.sbx.n6939 ), .D0(\enc.nr.curr_byte[3] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n6951 ), 
+    .F1(\enc.nr.sbx.n7014 ));
+  enc_nr_SLICE_93 \enc.nr.SLICE_93 ( .D1(\enc.nr.n5520 ), 
+    .C1(\enc.nr.subd_byte[7] ), .A1(encr_c_119), .D0(\enc.nr.sbx.n6753 ), 
+    .C0(\enc.nr.sbx.n6927 ), .B0(\enc.nr.curr_byte[7] ), 
+    .F0(\enc.nr.subd_byte[7] ), .F1(encr_c_119));
+  enc_nr_SLICE_95 \enc.nr.SLICE_95 ( .D1(\enc.nr.counter[5] ), 
+    .C1(\enc.nr.n6 ), .B1(\enc.nr.counter[3] ), 
+    .A1(\enc.nr.curr_0_127__N_1[7] ), .D0(\enc.nr.counter[6] ), 
+    .B0(\enc.nr.counter[4] ), .F0(\enc.nr.n6 ), .F1(\enc.nr.n5520 ));
+  enc_nr_SLICE_97 \enc.nr.SLICE_97 ( .D0(\enc.nr.n5520 ), .C0(encr_c_118), 
+    .A0(\enc.nr.subd_byte[6] ), .F0(encr_c_118));
+  enc_nr_sbx_SLICE_98 \enc.nr.sbx.SLICE_98 ( .C1(\enc.nr.sbx.n5869 ), 
+    .B1(\enc.nr.curr_byte[7] ), .A1(\enc.nr.sbx.n6831 ), 
+    .D0(\enc.nr.curr_byte[6] ), .C0(\enc.nr.sbx.n7023 ), 
+    .A0(\enc.nr.sbx.n6885 ), .F0(\enc.nr.sbx.n5869 ), 
+    .F1(\enc.nr.subd_byte[6] ));
+  enc_nr_SLICE_99 \enc.nr.SLICE_99 ( .D1(\enc.nr.subd_byte[2] ), 
+    .C1(encr_c_114), .A1(\enc.nr.n5520 ), .D0(\enc.nr.subd_byte[4] ), 
+    .C0(\enc.nr.n5520 ), .B0(encr_c_116), .F0(encr_c_116), .F1(encr_c_114));
+  enc_nr_SLICE_101 \enc.nr.SLICE_101 ( .C1(\enc.nr.subd_byte[3] ), 
+    .B1(encr_c_115), .A1(\enc.nr.n5520 ), .D0(\enc.nr.curr_byte[7] ), 
+    .C0(\enc.nr.sbx.n6819 ), .B0(\enc.nr.sbx.n7002 ), .A0(\enc.nr.sbx.n6789 ), 
+    .F0(\enc.nr.subd_byte[3] ), .F1(encr_c_115));
+  enc_nr_sbx_SLICE_103 \enc.nr.sbx.SLICE_103 ( .D1(\enc.nr.curr_byte[4] ), 
+    .C1(\enc.nr.sbx.n93 ), .A1(\enc.nr.sbx.n4485 ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n93 ), .F1(\enc.nr.sbx.n5832 ));
+  enc_nr_sbx_SLICE_105 \enc.nr.sbx.SLICE_105 ( .D1(\enc.nr.sbx.n205 ), 
+    .C1(\enc.nr.sbx.n220 ), .A1(\enc.nr.curr_byte[4] ), 
+    .D0(\enc.nr.curr_byte[1] ), .C0(\enc.nr.curr_byte[0] ), 
+    .B0(\enc.nr.curr_byte[3] ), .A0(\enc.nr.curr_byte[2] ), 
+    .F0(\enc.nr.sbx.n220 ), .F1(\enc.nr.sbx.n5877 ));
+  enc_nr_sbx_SLICE_107 \enc.nr.sbx.SLICE_107 ( .D1(\enc.nr.curr_byte[4] ), 
+    .C1(\enc.nr.sbx.n124_adj_2090 ), .A1(\enc.nr.sbx.n109 ), 
+    .D0(\enc.nr.curr_byte[1] ), .C0(\enc.nr.curr_byte[0] ), 
+    .B0(\enc.nr.curr_byte[3] ), .A0(\enc.nr.curr_byte[2] ), 
+    .F0(\enc.nr.sbx.n124_adj_2090 ), .F1(\enc.nr.sbx.n5833 ));
+  enc_nr_sbx_SLICE_109 \enc.nr.sbx.SLICE_109 ( .D1(\enc.nr.sbx.n78_adj_2137 ), 
+    .C1(\enc.nr.sbx.n93_adj_2093 ), .A1(\enc.nr.curr_byte[4] ), 
+    .D0(\enc.nr.curr_byte[0] ), .C0(\enc.nr.curr_byte[3] ), 
+    .B0(\enc.nr.curr_byte[1] ), .A0(\enc.nr.curr_byte[2] ), 
+    .F0(\enc.nr.sbx.n93_adj_2093 ), .F1(\enc.nr.sbx.n5871 ));
+  enc_nr_sbx_SLICE_111 \enc.nr.sbx.SLICE_111 ( .D1(\enc.nr.curr_byte[4] ), 
+    .C1(\enc.nr.sbx.n38 ), .B1(\enc.nr.sbx.n6541 ), .A1(\enc.nr.sbx.n6978 ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n38 ), .F1(\enc.nr.sbx.n5950 ));
+  enc_nr_sbx_SLICE_113 \enc.nr.sbx.SLICE_113 ( .C1(\enc.nr.sbx.n6945 ), 
+    .B1(\enc.nr.sbx.n78_adj_2116 ), .A1(\enc.nr.curr_byte[4] ), 
+    .D0(\enc.nr.curr_byte[1] ), .C0(\enc.nr.curr_byte[2] ), 
+    .B0(\enc.nr.curr_byte[3] ), .A0(\enc.nr.curr_byte[0] ), 
+    .F0(\enc.nr.sbx.n6945 ), .F1(\enc.nr.sbx.n5799 ));
+  enc_nr_sbx_SLICE_115 \enc.nr.sbx.SLICE_115 ( .D1(\enc.nr.sbx.n109_adj_2129 ), 
+    .C1(\enc.nr.sbx.n124_adj_2094 ), .A1(\enc.nr.curr_byte[4] ), 
+    .D0(\enc.nr.curr_byte[2] ), .C0(\enc.nr.curr_byte[0] ), 
+    .B0(\enc.nr.curr_byte[1] ), .A0(\enc.nr.curr_byte[3] ), 
+    .F0(\enc.nr.sbx.n124_adj_2094 ), .F1(\enc.nr.sbx.n5872 ));
+  enc_nr_sbx_SLICE_117 \enc.nr.sbx.SLICE_117 ( .C1(\enc.nr.sbx.n251_adj_2096 ), 
+    .B1(\enc.nr.curr_byte[4] ), .A1(\enc.nr.sbx.n236_adj_2095 ), 
+    .D0(\enc.nr.curr_byte[3] ), .C0(\enc.nr.curr_byte[0] ), 
+    .B0(\enc.nr.curr_byte[2] ), .A0(\enc.nr.curr_byte[1] ), 
+    .F0(\enc.nr.sbx.n251_adj_2096 ), .F1(\enc.nr.sbx.n5878 ));
+  enc_nr_sbx_SLICE_119 \enc.nr.sbx.SLICE_119 ( .D1(\enc.nr.curr_byte[4] ), 
+    .C1(\enc.nr.sbx.n4475 ), .A1(\enc.nr.sbx.n173 ), 
+    .D0(\enc.nr.curr_byte[2] ), .C0(\enc.nr.curr_byte[1] ), 
+    .B0(\enc.nr.curr_byte[0] ), .A0(\enc.nr.curr_byte[3] ), 
+    .F0(\enc.nr.sbx.n4475 ), .F1(\enc.nr.sbx.n5875 ));
+  enc_nr_sbx_SLICE_120 \enc.nr.sbx.SLICE_120 ( .D1(\enc.nr.curr_byte[1] ), 
+    .C1(\enc.nr.curr_byte[2] ), .B1(\enc.nr.curr_byte[3] ), 
+    .A1(\enc.nr.curr_byte[0] ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[1] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.sbx.n173 ), 
+    .F1(\enc.nr.sbx.n142_adj_2105 ));
+  enc_nr_sbx_SLICE_121 \enc.nr.sbx.SLICE_121 ( .C1(\enc.nr.sbx.n30_adj_2101 ), 
+    .B1(\enc.nr.curr_byte[4] ), .A1(\enc.nr.sbx.n15_adj_2140 ), 
+    .D0(\enc.nr.curr_byte[0] ), .C0(\enc.nr.curr_byte[3] ), 
+    .B0(\enc.nr.curr_byte[2] ), .A0(\enc.nr.curr_byte[1] ), 
+    .F0(\enc.nr.sbx.n30_adj_2101 ), .F1(\enc.nr.sbx.n5865 ));
+  enc_nr_sbx_SLICE_123 \enc.nr.sbx.SLICE_123 ( .D1(\enc.nr.sbx.n78_adj_2146 ), 
+    .C1(\enc.nr.sbx.n93_adj_2102 ), .A1(\enc.nr.curr_byte[4] ), 
+    .D0(\enc.nr.curr_byte[1] ), .C0(\enc.nr.curr_byte[2] ), 
+    .B0(\enc.nr.curr_byte[3] ), .A0(\enc.nr.curr_byte[0] ), 
+    .F0(\enc.nr.sbx.n93_adj_2102 ), .F1(\enc.nr.sbx.n5892 ));
+  enc_nr_sbx_SLICE_125 \enc.nr.sbx.SLICE_125 ( .D1(\enc.nr.curr_byte[4] ), 
+    .C1(\enc.nr.sbx.n6897 ), .A1(\enc.nr.sbx.n236_adj_2103 ), 
+    .D0(\enc.nr.curr_byte[0] ), .C0(\enc.nr.curr_byte[1] ), 
+    .B0(\enc.nr.curr_byte[2] ), .A0(\enc.nr.curr_byte[3] ), 
+    .F0(\enc.nr.sbx.n6897 ), .F1(\enc.nr.sbx.n5845 ));
+  enc_nr_sbx_SLICE_127 \enc.nr.sbx.SLICE_127 ( .D1(\enc.nr.sbx.n142_adj_2105 ), 
+    .C1(\enc.nr.sbx.n157_adj_2106 ), .B1(\enc.nr.curr_byte[4] ), 
+    .D0(\enc.nr.curr_byte[0] ), .C0(\enc.nr.curr_byte[3] ), 
+    .B0(\enc.nr.curr_byte[2] ), .A0(\enc.nr.curr_byte[1] ), 
+    .F0(\enc.nr.sbx.n157_adj_2106 ), .F1(\enc.nr.sbx.n5874 ));
+  enc_nr_sbx_SLICE_129 \enc.nr.sbx.SLICE_129 ( .C1(\enc.nr.sbx.n61_adj_2112 ), 
+    .B1(\enc.nr.sbx.n46 ), .A1(\enc.nr.curr_byte[4] ), 
+    .D0(\enc.nr.curr_byte[2] ), .C0(\enc.nr.curr_byte[3] ), 
+    .B0(\enc.nr.curr_byte[0] ), .A0(\enc.nr.curr_byte[1] ), 
+    .F0(\enc.nr.sbx.n61_adj_2112 ), .F1(\enc.nr.sbx.n5866 ));
+  enc_nr_sbx_SLICE_133 \enc.nr.sbx.SLICE_133 ( .D1(\enc.nr.curr_byte[4] ), 
+    .C1(\enc.nr.sbx.n251_adj_2126 ), .A1(\enc.nr.sbx.n236_adj_2145 ), 
+    .D0(\enc.nr.curr_byte[3] ), .C0(\enc.nr.curr_byte[2] ), 
+    .B0(\enc.nr.curr_byte[1] ), .A0(\enc.nr.curr_byte[0] ), 
+    .F0(\enc.nr.sbx.n251_adj_2126 ), .F1(\enc.nr.sbx.n5815 ));
+  enc_nr_sbx_SLICE_135 \enc.nr.sbx.SLICE_135 ( .C1(\enc.nr.curr_byte[0] ), 
+    .B1(\enc.nr.curr_byte[2] ), .A1(\enc.nr.curr_byte[1] ), 
+    .D0(\enc.nr.curr_byte[1] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[2] ), .F0(\enc.nr.sbx.n6463 ), .F1(\enc.nr.sbx.n45 ));
+  enc_nr_sbx_SLICE_138 \enc.nr.sbx.SLICE_138 ( .D1(\enc.nr.curr_byte[2] ), 
+    .C1(\enc.nr.curr_byte[0] ), .B1(\enc.nr.curr_byte[1] ), 
+    .A1(\enc.nr.curr_byte[3] ), .D0(\enc.nr.curr_byte[3] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n4918 ), 
+    .F1(\enc.nr.sbx.n4480 ));
+  enc_nr_sbx_SLICE_139 \enc.nr.sbx.SLICE_139 ( .D1(\enc.nr.sbx.n4480 ), 
+    .C1(\enc.nr.sbx.n6999 ), .B1(\enc.nr.curr_byte[4] ), 
+    .D0(\enc.nr.curr_byte[0] ), .C0(\enc.nr.curr_byte[1] ), 
+    .B0(\enc.nr.curr_byte[3] ), .A0(\enc.nr.curr_byte[2] ), 
+    .F0(\enc.nr.sbx.n6999 ), .F1(\enc.nr.sbx.n5893 ));
+  enc_nr_sbx_SLICE_141 \enc.nr.sbx.SLICE_141 ( .D1(\enc.nr.curr_byte[2] ), 
+    .C1(\enc.nr.curr_byte[3] ), .B1(\enc.nr.curr_byte[0] ), 
+    .A1(\enc.nr.curr_byte[1] ), .D0(\enc.nr.curr_byte[3] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n157 ), 
+    .F1(\enc.nr.sbx.n4485 ));
+  enc_nr_sbx_SLICE_145 \enc.nr.sbx.SLICE_145 ( .D1(\enc.nr.curr_byte[2] ), 
+    .C1(\enc.nr.curr_byte[1] ), .B1(\enc.nr.curr_byte[3] ), 
+    .A1(\enc.nr.curr_byte[0] ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.sbx.n109 ), .F1(\enc.nr.sbx.n236 ));
+  enc_nr_sbx_SLICE_151 \enc.nr.sbx.SLICE_151 ( .D1(\enc.nr.curr_byte[2] ), 
+    .C1(\enc.nr.curr_byte[3] ), .B1(\enc.nr.curr_byte[0] ), 
+    .A1(\enc.nr.curr_byte[1] ), .D0(\enc.nr.curr_byte[3] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n205 ), 
+    .F1(\enc.nr.sbx.n78_adj_2146 ));
+  enc_nr_sbx_SLICE_157 \enc.nr.sbx.SLICE_157 ( .D1(\enc.nr.curr_byte[3] ), 
+    .C1(\enc.nr.curr_byte[2] ), .B1(\enc.nr.curr_byte[1] ), 
+    .A1(\enc.nr.curr_byte[0] ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[1] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.sbx.n5850 ), 
+    .F1(\enc.nr.sbx.n5455 ));
+  enc_nr_sbx_SLICE_160 \enc.nr.sbx.SLICE_160 ( .D1(\enc.nr.curr_byte[0] ), 
+    .C1(\enc.nr.curr_byte[1] ), .B1(\enc.nr.curr_byte[2] ), 
+    .A1(\enc.nr.curr_byte[3] ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n6939 ), 
+    .F1(\enc.nr.sbx.n236_adj_2118 ));
+  enc_nr_sbx_SLICE_164 \enc.nr.sbx.SLICE_164 ( .D1(\enc.nr.curr_byte[1] ), 
+    .C1(\enc.nr.curr_byte[0] ), .B1(\enc.nr.curr_byte[3] ), 
+    .A1(\enc.nr.curr_byte[2] ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[3] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n5808 ), 
+    .F1(\enc.nr.sbx.n15_adj_2140 ));
+  enc_nr_sbx_SLICE_168 \enc.nr.sbx.SLICE_168 ( .D1(\enc.nr.curr_byte[0] ), 
+    .C1(\enc.nr.curr_byte[3] ), .B1(\enc.nr.curr_byte[1] ), 
+    .A1(\enc.nr.curr_byte[2] ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n157_adj_2130 ), 
+    .F1(\enc.nr.sbx.n5836 ));
+  enc_nr_sbx_SLICE_174 \enc.nr.sbx.SLICE_174 ( .D1(\enc.nr.curr_byte[0] ), 
+    .C1(\enc.nr.curr_byte[1] ), .B1(\enc.nr.curr_byte[3] ), 
+    .A1(\enc.nr.curr_byte[2] ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.sbx.n236_adj_2145 ), 
+    .F1(\enc.nr.sbx.n109_adj_2097 ));
+  enc_nr_sbx_SLICE_178 \enc.nr.sbx.SLICE_178 ( .D1(\enc.nr.curr_byte[3] ), 
+    .C1(\enc.nr.curr_byte[1] ), .B1(\enc.nr.curr_byte[0] ), 
+    .A1(\enc.nr.curr_byte[2] ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.sbx.n5944 ), 
+    .F1(\enc.nr.sbx.n5980 ));
+  enc_nr_sbx_SLICE_180 \enc.nr.sbx.SLICE_180 ( .D1(\enc.nr.curr_byte[2] ), 
+    .C1(\enc.nr.curr_byte[1] ), .B1(\enc.nr.curr_byte[0] ), 
+    .A1(\enc.nr.curr_byte[3] ), .D0(\enc.nr.curr_byte[3] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[2] ), .F0(\enc.nr.sbx.n30_adj_2144 ), 
+    .F1(\enc.nr.sbx.n220_adj_2117 ));
+  enc_nr_sbx_SLICE_187 \enc.nr.sbx.SLICE_187 ( .D1(\enc.nr.curr_byte[0] ), 
+    .C1(\enc.nr.curr_byte[1] ), .B1(\enc.nr.curr_byte[2] ), 
+    .A1(\enc.nr.curr_byte[3] ), .D0(\enc.nr.curr_byte[3] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n236_adj_2103 ), 
+    .F1(\enc.nr.sbx.n5807 ));
+  enc_nr_sbx_SLICE_189 \enc.nr.sbx.SLICE_189 ( .D1(\enc.nr.curr_byte[0] ), 
+    .C1(\enc.nr.curr_byte[2] ), .B1(\enc.nr.curr_byte[1] ), 
+    .A1(\enc.nr.curr_byte[3] ), .D0(\enc.nr.curr_byte[3] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n30_adj_2098 ), 
+    .F1(\enc.nr.sbx.n78_adj_2137 ));
+  enc_nr_sbx_SLICE_191 \enc.nr.sbx.SLICE_191 ( .D1(\enc.nr.curr_byte[1] ), 
+    .C1(\enc.nr.curr_byte[3] ), .B1(\enc.nr.curr_byte[2] ), 
+    .A1(\enc.nr.curr_byte[0] ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[1] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[2] ), .F0(\enc.nr.sbx.n109_adj_2111 ), 
+    .F1(\enc.nr.sbx.n5857 ));
+  enc_nr_sbx_SLICE_194 \enc.nr.sbx.SLICE_194 ( .D1(\enc.nr.curr_byte[0] ), 
+    .C1(\enc.nr.curr_byte[3] ), .B1(\enc.nr.curr_byte[2] ), 
+    .A1(\enc.nr.curr_byte[1] ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[2] ), .F0(\enc.nr.sbx.n220_adj_2091 ), 
+    .F1(\enc.nr.sbx.n5972 ));
+  enc_nr_sbx_SLICE_196 \enc.nr.sbx.SLICE_196 ( .D1(\enc.nr.curr_byte[1] ), 
+    .C1(\enc.nr.curr_byte[2] ), .B1(\enc.nr.curr_byte[0] ), 
+    .A1(\enc.nr.curr_byte[3] ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n5932 ), 
+    .F1(\enc.nr.sbx.n236_adj_2124 ));
+  enc_nr_sbx_SLICE_199 \enc.nr.sbx.SLICE_199 ( .D1(\enc.nr.curr_byte[3] ), 
+    .C1(\enc.nr.curr_byte[0] ), .B1(\enc.nr.curr_byte[1] ), 
+    .A1(\enc.nr.curr_byte[2] ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[1] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.sbx.n220_adj_2113 ), 
+    .F1(\enc.nr.sbx.n46 ));
+  enc_nr_sbx_SLICE_205 \enc.nr.sbx.SLICE_205 ( .D1(\enc.nr.curr_byte[1] ), 
+    .C1(\enc.nr.curr_byte[2] ), .B1(\enc.nr.curr_byte[3] ), 
+    .A1(\enc.nr.curr_byte[0] ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[1] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.sbx.n142_adj_2114 ), 
+    .F1(\enc.nr.sbx.n46_adj_2138 ));
+  enc_nr_sbx_SLICE_207 \enc.nr.sbx.SLICE_207 ( .D1(\enc.nr.curr_byte[1] ), 
+    .C1(\enc.nr.curr_byte[3] ), .B1(\enc.nr.curr_byte[2] ), 
+    .A1(\enc.nr.curr_byte[0] ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n5883 ), 
+    .F1(\enc.nr.sbx.n173_adj_2133 ));
+  enc_nr_sbx_SLICE_211 \enc.nr.sbx.SLICE_211 ( .D1(\enc.nr.curr_byte[1] ), 
+    .C1(\enc.nr.curr_byte[2] ), .B1(\enc.nr.curr_byte[3] ), 
+    .A1(\enc.nr.curr_byte[0] ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[3] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n173_adj_2120 ), 
+    .F1(\enc.nr.sbx.n173_adj_2122 ));
+  enc_nr_sbx_SLICE_213 \enc.nr.sbx.SLICE_213 ( .D1(\enc.nr.curr_byte[0] ), 
+    .C1(\enc.nr.curr_byte[1] ), .B1(\enc.nr.curr_byte[2] ), 
+    .A1(\enc.nr.curr_byte[3] ), .D0(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n78_adj_2116 ), 
+    .F1(\enc.nr.sbx.n5967 ));
+  enc_nr_sbx_SLICE_219 \enc.nr.sbx.SLICE_219 ( .D1(\enc.nr.curr_byte[1] ), 
+    .C1(\enc.nr.curr_byte[3] ), .B1(\enc.nr.curr_byte[2] ), 
+    .A1(\enc.nr.curr_byte[0] ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[3] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n173_adj_2121 ), 
+    .F1(\enc.nr.sbx.n109_adj_2108 ));
+  enc_nr_sbx_SLICE_221 \enc.nr.sbx.SLICE_221 ( .D1(\enc.nr.curr_byte[3] ), 
+    .C1(\enc.nr.curr_byte[0] ), .B1(\enc.nr.curr_byte[1] ), 
+    .A1(\enc.nr.curr_byte[2] ), .D0(\enc.nr.curr_byte[0] ), 
+    .C0(\enc.nr.curr_byte[1] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.sbx.n157_adj_2123 ), 
+    .F1(\enc.nr.sbx.n157_adj_2132 ));
+  enc_nr_sbx_SLICE_223 \enc.nr.sbx.SLICE_223 ( .D1(\enc.nr.curr_byte[3] ), 
+    .C1(\enc.nr.curr_byte[2] ), .B1(\enc.nr.curr_byte[0] ), 
+    .A1(\enc.nr.curr_byte[1] ), .D0(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[3] ), .F0(\enc.nr.sbx.n220_adj_2109 ), 
+    .F1(\enc.nr.sbx.n109_adj_2129 ));
+  enc_nr_sbx_SLICE_231 \enc.nr.sbx.SLICE_231 ( .C1(\enc.nr.curr_byte[0] ), 
+    .B1(\enc.nr.curr_byte[1] ), .A1(\enc.nr.curr_byte[2] ), 
+    .D0(\enc.nr.curr_byte[0] ), .C0(\enc.nr.curr_byte[1] ), 
+    .B0(\enc.nr.curr_byte[2] ), .F0(\enc.nr.sbx.n5978 ), 
+    .F1(\enc.nr.sbx.n6578 ));
+  enc_nr_sbx_SLICE_237 \enc.nr.sbx.SLICE_237 ( .D1(\enc.nr.curr_byte[1] ), 
+    .C1(\enc.nr.curr_byte[0] ), .B1(\enc.nr.curr_byte[2] ), 
+    .C0(\enc.nr.curr_byte[1] ), .B0(\enc.nr.curr_byte[0] ), 
+    .A0(\enc.nr.curr_byte[2] ), .F0(\enc.nr.sbx.n6541 ), 
+    .F1(\enc.nr.sbx.n5817 ));
+  enc_nr_sbx_SLICE_240 \enc.nr.sbx.SLICE_240 ( .D1(\enc.nr.curr_byte[0] ), 
+    .C1(\enc.nr.curr_byte[2] ), .B1(\enc.nr.curr_byte[1] ), 
+    .C0(\enc.nr.curr_byte[0] ), .B0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[1] ), .F0(\enc.nr.sbx.n5820 ), 
+    .F1(\enc.nr.sbx.n6320 ));
+  enc_nr_sbx_SLICE_246 \enc.nr.sbx.SLICE_246 ( .C1(\enc.nr.curr_byte[1] ), 
+    .B1(\enc.nr.curr_byte[0] ), .A1(\enc.nr.curr_byte[2] ), 
+    .D0(\enc.nr.curr_byte[2] ), .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n6531 ), 
+    .F1(\enc.nr.sbx.n6162 ));
+  enc_nr_sbx_SLICE_250 \enc.nr.sbx.SLICE_250 ( .B0(\enc.nr.curr_byte[1] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n6376 ));
+  SLICE_255 SLICE_255( .F0(VCC_net));
+  enc_nr_sbx_SLICE_256 \enc.nr.sbx.SLICE_256 ( .C1(\enc.nr.curr_byte[1] ), 
+    .B1(\enc.nr.curr_byte[2] ), .C0(\enc.nr.curr_byte[2] ), 
+    .A0(\enc.nr.curr_byte[0] ), .F0(\enc.nr.sbx.n6580 ), 
+    .F1(\enc.nr.sbx.n6672 ));
+  enc_H \enc.H ( .CLKHFPU(VCC_net), .CLKHFEN(VCC_net), .CLKHF(\enc.clk ));
+  encr_0_ \encr[0]_I ( .PADDO(encr_c_112), .encr0(encr[0]));
+  encr_1_ \encr[1]_I ( .PADDO(encr_c_113), .encr1(encr[1]));
+  encr_2_ \encr[2]_I ( .PADDO(encr_c_114), .encr2(encr[2]));
+  encr_3_ \encr[3]_I ( .PADDO(encr_c_115), .encr3(encr[3]));
+  encr_4_ \encr[4]_I ( .PADDO(encr_c_116), .encr4(encr[4]));
+  encr_5_ \encr[5]_I ( .PADDO(encr_c_117), .encr5(encr[5]));
+  encr_6_ \encr[6]_I ( .PADDO(encr_c_118), .encr6(encr[6]));
+  encr_7_ \encr[7]_I ( .PADDO(encr_c_119), .encr7(encr[7]));
+endmodule
+
+module enc_nr_SLICE_0 ( input DI1, DI0, D1, B1, D0, B0, CLK, CIN0, CIN1, 
+    output Q0, Q1, F0, F1, COUT0 );
+  wire   GNDI, VCCI, DI1_dly, CLK_dly, DI0_dly;
+
+  fa2 \enc/nr/counter_15__I_0_add_5_5 ( .A0(GNDI), .B0(B0), .C0(GNDI), .D0(D0), 
+    .A1(GNDI), .B1(B1), .C1(GNDI), .D1(D1), .CI0(CIN0), .CI1(CIN1), .S0(F0), 
+    .S1(F1), .CO0(COUT0), .CO1());
+  gnd DRIVEGND( .PWR0(GNDI));
+  ffsre2 \enc/nr/counter_i6 ( .D0(DI0_dly), .SP(VCCI), .CK(CLK_dly), 
+    .LSR(GNDI), .Q(Q0));
+  vcc DRIVEVCC( .PWR1(VCCI));
+  ffsre2 \enc/nr/counter_i7 ( .D0(DI1_dly), .SP(VCCI), .CK(CLK_dly), 
+    .LSR(GNDI), .Q(Q1));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (B0 => COUT0) = (0:0:0,0:0:0);
+    (CLK => Q0) = (0:0:0,0:0:0);
+    (CLK => Q1) = (0:0:0,0:0:0);
+    (CIN0 => COUT0) = (0:0:0,0:0:0);
+    $setuphold (posedge CLK, DI1, 0:0:0, 0:0:0,,,, CLK_dly, DI1_dly);
+    $setuphold (posedge CLK, DI0, 0:0:0, 0:0:0,,,, CLK_dly, DI0_dly);
+  endspecify
+
+endmodule
+
+module fa2 ( input A0, B0, C0, D0, A1, B1, C1, D1, CI0, CI1, output S0, S1, 
+    CO0, CO1 );
+
+  FA2 inst1( .A0(A0), .B0(B0), .C0(C0), .D0(D0), .CI0(CI0), .A1(A1), .B1(B1), 
+    .C1(C1), .D1(D1), .CI1(CI1), .CO0(CO0), .CO1(CO1), .S0(S0), .S1(S1));
+  defparam inst1.INIT0 = "0xc33c";
+  defparam inst1.INIT1 = "0xc33c";
+endmodule
+
+module gnd ( output PWR0 );
+
+  VLO INST1( .Z(PWR0));
+endmodule
+
+module ffsre2 ( input D0, SP, CK, LSR, output Q );
+
+  FD1P3XZ INST01( .D(D0), .SP(SP), .CK(CK), .SR(LSR), .Q(Q));
+  defparam INST01.REGSET = "RESET";
+  defparam INST01.SRMODE = "CE_OVER_LSR";
+endmodule
+
+module vcc ( output PWR1 );
+
+  VHI INST1( .Z(PWR1));
+endmodule
+
+module enc_nr_SLICE_1 ( input DI1, DI0, D1, B1, D0, B0, CLK, CIN0, CIN1, 
+    output Q0, Q1, F0, F1, COUT1, COUT0 );
+  wire   GNDI, VCCI, DI1_dly, CLK_dly, DI0_dly;
+
+  fa2 \enc/nr/counter_15__I_0_add_5_3 ( .A0(GNDI), .B0(B0), .C0(GNDI), .D0(D0), 
+    .A1(GNDI), .B1(B1), .C1(GNDI), .D1(D1), .CI0(CIN0), .CI1(CIN1), .S0(F0), 
+    .S1(F1), .CO0(COUT0), .CO1(COUT1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  ffsre2 \enc/nr/counter_i4 ( .D0(DI0_dly), .SP(VCCI), .CK(CLK_dly), 
+    .LSR(GNDI), .Q(Q0));
+  vcc DRIVEVCC( .PWR1(VCCI));
+  ffsre2 \enc/nr/counter_i5 ( .D0(DI1_dly), .SP(VCCI), .CK(CLK_dly), 
+    .LSR(GNDI), .Q(Q1));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (B1 => COUT1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (B0 => COUT0) = (0:0:0,0:0:0);
+    (CLK => Q0) = (0:0:0,0:0:0);
+    (CLK => Q1) = (0:0:0,0:0:0);
+    (CIN0 => COUT0) = (0:0:0,0:0:0);
+    (CIN1 => COUT1) = (0:0:0,0:0:0);
+    $setuphold (posedge CLK, DI1, 0:0:0, 0:0:0,,,, CLK_dly, DI1_dly);
+    $setuphold (posedge CLK, DI0, 0:0:0, 0:0:0,,,, CLK_dly, DI0_dly);
+  endspecify
+
+endmodule
+
+module enc_nr_SLICE_2 ( input DI1, D1, C1, B1, CLK, CIN1, output Q1, F1, COUT1, 
+    COUT0 );
+  wire   GNDI, VCCI, DI1_dly, CLK_dly;
+
+  fa2 \enc/nr/counter_15__I_0_add_5_1 ( .A0(GNDI), .B0(GNDI), .C0(GNDI), 
+    .D0(VCCI), .A1(GNDI), .B1(B1), .C1(C1), .D1(D1), .CI0(VCCI), .CI1(CIN1), 
+    .S0(), .S1(F1), .CO0(COUT0), .CO1(COUT1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  vcc DRIVEVCC( .PWR1(VCCI));
+  ffsre2 \enc/nr/counter_i3 ( .D0(DI1_dly), .SP(VCCI), .CK(CLK_dly), 
+    .LSR(GNDI), .Q(Q1));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (C1 => COUT1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (B1 => COUT1) = (0:0:0,0:0:0);
+    (CLK => Q1) = (0:0:0,0:0:0);
+    (CIN1 => COUT1) = (0:0:0,0:0:0);
+    $setuphold (posedge CLK, DI1, 0:0:0, 0:0:0,,,, CLK_dly, DI1_dly);
+  endspecify
+
+endmodule
+
+module enc_nr_SLICE_3 ( input D1, C1, B1, A1, D0, B0, output F0, F1 );
+  wire   GNDI;
+
+  lut4 \enc/nr/sbx/n6750_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), .Z(F1));
+  lut40001 \enc/nr/i3893_2_lut ( .A(GNDI), .B(B0), .C(GNDI), .D(D0), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut4 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xAEA4") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40001 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xCCFF") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_4 ( input D0, C0, B0, A0, output F0 );
+
+  lut40002 \enc/nr/sbx/curr_byte[6]_bdd_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40002 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF588") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_SLICE_5 ( input D1, C1, A1, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40003 \enc/nr/sbx/i4837_3_lut ( .A(A1), .B(GNDI), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40004 \enc/nr/i3900_2_lut ( .A(A0), .B(B0), .C(GNDI), .D(GNDI), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40003 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xAF0F") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40004 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xDDDD") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_6 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40005 \enc/nr/sbx/i4725_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), .Z(F1));
+  lut40006 \enc/nr/sbx/addr_7__I_0_Mux_6_i30_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40005 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF5B1") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40006 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xD6D5") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_SLICE_7 ( input B0, A0, output F0 );
+  wire   GNDI;
+
+  lut40007 \enc/nr/i3894_2_lut ( .A(A0), .B(B0), .C(GNDI), .D(GNDI), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40007 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xBBBB") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_8 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40008 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_7 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40009 \enc/nr/sbx/i4352_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40008 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xE6A2") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40009 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x3253") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_SLICE_9 ( input D1, C1, A1, C0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40010 \enc/nr/sbx/addr_7__I_0_Mux_7_i134_3_lut ( .A(A1), .B(GNDI), .C(C1), 
+    .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40011 \enc/nr/i3903_2_lut ( .A(A0), .B(GNDI), .C(C0), .D(GNDI), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40010 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x50A5") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40011 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF5F5") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_10 ( input D1, C1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40012 \enc/nr/sbx/i2824_3_lut ( .A(A1), .B(GNDI), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40013 \enc/nr/sbx/addr_7__I_0_Mux_1_i93_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40012 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x5FA5") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40013 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x9871") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_SLICE_11 ( input D1, C1, B1, D0, C0, output F0, F1 );
+  wire   GNDI;
+
+  lut40014 \enc/nr/sbx/i4694_3_lut ( .A(GNDI), .B(B1), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40015 \enc/nr/i3469_2_lut ( .A(GNDI), .B(GNDI), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40014 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xFC0C") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40015 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF000") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_SLICE_13 ( input D1, C1, B1, A1, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40016 \enc/nr/sbx/addr_7__I_0_Mux_2_i157_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40017 \enc/nr/i3471_2_lut ( .A(A0), .B(B0), .C(GNDI), .D(GNDI), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40016 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x0CBC") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40017 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x8888") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_14 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40018 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_11 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40019 \enc/nr/sbx/addr_7__I_0_Mux_1_i188_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40018 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xE4AA") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40019 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x6C31") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_SLICE_15 ( input D1, C1, B1, A1, D0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40020 \enc/nr/sbx/curr_byte[5]_bdd_4_lut_4 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40021 \enc/nr/i1_2_lut_adj_2 ( .A(A0), .B(GNDI), .C(GNDI), .D(D0), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40020 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xDAD0") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40021 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xAA00") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_16 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40022 \enc/nr/sbx/n6810_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40023 \enc/nr/sbx/i4695_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40022 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xEE30") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40023 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xECD3") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_SLICE_17 ( input D1, C1, B1, A1, D0, C0, output F0, F1 );
+  wire   GNDI;
+
+  lut40024 \enc/nr/sbx/addr_7__I_0_Mux_5_i78_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40025 \enc/nr/i1_2_lut_adj_3 ( .A(GNDI), .B(GNDI), .C(C0), .D(D0), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40024 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x7AA4") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40025 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF000") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_18 ( input C1, B1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40026 \enc/nr/sbx/i4642_3_lut ( .A(A1), .B(B1), .C(C1), .D(GNDI), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40027 \enc/nr/sbx/addr_7__I_0_Mux_7_i188_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40026 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xD1D1") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40027 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x2AD5") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_19 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40022 \enc/nr/sbx/n6816_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40028 \enc/nr/sbx/n6798_bdd_4_lut_4_lut_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40028 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x586A") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_20 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40029 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_8 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40030 \enc/nr/sbx/addr_7__I_0_Mux_3_i61_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40029 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF388") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40030 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x400C") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_21 ( input D1, C1, B1, A1, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40008 \enc/nr/sbx/curr_byte[3]_bdd_4_lut_2 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40031 \enc/nr/sbx/i4657_3_lut ( .A(A0), .B(B0), .C(C0), .D(GNDI), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40031 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x9696") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_22 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40022 \enc/nr/sbx/n6924_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40032 \enc/nr/sbx/n6738_bdd_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40032 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xBA98") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_23 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40022 \enc/nr/sbx/n7020_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40033 \enc/nr/sbx/addr_7__I_0_Mux_6_i205_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40033 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x1874") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_24 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40029 \enc/nr/sbx/curr_byte[4]_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40034 \enc/nr/sbx/addr_7__I_0_Mux_6_i251_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40034 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x7042") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_25 ( input D1, C1, B1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40035 \enc/nr/i3050_3_lut ( .A(GNDI), .B(B1), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40036 \enc/nr/sbx/n6888_bdd_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40035 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xCCF0") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40036 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xDC98") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_26 ( input D0, C0, B0, A0, output F0 );
+
+  lut40037 \enc/nr/sbx/curr_byte[6]_bdd_4_lut_3 ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40037 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xE6C4") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_27 ( input D1, C1, B1, A1, D0, C0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40022 \enc/nr/sbx/n6744_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40038 \enc/nr/sbx/i4394_3_lut ( .A(A0), .B(GNDI), .C(C0), .D(D0), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40038 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xFA05") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_28 ( input D1, C1, B1, A1, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40018 \enc/nr/sbx/curr_byte[3]_bdd_4_lut_3 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40039 \enc/nr/sbx/i2795_rep_203_3_lut ( .A(A0), .B(B0), .C(C0), .D(GNDI), 
+    .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40039 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xE2E2") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_29 ( input D1, C1, B1, A1, D0, C0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40040 \enc/nr/sbx/curr_byte[3]_bdd_4_lut_8 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40041 \enc/nr/sbx/addr_7__I_0_Mux_7_i60_3_lut ( .A(A0), .B(GNDI), .C(C0), 
+    .D(D0), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40040 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF588") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40041 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x55F0") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_31 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40042 \enc/nr/sbx/i4788_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), .Z(F1));
+  lut40043 \enc/nr/sbx/addr_7__I_0_Mux_7_i30_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40042 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF088") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40043 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xADDF") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_34 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40044 \enc/nr/sbx/curr_byte[5]_bdd_4_lut_2 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40032 \enc/nr/sbx/n7032_bdd_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40044 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xE2CC") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_36 ( input D1, C1, B1, A1, D0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40040 \enc/nr/sbx/curr_byte[3]_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40045 \enc/nr/sbx/addr_7__I_0_Mux_7_i228_rep_555_3_lut ( .A(A0), .B(B0), 
+    .C(GNDI), .D(D0), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40045 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xDDBB") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_37 ( input D1, C1, B1, A1, D0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40046 \enc/nr/sbx/n6756_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40047 \enc/nr/sbx/addr_7__I_0_Mux_2_i7_3_lut ( .A(A0), .B(B0), .C(GNDI), 
+    .D(D0), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40046 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xDC98") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40047 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xBB44") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_38 ( input D1, C1, B1, A1, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40008 \enc/nr/sbx/curr_byte[3]_bdd_4_lut_4 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40048 \enc/nr/sbx/i3925_rep_586_3_lut ( .A(A0), .B(B0), .C(C0), .D(GNDI), 
+    .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40048 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x3B3B") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_39 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40046 \enc/nr/sbx/n6906_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40049 \enc/nr/sbx/addr_7__I_0_Mux_1_i15_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40049 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xFC7D") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_40 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40040 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_15 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40050 \enc/nr/sbx/addr_7__I_0_Mux_1_i61_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40050 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x6BEE") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_41 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40051 \enc/nr/sbx/n6876_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40052 \enc/nr/sbx/addr_7__I_0_Mux_1_i78_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40051 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xEE50") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40052 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x6F7A") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_42 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40053 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_13 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40054 \enc/nr/sbx/n6972_bdd_4_lut_4_lut_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40053 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xE6C4") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40054 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xC69A") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_43 ( input D0, C0, B0, A0, output F0 );
+
+  lut40055 \enc/nr/sbx/n6828_bdd_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40055 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xEE30") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_45 ( input D1, C1, B1, A1, D0, C0, B0, output F0, F1 );
+  wire   GNDI;
+
+  lut40056 \enc/nr/sbx/i4678_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), .Z(F1));
+  lut40057 \enc/nr/sbx/i3632_3_lut ( .A(GNDI), .B(B0), .C(C0), .D(D0), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40056 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF7A2") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40057 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x033C") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_46 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40058 \enc/nr/sbx/addr_7__I_0_Mux_4_i236_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40059 \enc/nr/sbx/addr_7__I_0_Mux_2_i173_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40058 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x8DDC") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40059 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x7A08") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_47 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40060 \enc/nr/sbx/n6762_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40061 \enc/nr/sbx/addr_7__I_0_Mux_5_i205_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40060 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xBA98") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40061 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x532F") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_48 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40044 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_2 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40062 \enc/nr/sbx/addr_7__I_0_Mux_5_i251_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40062 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x32D4") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_49 ( input D1, C1, B1, A1, C0, B0, output F0, F1 );
+  wire   GNDI;
+
+  lut40063 \enc/nr/sbx/n6912_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40064 \enc/nr/sbx/i2635_rep_464_2_lut ( .A(GNDI), .B(B0), .C(C0), 
+    .D(GNDI), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40063 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xFC22") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40064 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x3C3C") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_50 ( input D1, C1, B1, A1, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40018 \enc/nr/sbx/curr_byte[3]_bdd_4_lut_7 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40065 \enc/nr/sbx/addr_7__I_0_Mux_5_i22_rep_416_3_lut ( .A(A0), .B(B0), 
+    .C(C0), .D(GNDI), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40065 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xC2C2") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_51 ( input C1, B1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40066 \enc/nr/sbx/i4721_3_lut ( .A(A1), .B(B1), .C(C1), .D(GNDI), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40067 \enc/nr/sbx/n6918_bdd_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40066 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xE4E4") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40067 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xEE50") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_52 ( input D0, C0, B0, A0, output F0 );
+
+  lut40068 \enc/nr/sbx/curr_byte[5]_bdd_4_lut_6 ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40068 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xE6A2") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_53 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40022 \enc/nr/sbx/n6852_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40069 \enc/nr/sbx/n6990_bdd_4_lut_4_lut_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40069 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xEA61") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_54 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40008 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_10 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40070 \enc/nr/sbx/addr_7__I_0_Mux_1_i251_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40070 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xD830") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_55 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40022 \enc/nr/sbx/n6768_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40071 \enc/nr/sbx/addr_7__I_0_Mux_3_i142_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40071 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x39A5") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_56 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40029 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_3 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40072 \enc/nr/sbx/n6966_bdd_4_lut_4_lut_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40072 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xEB9C") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_58 ( input D0, C0, B0, A0, output F0 );
+
+  lut40068 \enc/nr/sbx/curr_byte[5]_bdd_4_lut_7 ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module enc_nr_sbx_SLICE_59 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40022 \enc/nr/sbx/n6930_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40073 \enc/nr/sbx/i4782_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40073 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x70C2") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_60 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40008 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_16 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40074 \enc/nr/sbx/i4723_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40074 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x0F9E") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_61 ( input C1, B1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40075 \enc/nr/i3040_3_lut ( .A(A1), .B(B1), .C(C1), .D(GNDI), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40036 \enc/nr/sbx/n6834_bdd_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40075 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xD8D8") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_62 ( input D0, C0, B0, A0, output F0 );
+
+  lut40068 \enc/nr/sbx/curr_byte[6]_bdd_4_lut_2 ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module enc_nr_sbx_SLICE_63 ( input D1, C1, B1, A1, C0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40022 \enc/nr/sbx/n6774_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40076 \enc/nr/sbx/i3949_rep_362_2_lut ( .A(A0), .B(GNDI), .C(C0), 
+    .D(GNDI), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40076 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xFAFA") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_64 ( input D1, C1, B1, A1, D0, C0, B0, output F0, F1 );
+  wire   GNDI;
+
+  lut40053 \enc/nr/sbx/curr_byte[3]_bdd_4_lut_5 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40077 \enc/nr/sbx/addr_7__I_0_Mux_2_i219_3_lut ( .A(GNDI), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40077 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xC3FC") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_65 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40022 \enc/nr/sbx/n6780_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40078 \enc/nr/sbx/i4770_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40078 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x7AEB") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_66 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40053 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_4 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40079 \enc/nr/sbx/n7008_bdd_4_lut_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40079 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x9A56") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_67 ( input D1, C1, B1, A1, D0, C0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40051 \enc/nr/sbx/n6954_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40080 \enc/nr/sbx/i4677_3_lut ( .A(A0), .B(GNDI), .C(C0), .D(D0), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40080 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF0AA") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_68 ( input D0, C0, B0, A0, output F0 );
+
+  lut40068 \enc/nr/sbx/curr_byte[5]_bdd_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module enc_nr_sbx_SLICE_69 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40060 \enc/nr/sbx/n6786_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40081 \enc/nr/sbx/addr_7__I_0_Mux_3_i78_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40081 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x1D6D") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_70 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40008 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_5 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40082 \enc/nr/sbx/addr_7__I_0_Mux_3_i124_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40082 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x1698") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_71 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40083 \enc/nr/sbx/n6960_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40084 \enc/nr/sbx/i4674_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40083 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xCCB8") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40084 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x4D8B") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_72 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40044 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_17 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40085 \enc/nr/sbx/i4690_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40085 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x6F81") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_73 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40060 \enc/nr/sbx/n6858_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40086 \enc/nr/sbx/addr_7__I_0_Mux_1_i142_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40086 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xA652") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_75 ( input D0, C0, B0, A0, output F0 );
+
+  lut40036 \enc/nr/sbx/n6792_bdd_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module enc_nr_sbx_SLICE_76 ( input D0, C0, B0, A0, output F0 );
+
+  lut40087 \enc/nr/sbx/curr_byte[5]_bdd_4_lut_3 ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40087 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF388") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_77 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40051 \enc/nr/sbx/n6882_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40088 \enc/nr/sbx/n6822_bdd_4_lut_4_lut_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40088 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xC27D") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_78 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40008 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_14 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40089 \enc/nr/sbx/addr_7__I_0_Mux_6_i188_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40089 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x7779") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_79 ( input D0, C0, B0, A0, output F0 );
+
+  lut40090 \enc/nr/sbx/n6864_bdd_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40090 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xCCB8") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_80 ( input D0, C0, B0, A0, output F0 );
+
+  lut40087 \enc/nr/sbx/curr_byte[5]_bdd_4_lut_5 ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module enc_nr_sbx_SLICE_81 ( input D1, C1, B1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40035 \enc/nr/i3000_3_lut ( .A(GNDI), .B(B1), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40032 \enc/nr/sbx/n6984_bdd_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module enc_nr_sbx_SLICE_82 ( input D0, C0, B0, A0, output F0 );
+
+  lut40091 \enc/nr/sbx/curr_byte[6]_bdd_4_lut_4 ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40091 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xE2CC") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_83 ( input D1, C1, B1, A1, D0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40022 \enc/nr/sbx/n6840_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40092 \enc/nr/sbx/i3868_rep_575_3_lut ( .A(A0), .B(B0), .C(GNDI), .D(D0), 
+    .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40092 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xFFBB") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_84 ( input D1, C1, B1, A1, D0, C0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40053 \enc/nr/sbx/curr_byte[3]_bdd_4_lut_6 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40093 \enc/nr/sbx/i4660_3_lut ( .A(A0), .B(GNDI), .C(C0), .D(D0), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40093 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF005") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_85 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40094 \enc/nr/sbx/n6846_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40095 \enc/nr/sbx/addr_7__I_0_Mux_5_i93_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40094 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xAAE4") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40095 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x263C") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_86 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40008 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_9 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40096 \enc/nr/sbx/n6900_bdd_4_lut_4_lut_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40096 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x788E") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_87 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40051 \enc/nr/sbx/n6870_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40097 \enc/nr/sbx/i3936_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40097 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xBF77") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_88 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40018 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_12 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40098 \enc/nr/sbx/addr_7__I_0_Mux_5_i61_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40098 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF804") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_89 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40051 \enc/nr/sbx/n6804_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40099 \enc/nr/sbx/addr_7__I_0_Mux_5_i142_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40099 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x9E08") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_90 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40044 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_6 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40100 \enc/nr/sbx/addr_7__I_0_Mux_5_i188_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40100 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x7D8D") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_91 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40022 \enc/nr/sbx/n7014_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40101 \enc/nr/sbx/addr_7__I_0_Mux_3_i205_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40101 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xCDF5") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_92 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40044 \enc/nr/sbx/curr_byte[4]_bdd_4_lut_18 ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40102 \enc/nr/sbx/n6948_bdd_4_lut_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40102 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x3AA7") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_SLICE_93 ( input D1, C1, A1, D0, C0, B0, output F0, F1 );
+  wire   GNDI;
+
+  lut40103 \enc/nr/i2980_3_lut ( .A(A1), .B(GNDI), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40104 \enc/nr/sbx/i4664_3_lut ( .A(GNDI), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40103 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xAAF0") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40104 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF3C0") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_SLICE_95 ( input D1, C1, B1, A1, D0, B0, output F0, F1 );
+  wire   GNDI;
+
+  lut40105 \enc/nr/i4_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), .Z(F1));
+  lut40106 \enc/nr/i1_2_lut ( .A(GNDI), .B(B0), .C(GNDI), .D(D0), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40105 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xFFFB") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40106 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xFFCC") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_SLICE_97 ( input D0, C0, A0, output F0 );
+  wire   GNDI;
+
+  lut40107 \enc/nr/i2990_3_lut ( .A(A0), .B(GNDI), .C(C0), .D(D0), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40107 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF0AA") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_98 ( input C1, B1, A1, D0, C0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40108 \enc/nr/sbx/i4709_3_lut ( .A(A1), .B(B1), .C(C1), .D(GNDI), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40080 \enc/nr/sbx/i4708_3_lut ( .A(A0), .B(GNDI), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40108 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xE2E2") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_SLICE_99 ( input D1, C1, A1, D0, C0, B0, output F0, F1 );
+  wire   GNDI;
+
+  lut40109 \enc/nr/i3030_3_lut ( .A(A1), .B(GNDI), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40110 \enc/nr/i3010_3_lut ( .A(GNDI), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40109 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF5A0") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40110 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xCFC0") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_SLICE_101 ( input C1, B1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40075 \enc/nr/i3020_3_lut ( .A(A1), .B(B1), .C(C1), .D(GNDI), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40090 \enc/nr/sbx/n7002_bdd_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module enc_nr_sbx_SLICE_103 ( input D1, C1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40111 \enc/nr/sbx/i4671_3_lut ( .A(A1), .B(GNDI), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40112 \enc/nr/sbx/addr_7__I_0_Mux_2_i93_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40111 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF0AA") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40112 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x86A0") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_105 ( input D1, C1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40113 \enc/nr/sbx/i4716_3_lut ( .A(A1), .B(GNDI), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40114 \enc/nr/sbx/addr_7__I_0_Mux_4_i220_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40113 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF5A0") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40114 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xCF51") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_107 ( input D1, C1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40111 \enc/nr/sbx/i4672_3_lut ( .A(A1), .B(GNDI), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40115 \enc/nr/sbx/addr_7__I_0_Mux_2_i124_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40115 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x30E4") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_109 ( input D1, C1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40113 \enc/nr/sbx/i4710_3_lut ( .A(A1), .B(GNDI), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40116 \enc/nr/sbx/addr_7__I_0_Mux_4_i93_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40116 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x4BC9") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_111 ( input D1, C1, B1, A1, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40117 \enc/nr/sbx/n6978_bdd_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), 
+    .Z(F1));
+  lut40118 \enc/nr/sbx/addr_7__I_0_Mux_7_i38_3_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(GNDI), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40117 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xAAD8") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40118 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xC7C7") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_113 ( input C1, B1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40066 \enc/nr/sbx/i4638_3_lut ( .A(A1), .B(B1), .C(C1), .D(GNDI), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40119 \enc/nr/sbx/n6942_bdd_4_lut_4_lut_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40119 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x962A") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_115 ( input D1, C1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40113 \enc/nr/sbx/i4711_3_lut ( .A(A1), .B(GNDI), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40120 \enc/nr/sbx/addr_7__I_0_Mux_4_i124_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40120 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xFF2B") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_117 ( input C1, B1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40108 \enc/nr/sbx/i4717_3_lut ( .A(A1), .B(B1), .C(C1), .D(GNDI), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40121 \enc/nr/sbx/addr_7__I_0_Mux_4_i251_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40121 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xDC04") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_119 ( input D1, C1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40111 \enc/nr/sbx/i4714_3_lut ( .A(A1), .B(GNDI), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40122 \enc/nr/sbx/i3618_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40122 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x0C38") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_120 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40123 \enc/nr/sbx/addr_7__I_0_Mux_4_i142_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40124 \enc/nr/sbx/addr_7__I_0_Mux_4_i173_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40123 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xEDB0") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40124 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xCB18") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_121 ( input C1, B1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40108 \enc/nr/sbx/i4704_3_lut ( .A(A1), .B(B1), .C(C1), .D(GNDI), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40125 \enc/nr/sbx/addr_7__I_0_Mux_4_i30_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40125 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x1EC4") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_123 ( input D1, C1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40113 \enc/nr/sbx/i4731_3_lut ( .A(A1), .B(GNDI), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40126 \enc/nr/sbx/addr_7__I_0_Mux_6_i93_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40126 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xE2EF") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_125 ( input D1, C1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40111 \enc/nr/sbx/i4684_3_lut ( .A(A1), .B(GNDI), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40127 \enc/nr/sbx/n6894_bdd_4_lut_4_lut_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40127 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xBC25") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_127 ( input D1, C1, B1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40128 \enc/nr/sbx/i4713_3_lut ( .A(GNDI), .B(B1), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40129 \enc/nr/sbx/addr_7__I_0_Mux_4_i157_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40128 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF3C0") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40129 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xE268") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_129 ( input C1, B1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40066 \enc/nr/sbx/i4705_3_lut ( .A(A1), .B(B1), .C(C1), .D(GNDI), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40130 \enc/nr/sbx/addr_7__I_0_Mux_4_i61_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40130 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xAD40") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_133 ( input D1, C1, A1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40111 \enc/nr/sbx/i4654_3_lut ( .A(A1), .B(GNDI), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40131 \enc/nr/sbx/addr_7__I_0_Mux_7_i251_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40131 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x5237") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_135 ( input C1, B1, A1, D0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40132 \enc/nr/sbx/i4396_3_lut ( .A(A1), .B(B1), .C(C1), .D(GNDI), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40133 \enc/nr/sbx/i3115_rep_318_3_lut ( .A(A0), .B(B0), .C(GNDI), .D(D0), 
+    .Z(F0));
+
+  specify
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40132 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x9393") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40133 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x99AA") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_138 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40134 \enc/nr/sbx/i3623_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), .Z(F1));
+  lut40135 \enc/nr/sbx/addr_7__I_0_Mux_7_i173_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40134 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x13F3") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40135 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x88FE") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_139 ( input D1, C1, B1, D0, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40128 \enc/nr/sbx/i4732_3_lut ( .A(GNDI), .B(B1), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40136 \enc/nr/sbx/n6996_bdd_4_lut_4_lut_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40136 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xA8D1") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_141 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40137 \enc/nr/sbx/i3628_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), .Z(F1));
+  lut40138 \enc/nr/sbx/addr_7__I_0_Mux_3_i157_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40137 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xA422") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40138 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF6AC") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_145 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40139 \enc/nr/sbx/addr_7__I_0_Mux_6_i236_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40140 \enc/nr/sbx/addr_7__I_0_Mux_2_i109_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40139 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x8F83") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40140 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x7982") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_151 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40141 \enc/nr/sbx/addr_7__I_0_Mux_6_i78_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40142 \enc/nr/sbx/addr_7__I_0_Mux_4_i205_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40141 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x4630") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40142 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x2E53") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_157 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40143 \enc/nr/sbx/i4351_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), .Z(F1));
+  lut40144 \enc/nr/sbx/i4689_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40143 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xB210") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40144 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x75CE") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_160 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40145 \enc/nr/sbx/addr_7__I_0_Mux_5_i236_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40146 \enc/nr/sbx/n6936_bdd_4_lut_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), 
+    .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40145 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x2185") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40146 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xD97E") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_164 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40147 \enc/nr/sbx/addr_7__I_0_Mux_4_i15_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40148 \enc/nr/sbx/i4647_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40147 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x919E") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40148 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xB6E7") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_168 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40149 \enc/nr/sbx/i4675_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), .Z(F1));
+  lut40150 \enc/nr/sbx/addr_7__I_0_Mux_1_i157_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40149 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xDD09") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40150 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xDD46") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_174 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40151 \enc/nr/sbx/addr_7__I_0_Mux_3_i109_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40152 \enc/nr/sbx/addr_7__I_0_Mux_7_i236_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40151 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xDF90") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40152 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xE75B") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_178 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40153 \enc/nr/sbx/i4851_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), .Z(F1));
+  lut40154 \enc/nr/sbx/i4783_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40153 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xFFC8") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40154 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x2BE2") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_180 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40155 \enc/nr/sbx/addr_7__I_0_Mux_1_i220_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40156 \enc/nr/sbx/addr_7__I_0_Mux_5_i30_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40155 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xD664") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40156 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x6DC2") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_187 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40157 \enc/nr/sbx/n7026_bdd_4_lut_4_lut_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40158 \enc/nr/sbx/addr_7__I_0_Mux_2_i236_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40157 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x341F") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40158 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xB6C0") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_189 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40159 \enc/nr/sbx/addr_7__I_0_Mux_4_i78_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40160 \enc/nr/sbx/addr_7__I_0_Mux_1_i30_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40159 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x0E5A") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40160 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x2A1D") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_191 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40161 \enc/nr/sbx/i4696_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), .Z(F1));
+  lut40162 \enc/nr/sbx/addr_7__I_0_Mux_5_i109_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40161 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xC102") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40162 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xDD30") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_194 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40163 \enc/nr/sbx/i4848_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), .Z(F1));
+  lut40164 \enc/nr/sbx/addr_7__I_0_Mux_6_i220_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40163 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x060F") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40164 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x1687") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_196 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40165 \enc/nr/sbx/addr_7__I_0_Mux_1_i236_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40166 \enc/nr/sbx/i4771_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40165 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x922A") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40166 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x12A6") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_199 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40167 \enc/nr/sbx/addr_7__I_0_Mux_4_i46_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40168 \enc/nr/sbx/addr_7__I_0_Mux_3_i220_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40167 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xEB3F") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40168 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xE184") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_205 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40169 \enc/nr/sbx/addr_7__I_0_Mux_5_i46_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40170 \enc/nr/sbx/addr_7__I_0_Mux_2_i142_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40169 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x5E7F") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40170 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x7F6F") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_207 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40171 \enc/nr/sbx/addr_7__I_0_Mux_1_i173_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40172 \enc/nr/sbx/i4722_4_lut ( .A(A0), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40171 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x233A") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40172 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xDA1D") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_211 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40173 \enc/nr/sbx/addr_7__I_0_Mux_3_i173_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40174 \enc/nr/sbx/addr_7__I_0_Mux_6_i173_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40173 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xA710") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40174 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xB895") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_213 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40175 \enc/nr/sbx/i4865_4_lut ( .A(A1), .B(B1), .C(C1), .D(D1), .Z(F1));
+  lut40176 \enc/nr/sbx/addr_7__I_0_Mux_7_i78_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40175 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x4D00") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40176 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xAC82") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_219 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40177 \enc/nr/sbx/addr_7__I_0_Mux_1_i109_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40178 \enc/nr/sbx/addr_7__I_0_Mux_5_i173_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40177 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x7706") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40178 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x89AB") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_221 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40179 \enc/nr/sbx/addr_7__I_0_Mux_6_i157_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40180 \enc/nr/sbx/addr_7__I_0_Mux_5_i157_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40179 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xB345") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40180 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x0625") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_223 ( input D1, C1, B1, A1, D0, C0, B0, A0, output F0, 
+    F1 );
+
+  lut40181 \enc/nr/sbx/addr_7__I_0_Mux_4_i109_4_lut ( .A(A1), .B(B1), .C(C1), 
+    .D(D1), .Z(F1));
+  lut40182 \enc/nr/sbx/addr_7__I_0_Mux_5_i220_4_lut ( .A(A0), .B(B0), .C(C0), 
+    .D(D0), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40181 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x7C29") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40182 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x04F7") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_231 ( input C1, B1, A1, D0, C0, B0, output F0, F1 );
+  wire   GNDI;
+
+  lut40183 \enc/nr/sbx/i3961_rep_433_3_lut ( .A(A1), .B(B1), .C(C1), .D(GNDI), 
+    .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40184 \enc/nr/sbx/i4852_3_lut ( .A(GNDI), .B(B0), .C(C0), .D(D0), .Z(F0));
+
+  specify
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40183 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xDCDC") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40184 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xFF0C") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_237 ( input D1, C1, B1, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40185 \enc/nr/sbx/i4656_3_lut ( .A(GNDI), .B(B1), .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40186 \enc/nr/sbx/i2745_rep_396_3_lut ( .A(A0), .B(B0), .C(C0), .D(GNDI), 
+    .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40185 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xFC30") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40186 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x5C5C") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_240 ( input D1, C1, B1, C0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40187 \enc/nr/sbx/addr_7__I_0_Mux_4_i85_rep_175_3_lut ( .A(GNDI), .B(B1), 
+    .C(C1), .D(D1), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40188 \enc/nr/sbx/i4659_3_lut ( .A(A0), .B(B0), .C(C0), .D(GNDI), .Z(F0));
+
+  specify
+    (D1 => F1) = (0:0:0,0:0:0);
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40187 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xF3C3") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40188 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x5959") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_246 ( input C1, B1, A1, D0, B0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40189 \enc/nr/sbx/addr_7__I_0_Mux_4_i60_rep_17_3_lut ( .A(A1), .B(B1), 
+    .C(C1), .D(GNDI), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40190 \enc/nr/sbx/i3853_rep_386_3_lut ( .A(A0), .B(B0), .C(GNDI), .D(D0), 
+    .Z(F0));
+
+  specify
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (A1 => F1) = (0:0:0,0:0:0);
+    (D0 => F0) = (0:0:0,0:0:0);
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40189 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xA4A4") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40190 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x4488") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_250 ( input B0, A0, output F0 );
+  wire   GNDI;
+
+  lut40191 \enc/nr/sbx/i3869_rep_231_2_lut ( .A(A0), .B(B0), .C(GNDI), 
+    .D(GNDI), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+    (B0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40191 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x4444") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module SLICE_255 ( output F0 );
+  wire   GNDI;
+
+  lut40192 i2( .A(GNDI), .B(GNDI), .C(GNDI), .D(GNDI), .Z(F0));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+  endspecify
+
+endmodule
+
+module lut40192 ( input A, B, C, D, output Z );
+
+  LUT4 #("0xFFFF") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_nr_sbx_SLICE_256 ( input C1, B1, C0, A0, output F0, F1 );
+  wire   GNDI;
+
+  lut40193 \enc/nr/sbx/i3950_rep_527_2_lut ( .A(GNDI), .B(B1), .C(C1), 
+    .D(GNDI), .Z(F1));
+  gnd DRIVEGND( .PWR0(GNDI));
+  lut40194 \enc/nr/sbx/i3924_rep_435_2_lut ( .A(A0), .B(GNDI), .C(C0), 
+    .D(GNDI), .Z(F0));
+
+  specify
+    (C1 => F1) = (0:0:0,0:0:0);
+    (B1 => F1) = (0:0:0,0:0:0);
+    (C0 => F0) = (0:0:0,0:0:0);
+    (A0 => F0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module lut40193 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x0303") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module lut40194 ( input A, B, C, D, output Z );
+
+  LUT4 #("0x0A0A") INST10( .A(A), .B(B), .C(C), .D(D), .Z(Z));
+endmodule
+
+module enc_H ( input CLKHFPU, CLKHFEN, output CLKHF );
+  wire   GNDI;
+
+  HSOSC_CORE_B \enc.H_HSOSC_CORE ( .CLKHFPU(CLKHFPU), .CLKHFEN(CLKHFEN), 
+    .TRIM9(GNDI), .TRIM8(GNDI), .TRIM7(GNDI), .TRIM6(GNDI), .TRIM5(GNDI), 
+    .TRIM4(GNDI), .TRIM3(GNDI), .TRIM2(GNDI), .TRIM1(GNDI), .TRIM0(GNDI), 
+    .CLKHF(CLKHF));
+  gnd DRIVEGND( .PWR0(GNDI));
+
+  specify
+  endspecify
+
+endmodule
+
+module HSOSC_CORE_B ( input CLKHFPU, CLKHFEN, TRIM9, TRIM8, TRIM7, TRIM6, 
+    TRIM5, TRIM4, TRIM3, TRIM2, TRIM1, TRIM0, output CLKHF );
+
+  HSOSC_CORE INST10( .CLKHFPU(CLKHFPU), .CLKHFEN(CLKHFEN), .TRIM9(TRIM9), 
+    .TRIM8(TRIM8), .TRIM7(TRIM7), .TRIM6(TRIM6), .TRIM5(TRIM5), .TRIM4(TRIM4), 
+    .TRIM3(TRIM3), .TRIM2(TRIM2), .TRIM1(TRIM1), .TRIM0(TRIM0), .CLKHF(CLKHF));
+  defparam INST10.CLKHF_DIV = "0b00";
+  defparam INST10.FABRIC_TRIME = "DISABLE";
+endmodule
+
+module encr_0_ ( input PADDO, output encr0 );
+  wire   VCCI;
+
+  BB_B_B \encr[0]_BB_B ( .T_N(VCCI), .I(PADDO), .O(), .B(encr0));
+  vcc DRIVEVCC( .PWR1(VCCI));
+
+  specify
+    (PADDO => encr0) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module BB_B_B ( input T_N, I, output O, inout B );
+
+  BB_B INST10( .T_N(T_N), .I(I), .O(O), .B(B));
+endmodule
+
+module encr_1_ ( input PADDO, output encr1 );
+  wire   VCCI;
+
+  BB_B_B \encr[1]_BB_B ( .T_N(VCCI), .I(PADDO), .O(), .B(encr1));
+  vcc DRIVEVCC( .PWR1(VCCI));
+
+  specify
+    (PADDO => encr1) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module encr_2_ ( input PADDO, output encr2 );
+  wire   VCCI;
+
+  BB_B_B \encr[2]_BB_B ( .T_N(VCCI), .I(PADDO), .O(), .B(encr2));
+  vcc DRIVEVCC( .PWR1(VCCI));
+
+  specify
+    (PADDO => encr2) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module encr_3_ ( input PADDO, output encr3 );
+  wire   VCCI;
+
+  BB_B_B \encr[3]_BB_B ( .T_N(VCCI), .I(PADDO), .O(), .B(encr3));
+  vcc DRIVEVCC( .PWR1(VCCI));
+
+  specify
+    (PADDO => encr3) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module encr_4_ ( input PADDO, output encr4 );
+  wire   VCCI;
+
+  BB_B_B \encr[4]_BB_B ( .T_N(VCCI), .I(PADDO), .O(), .B(encr4));
+  vcc DRIVEVCC( .PWR1(VCCI));
+
+  specify
+    (PADDO => encr4) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module encr_5_ ( input PADDO, output encr5 );
+  wire   VCCI;
+
+  BB_B_B \encr[5]_BB_B ( .T_N(VCCI), .I(PADDO), .O(), .B(encr5));
+  vcc DRIVEVCC( .PWR1(VCCI));
+
+  specify
+    (PADDO => encr5) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module encr_6_ ( input PADDO, output encr6 );
+  wire   VCCI;
+
+  BB_B_B \encr[6]_BB_B ( .T_N(VCCI), .I(PADDO), .O(), .B(encr6));
+  vcc DRIVEVCC( .PWR1(VCCI));
+
+  specify
+    (PADDO => encr6) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
+
+module encr_7_ ( input PADDO, output encr7 );
+  wire   VCCI;
+
+  BB_B_B \encr[7]_BB_B ( .T_N(VCCI), .I(PADDO), .O(), .B(encr7));
+  vcc DRIVEVCC( .PWR1(VCCI));
+
+  specify
+    (PADDO => encr7) = (0:0:0,0:0:0);
+  endspecify
+
+endmodule
