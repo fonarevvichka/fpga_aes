@@ -23,11 +23,11 @@ component r_sbox is
   );
 end component;
 
+--signals for S Box
 signal curr_byte : unsigned(7 downto 0);
-
 signal subd_byte : std_logic_vector(7 downto 0);
-
-signal counter   : unsigned(15 downto 0) := (others => '0');
+signal counter     : unsigned(15 downto 0) := (others => '0');
+signal curr_sboxed : std_logic_vector(127 downto 0);
 
 begin
 
@@ -36,23 +36,21 @@ begin
 	curr_byte <= unsigned(cipher((to_integer(127 - counter)) downto (to_integer(120 - counter))));
 	rsbx : r_sbox port map(addr => curr_byte, sub => subd_byte);
 
-	plain(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
+	curr_sboxed(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
+
+	rshf : r_row_shift port map(cipher => curr_sboxed, plain => plain);
 
 	data_decrypted <= counter(15);
-  -- shf --> updated(state)
-  process (clk) is 
-  begin
-      if rising_edge(clk) then
-		if (data_ready = '1') then
-			counter <= counter + X"08"; 
-		end if;
-      end if;
-  end process;
-    
-  -- shf
-  --> in place, won't have to access ROM
-  --> iterate through flattened array
 
+    process (clk) is 
+    begin
+        if rising_edge(clk) then
+	    	if (data_ready = '1') then
+	    		counter <= counter + X"08"; 
+     		end if;
+        end if;
+    end process;
+        
   --mix columns 
   --> ROM module for multiplying degree 8 polynomials
   

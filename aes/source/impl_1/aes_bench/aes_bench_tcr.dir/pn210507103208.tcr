@@ -1,0 +1,6 @@
+#Start recording tcl command: 5/7/2021 10:29:38
+#Project Location: C:/Users/benja/es4/final_local/aes_bench; Project name: aes_bench
+prj_open "C:/Users/benja/es4/final_local/aes_bench/aes_bench.rdf"
+prj_run Export -impl impl_1
+launch_programmer_prj "C:/Users/benja/3D Objects"
+#Stop recording: 5/7/2021 10:32:08

@@ -14,7 +14,7 @@ end r_sbox;
 architecture synth of r_sbox is
 
 begin
-	process (all) begin
+	process (addr) begin
 		case addr is
 			when "01100011" => sub <= "00000000";
 			when "01111100" => sub <= "00000001";

@@ -1,0 +1,8 @@
+ldc_set_location -site {4} [get_ports {encr[0]}]
+ldc_set_location -site {44} [get_ports {encr[1]}]
+ldc_set_location -site {6} [get_ports {encr[2]}]
+ldc_set_location -site {9} [get_ports {encr[3]}]
+ldc_set_location -site {11} [get_ports {encr[4]}]
+ldc_set_location -site {18} [get_ports {encr[5]}]
+ldc_set_location -site {19} [get_ports {encr[6]}]
+ldc_set_location -site {13} [get_ports {encr[7]}]

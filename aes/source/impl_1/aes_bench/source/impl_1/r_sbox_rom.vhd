@@ -7,14 +7,14 @@ entity r_sbox is
     --address is 1 byte into a lookup table where most significant nibble is the row, 
     --least significant nibble is the column
     addr : in  unsigned(7 downto 0);
-	sub  : out std_logic_vector(7 downto 0)
+	sub  : out unsigned(7 downto 0)
   );
 end r_sbox;
 
 architecture synth of r_sbox is
 
 begin
-	process (all) begin
+	process (addr) begin
 		case addr is
 			when "01100011" => sub <= "00000000";
 			when "01111100" => sub <= "00000001";

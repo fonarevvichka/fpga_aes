@@ -1,0 +1,47 @@
+----------------------------------------------------------------------
+Report for cell test_bench.TECH
+Register bits:  5 of 5280 (0.095%)
+I/O cells:      8
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               CCU2         3          100.0
+                            FD1P3XZ         5          100.0
+                         HSOSC_CORE         1          100.0
+                               LUT4       257          100.0
+                                 OB         8          100.0
+SUB MODULES
+                            Encrypt         1
+                        nine_rounds         1
+                               sbox         1
+                              TOTAL       277
+----------------------------------------------------------------------
+Report for cell Encrypt.v1
+Instance Path : enc
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                                FA2         3          100.0
+                            FD1P3XZ         5          100.0
+                         HSOSC_CORE         1          100.0
+                               LUT4       257          100.0
+SUB MODULES
+                        nine_rounds         1
+                               sbox         1
+                              TOTAL       268
+----------------------------------------------------------------------
+Report for cell nine_rounds.v1
+Instance Path : enc.nr
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                                FA2         3          100.0
+                            FD1P3XZ         5          100.0
+                               LUT4       257          100.0
+SUB MODULES
+                               sbox         1
+                              TOTAL       266
+----------------------------------------------------------------------
+Report for cell sbox.v1
+Instance Path : enc.nr.sbx
+                                  Cell usage:
+                               cell     count   Res Usage(%)
+                               LUT4       239           93.0
+                              TOTAL       239
