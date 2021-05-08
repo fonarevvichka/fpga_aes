@@ -7,7 +7,7 @@ entity sbox is
     --address is 1 byte into a lookup table where most significant nibble is the row, 
     --least significant nibble is the column
     addr : in  unsigned(7 downto 0);
-	sub  : out std_logic_vector(7 downto 0)
+	sub  : out unsigned(7 downto 0)
   );
 end sbox;
 

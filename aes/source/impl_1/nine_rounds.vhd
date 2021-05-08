@@ -23,11 +23,21 @@ component sbox is
   );
 end component;
 
-signal curr_byte : unsigned(7 downto 0);
+component row_shift is
+  port (
+    plain  : in  std_logic_vector(127 downto 0);
+	cipher : out std_logic_vector(127 downto 0)
+  );
+end component;
 
-signal subd_byte : std_logic_vector(7 downto 0);
+--Signals for sbox
+signal curr_byte   : unsigned(7 downto 0);
+signal subd_byte   : std_logic_vector(7 downto 0);
+signal counter     : unsigned(15 downto 0) := (others => '0');
+signal curr_sboxed : std_logic_vector(127 downto 0);
 
-signal counter   : unsigned(15 downto 0) := (others => '0');
+--Signals for row_shift
+signal curr_shifted : std_logic_vector(127 downto 0);
 
 begin
 
@@ -36,7 +46,9 @@ begin
 	curr_byte <= unsigned(plain((to_integer(127 - counter)) downto (to_integer(120 - counter))));
 	sbx : sbox port map(addr => curr_byte, sub => subd_byte);
 
-	cipher(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
+	curr_sboxed(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
+
+	shf : row_shift port map(plain => curr_sboxed, cipher => cipher);
 
 	data_encrypted <= counter(15);
   -- shf --> updated(state)
