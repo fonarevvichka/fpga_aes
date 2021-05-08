@@ -23,7 +23,6 @@ architecture synth of spi_peripheral is
     signal controller_clk_last_last	: std_logic := '0';
     signal read_spi					: std_logic;
     
-    -- signal shiftreg			        : std_logic_vector(127 downto 0) := 128d"0";
     signal bit_counter				: unsigned (3 downto 0) := 4d"0";
     signal byte_counter				: unsigned (4 downto 0) := 5d"0";
     
@@ -32,9 +31,8 @@ architecture synth of spi_peripheral is
 
 begin
     read_spi	<= controller_clk_last and (not controller_clk_last_last); -- clock crossing SPI edge detection
-    -- led_array	<= shiftreg(127 downto 120);
 	led			<= '1' when (s = WRITE) else '0';
-	--data_out	<= shiftreg; 
+
     process (clk) begin
         if (reset = '1') then
             data_out        <= 128d"0";
