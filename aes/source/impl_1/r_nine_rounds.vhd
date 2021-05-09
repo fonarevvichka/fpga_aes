@@ -16,53 +16,47 @@ architecture synth of r_nine_rounds is
 
 component r_sbox is
   port (
-    --address is 1 byte into a lookup table where most significant nibble is the row, 
+    --address is 1 byte into a lookup table where most significant nibble is the row,
     --least significant nibble is the column
     addr : in  unsigned(7 downto 0);
 	sub  : out std_logic_vector(7 downto 0)
   );
 end component;
 
-component r_row_shift is
-  port (
-	cipher : in std_logic_vector(127 downto 0);
-	plain  : out  std_logic_vector(127 downto 0)
-  );
-end component;
+-- component r_row_shift is
+--   port (
+-- 	cipher : in std_logic_vector(127 downto 0);
+-- 	plain  : out  std_logic_vector(127 downto 0)
+--   );
+-- end component;
 
 --signals for S Box
-signal curr_byte : unsigned(7 downto 0);
-signal subd_byte : std_logic_vector(7 downto 0);
-signal counter     : unsigned(15 downto 0) := (others => '0');
-signal curr_sboxed : std_logic_vector(127 downto 0);
+signal addr			: unsigned(7 downto 0);
+signal subd_byte	: std_logic_vector(7 downto 0);
+signal counter 		: integer range 0 to 15 := 0;
+signal curr_sboxed	: std_logic_vector(127 downto 0);
 
 begin
-
   -- sbx
-  -- or have counter increment by 8
-	curr_byte <= unsigned(cipher((to_integer(127 - counter)) downto (to_integer(120 - counter))));
-	rsbx : r_sbox port map(addr => curr_byte, sub => subd_byte);
+	addr <= unsigned(cipher(127 - (counter  * 8) downto 120 - (counter * 8)));
+	plain(127 - (counter  * 8) downto 120 - (counter * 8)) <= subd_byte;
 
-	curr_sboxed(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
+	-- rshf : r_row_shift port map(cipher => curr_sboxed, plain => plain);
 
-	rshf : r_row_shift port map(cipher => curr_sboxed, plain => curr_shifted);
+	data_decrypted <= '1' when (counter = 15) else '0';
 
-    mxc : mix_cols port map(cipher => curr_shifted, plain => plain);
-
-	data_decrypted <= counter(15);
-
-    process (clk) is 
+    process (clk) is
     begin
         if rising_edge(clk) then
 	    	if (data_ready = '1') then
-	    		counter <= counter + X"08"; 
+	    		counter <= counter + 1;
      		end if;
         end if;
     end process;
-        
-  --mix columns 
-  --> ROM module for multiplying degree 8 polynomials
-  
-  --add_round_key
 
+  --mix columns
+  --> ROM module for multiplying degree 8 polynomials
+
+  --add_round_key
+	rsbx : r_sbox port map(addr => addr, sub => subd_byte);
 end;

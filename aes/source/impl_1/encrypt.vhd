@@ -48,44 +48,28 @@ architecture synth of Encrypt is
 	
 	component HSOSC is
         generic (
-            CLKHF_DIV : String := "0b00"
+            CLKHF_DIV : String := "0b11"
         ); -- Divide 48MHz clock by 2^N (0-3)
         port(
             CLKHFPU : in std_logic	:= 'X'; -- Set to 1 to power up
             CLKHFEN : in std_logic	:= 'X'; -- Set to 1 to enable output
-            CLKHF   : out std_logic := 'X' -- Clock output
+            CLKHF   : out std_logic := 'X'  -- Clock output
         ); 
     end component;
 
 	signal clk				: std_logic;
 	
-	signal curr				: STD_LOGIC_VECTOR(127 downto 0);
-	signal plain			: std_logic_vector(127 downto 0) := 128d"0";
 	signal rw_enable		: std_logic;
 	
 	signal data_received	: std_logic;
-	signal data_encrypted	: std_logic := '0';
+	signal data_encrypted	: std_logic;
 	
-	signal plaintext			: std_logic_vector(127 downto 0);
-	signal encrypted			: std_logic_vector(127 downto 0);
+	signal plaintext		: std_logic_vector(127 downto 0);
+	signal encrypted		: std_logic_vector(127 downto 0);
 	
-	signal plaintext_temp		: std_logic_vector(127 downto 0);
-	signal encrypted_temp		: std_logic_vector(127 downto 0);
 begin
-	--led <= COPI;
 	rw_enable	<= data_encrypted;
 	data_ready	<= rw_enable;
-	
-	-- process (clk) begin
-	-- 	if rising_edge(clk) then
-	-- 		if (data_received = '1') then
-	-- 			plaintext <= plaintext_temp;
-	-- 		else
-	-- 			plaintext <=
-    --         end if;
-			
-		--end if;
-	--end process;
 	
 	spi_periph	: spi_peripheral port map (	clk				=> clk,
 											reset 			=> reset,
@@ -98,8 +82,12 @@ begin
 											data_out		=> plaintext,
 											data_in			=> encrypted,
 											led             => led
-										);					
-	nr			: nine_rounds	port map (clk => clk, plain => plaintext, cipher => encrypted, data_ready => data_received, data_encrypted => data_encrypted);
+										);
+										
+	nr			: nine_rounds	port map (clk => clk, plain => plaintext,
+										  cipher => encrypted,
+										  data_ready => data_received,
+										  data_encrypted => data_encrypted);
 	
 	H			: HSOSC			port map (CLKHFPU => '1', CLKHFEN => '1', CLKHF => clk);
 end;

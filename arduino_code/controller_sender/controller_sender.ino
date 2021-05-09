@@ -3,7 +3,7 @@
 #include <WiFi.h>
 #define dataReadyPin 21
 
-SPISettings settings(1000000, LSBFIRST, SPI_MODE0);
+SPISettings settings(10000, LSBFIRST, SPI_MODE1);
 SPIClass vspi(VSPI);
 uint8_t broadcastAddress[] = {0xF0, 0x08, 0xD1, 0xD1, 0x93, 0x30};
 
@@ -54,13 +54,20 @@ void loop() {
   
   Serial.println("Write cycle");
   digitalWrite(22, LOW);
-//  byte message[15] = {};
+//  byte message[] = {0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01};
+  byte message[] = {0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x21, 0x21, 0x21, 0x00, 0x00};
   for (byte i = 0; i < 16; i++) {
     vspi.beginTransaction(settings);
+    delay(10);
     digitalWrite(5, LOW);
-    Serial.print("Sending Byte: ");Serial.print(i); Serial.print(" Response Byte: "); Serial.println(vspi.transfer(96));
-    delay(50);
-    digitalWrite(5, HIGH);  
+    delay(10);
+    Serial.print("Sending Byte: ");Serial.print(i); Serial.print(" Response Byte: ");
+//    Serial.println((char) vspi.transfer(message[i]));
+    Serial.println(vspi.transfer(message[i]));
+
+    delay(10);
+    digitalWrite(5, HIGH);
+    delay(10);
     vspi.endTransaction();
   }
   
@@ -72,16 +79,20 @@ void loop() {
   Serial.println("recieved data ready signal");
 
   Serial.println("Read cycle");
- 
   char encrypted_message[15];
   for (byte i = 0; i < 16; i++) {
     vspi.beginTransaction(settings);
+    delay(10);
     digitalWrite(5, LOW);
-    Serial.print("Sending Byte: ");Serial.print(0);
+    delay(10);
+    Serial.print("Sending Byte: ");Serial.print(i);
     byte response_byte = vspi.transfer(0);
-    Serial.print(" Response Byte: "); Serial.println(response_byte);
+    Serial.print(" Response Byte: ");
+//    Serial.println((char) response_byte);
+    Serial.println(response_byte);
+
     encrypted_message[i] = response_byte;
-    delay(50);
+    delay(10);
     digitalWrite(5, HIGH);  
     vspi.endTransaction();
   }
@@ -98,5 +109,5 @@ void loop() {
   else {
     Serial.println("Error sending the data");
   }
-  delay(3000); // simple wait before doing the process again
+  delay(7500); // simple wait before doing the process again
 }

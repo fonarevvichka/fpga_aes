@@ -18,7 +18,7 @@
 				<BScanVal>0</BScanVal>
 			</Bypass>
 			<File>../../impl_1/aes_impl_1.bin</File>
-			<FileTime>05/07/21 17:25:17</FileTime>
+			<FileTime>05/09/21 15:28:58</FileTime>
 			<MemoryType>External SPI Flash Memory (SPI FLASH)</MemoryType>
 			<Operation>Erase,Program,Verify</Operation>
 			<Option>
@@ -58,7 +58,7 @@
 					<Family>SPI Serial Flash (Legacy)</Family>
 					<Name>N25Q032</Name>
 					<IDCode>0x16</IDCode>
-					<Package>16-pin SOIC</Package>
+					<Package>8-pin VDFPN8</Package>
 					<Operation>Erase,Program,Verify</Operation>
 					<File>../../impl_1/aes_impl_1.bin</File>
 					<AddressBase>0x00000000</AddressBase>

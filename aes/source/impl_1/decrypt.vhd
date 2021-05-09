@@ -48,7 +48,7 @@ architecture synth of Decrypt is
 	
 	component HSOSC is
         generic (
-            CLKHF_DIV : String := "0b00"
+            CLKHF_DIV : String := "0b11"
         ); -- Divide 48MHz clock by 2^N (0-3)
         port(
             CLKHFPU : in std_logic	:= 'X'; -- Set to 1 to power up
@@ -61,33 +61,17 @@ architecture synth of Decrypt is
 
 	signal clk				: std_logic;
 	
-	signal curr				: STD_LOGIC_VECTOR(127 downto 0);
-	signal plain			: std_logic_vector(127 downto 0) := 128d"0";
 	signal rw_enable		: std_logic;
 	
 	signal data_received	: std_logic;
-	signal data_decrypted	: std_logic := '0';
+	signal data_decrypted	: std_logic;
 	
-	signal ciphertext			: std_logic_vector(127 downto 0);
-	signal decrypted			: std_logic_vector(127 downto 0);
+	signal encrypted			: std_logic_vector(127 downto 0);
+	signal plaintext			: std_logic_vector(127 downto 0) ;
 	
-	signal ciphertext_temp		: std_logic_vector(127 downto 0);
-	signal decrypted_temp		: std_logic_vector(127 downto 0);
 begin
-	--led <= COPI;
 	rw_enable	<= data_decrypted;
 	data_ready	<= rw_enable;
-	
-	-- process (clk) begin
-	-- 	if rising_edge(clk) then
-	-- 		if (data_received = '1') then
-	-- 			plaintext <= plaintext_temp;
-	-- 		else
-	-- 			plaintext <=
-    --         end if;
-			
-		--end if;
-	--end process;
 	
 	spi_periph	: spi_peripheral port map (	clk				=> clk,
 											reset 			=> reset,
@@ -97,12 +81,13 @@ begin
 											CIPO			=> CIPO,
 											data_ready		=> data_received,
 											rw_enable		=> rw_enable,
-											data_out		=> ciphertext,
-											data_in			=> decrypted,
+											data_out		=> encrypted,
+											data_in			=> plaintext,
 											led             => led
-										);					
-	nr			: r_nine_rounds	port map (clk => clk, cipher => ciphertext,
-                                          plain => decrypted,
+										);
+										
+	nr			: r_nine_rounds	port map (clk => clk, cipher => encrypted,
+                                          plain => plaintext,
                                           data_ready => data_received,
                                           data_decrypted => data_decrypted);
 	

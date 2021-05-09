@@ -23,23 +23,27 @@ architecture synth of spi_peripheral is
     signal controller_clk_last_last	: std_logic := '0';
     signal read_spi					: std_logic;
     
-    -- signal shiftreg			        : std_logic_vector(127 downto 0) := 128d"0";
-    signal bit_counter				: unsigned (3 downto 0) := 4d"0";
-    signal byte_counter				: unsigned (4 downto 0) := 5d"0";
-    
+    -- signal bit_counter				: unsigned (3 downto 0) := 4d"0";
+    -- signal byte_counter				: unsigned (4 downto 0) := 5d"0";
+   
+    signal bit_counter       		: integer range 0 to 7  := 0;
+    signal byte_counter       		: integer range 0 to 16 := 0;
+
     type State is (READ, WRITE, IDLE);
     signal s : State := IDLE;
 
 begin
     read_spi	<= controller_clk_last and (not controller_clk_last_last); -- clock crossing SPI edge detection
-    -- led_array	<= shiftreg(127 downto 120);
-	led			<= '1' when (s = WRITE) else '0';
-	--data_out	<= shiftreg; 
+	--led			<= '1' when (s = WRITE) else '0';
+	led <= reset;
     process (clk) begin
         if (reset = '1') then
             data_out        <= 128d"0";
-            bit_counter		<= 4d"0";
-            byte_counter	<= 5d"0";
+            -- bit_counter		<= 4d"0";
+            -- byte_counter	<= 5d"0";
+            bit_counter     <= 0;
+            byte_counter	<= 0;
+			s				<= IDLE;
         elsif rising_edge(clk) then
             controller_clk_last <= controller_clk;
             controller_clk_last_last <= controller_clk_last;
@@ -53,24 +57,26 @@ begin
 							data_out(126 downto 0)		<= data_out(127 downto 1);
 							data_out(127)            	<= COPI;
 							
-                            if (bit_counter = "0111") then -- read 8 bits
+                            -- if (bit_counter = "0111") then -- read 8 bits
+                            if (bit_counter = 7) then -- read 8 bits
                                 byte_counter	<= byte_counter + 1;
                             end if;
 
 							CIPO <= COPI; -- 1 is recieved. i guess
 						when WRITE =>
-                            if (bit_counter = "0111") then -- wrote 8 bits
+                            if (bit_counter = 7) then -- wrote 8 bits
                                 byte_counter	<= byte_counter - 1;
                             end if;
 							
-							CIPO	<= data_in((128 - (8 * (to_integer(byte_counter)))) + to_integer(bit_counter));
-                            --CIPO <= '1';
+							-- CIPO	<= data_in((128 - (8 * (to_integer(byte_counter)))) + to_integer(bit_counter));
+							CIPO	<= data_in((128 - (8 * (byte_counter))) + bit_counter);
 						when others =>
 							CIPO <= '1';
                     end case;
                 end if;
             else
-                bit_counter <= 4d"0";
+                -- bit_counter <= 4d"0";
+                bit_counter <= 0;
             end if;
 
             case s is
@@ -78,15 +84,17 @@ begin
                     data_ready <= '0';
                     s <= READ;
                 when READ =>
-                    if (byte_counter = "10000") then
-                        data_ready <= '1';
+                    -- if (byte_counter = "10000") then
+                    if (byte_counter = 16) then
+						data_ready <= '1';
                     end if;
 
                     if (data_ready = '1' and rw_enable = '1') then
                         s <= WRITE;
                     end if;
                 when WRITE =>
-                    if (byte_counter = 5d"0") then -- transmitted all data back
+                    -- if (byte_counter = 5d"0") then -- transmitted all data back
+                    if (byte_counter = 0) then -- transmitted all data back
                         s	<= IDLE;
                     end if;
             end case;
