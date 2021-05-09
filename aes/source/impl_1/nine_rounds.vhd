@@ -31,9 +31,10 @@ component row_shift is
 end component;
 
 --Signals for sbox
-signal curr_byte   : unsigned(7 downto 0);
+signal addr        : unsigned(7 downto 0);
 signal subd_byte   : std_logic_vector(7 downto 0);
-signal counter     : unsigned(15 downto 0) := (others => '0');
+--signal counter     : unsigned(15 downto 0) := 16d"0";
+signal counter : integer range 0 to 15 := 0;
 signal curr_sboxed : std_logic_vector(127 downto 0);
 
 --Signals for row_shift
@@ -42,26 +43,29 @@ signal curr_shifted : std_logic_vector(127 downto 0);
 begin
 
   -- sbx
-  -- or have counter increment by 8
-	curr_byte <= unsigned(plain((to_integer(127 - counter)) downto (to_integer(120 - counter))));
-	sbx : sbox port map(addr => curr_byte, sub => subd_byte);
-
-	cipher(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
+  -- or have counter increment by 8	
+	addr <= unsigned(plain(127 - (counter  * 8) downto 120 - (counter * 8)));
+	cipher(127 - (counter  * 8) downto 120 - (counter  * 8)) <= subd_byte;
+	
 	--curr_sboxed(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
 	--shf : row_shift port map(plain => curr_sboxed, cipher => cipher);
 
-	data_encrypted <= counter(15);
-	--data_encrypted <= '1' when (counter = "11111111111111") else '0';
+	--data_encrypted <= counter(15);
+										   --1000000000000000	
+	data_encrypted <= '1' when (counter = 15) else '0';
   -- shf --> updated(state)
-  process (clk) is 
-  begin
-      if rising_edge(clk) then
-		if (data_ready = '1') then
-			counter <= counter + X"08"; 
-		end if;
-      end if;
-  end process;
+  
+  	process (clk) is 
+  	begin
+		if rising_edge(clk) then
+			if (data_ready = '1') then
+				counter <= counter + 1;
+			end if;
+      	end if;
+  	end process;
     
+	sbx : sbox port map(addr => addr, sub => subd_byte);
+
   -- shf
   --> in place, won't have to access ROM
   --> iterate through flattened array
@@ -70,5 +74,4 @@ begin
   --> ROM module for multiplying degree 8 polynomials
   
   --add_round_key
-
 end;

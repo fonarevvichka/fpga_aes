@@ -63,6 +63,7 @@ architecture synth of Encrypt is
 	signal plain			: std_logic_vector(127 downto 0) := 128d"0";
 	
 	signal rw_enable		: std_logic;
+	
 	signal data_received	: std_logic;
 	signal data_encrypted	: std_logic := '0';
 	
@@ -84,10 +85,11 @@ begin
 											CIPO			=> CIPO,
 											data_ready		=> data_received,
 											rw_enable		=> rw_enable,
-											data_out		=> temp,
-											data_in			=> temp,
+											data_out		=> plaintext,
+											data_in			=> encrypted,
 											led             => led
-										);					
+										);
+										
 	nr			: nine_rounds	port map (clk => clk, plain => plaintext, cipher => encrypted, data_ready => data_received, data_encrypted => data_encrypted);
 	
 	H			: HSOSC			port map (CLKHFPU => '1', CLKHFEN => '1', CLKHF => clk);

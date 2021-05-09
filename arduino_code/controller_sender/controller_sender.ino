@@ -54,15 +54,18 @@ void loop() {
   
   Serial.println("Write cycle");
   digitalWrite(22, LOW);
-  byte message[] = {0xFF, 0x01, 0xFF, 0x01, 0xFF, 0x01, 0xFF, 0x01, 0xFF, 0x01, 0xFF, 0x01, 0xFF, 0x01, 0xFF, 0x01};
+  byte message[] = {0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01};
 //    byte message[] = {0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x21, 0x21, 0x21, 0x21, 0x21};
   for (byte i = 0; i < 16; i++) {
     vspi.beginTransaction(settings);
     delay(10);
     digitalWrite(5, LOW);
     delay(10);
-    Serial.print("Sending Byte: ");Serial.print(i); Serial.print(" Response Byte: "); Serial.println(vspi.transfer(message[i]));
-    delay(330);
+    Serial.print("Sending Byte: ");Serial.print(i); Serial.print(" Response Byte: ");
+//    Serial.println((char) vspi.transfer(message[i]));
+    Serial.println(vspi.transfer(message[i]));
+
+    delay(100);
     digitalWrite(5, HIGH);  
     vspi.endTransaction();
   }
@@ -83,9 +86,12 @@ void loop() {
     delay(10);
     Serial.print("Sending Byte: ");Serial.print(i);
     byte response_byte = vspi.transfer(0);
-    Serial.print(" Response Byte: "); Serial.println(response_byte);
+    Serial.print(" Response Byte: ");
+//    Serial.println((char) response_byte);
+    Serial.println(response_byte);
+
     encrypted_message[i] = response_byte;
-    delay(330);
+    delay(100);
     digitalWrite(5, HIGH);  
     vspi.endTransaction();
   }
