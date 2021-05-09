@@ -58,10 +58,10 @@ signal new_B3 : unsigned(7 downto 0) := "00000000";
 
 begin
 
-    B0 <= unsigned(cipher((to_integer(7  + counter)) downto (to_integer(0 + counter))));
-    B1 <= unsigned(cipher((to_integer(15 + counter)) downto (to_integer(8 + counter))));
-    B2 <= unsigned(cipher((to_integer(23 + counter)) downto (to_integer(16 + counter))));
-    B3 <= unsigned(cipher((to_integer(31 + counter)) downto (to_integer(24 + counter))));
+    B0 <= unsigned(cipher(7  + (counter*8) downto 0 + (counter*8)));
+    B1 <= unsigned(cipher(15 + (counter*8) downto 8 + (counter*8)));
+    B2 <= unsigned(cipher(23 + (counter*8) downto 16 + (counter*8)));
+    B3 <= unsigned(cipher(31 + (counter*8) downto 24 + (counter*8)));
 
    r0 : r_row_0 port map(B0 => B0,
                          B1 => B1,
@@ -87,10 +87,10 @@ begin
                          B3 => B3,
                          new_B3 => new_B3);
 
-    plain((to_integer(7  + counter)) downto (to_integer(0 + counter))) <= std_logic_vector(new_B0);
-    plain((to_integer(15 + counter)) downto (to_integer(8 + counter))) <= std_logic_vector(new_B1);
-    plain((to_integer(23 + counter)) downto (to_integer(16 + counter))) <= std_logic_vector(new_B2);
-    plain((to_integer(31 + counter)) downto (to_integer(24 + counter))) <= std_logic_vector(new_B3);
+    plain(7+(counter*8)  downto 0 +  (counter*8))) <= std_logic_vector(new_B0);
+    plain(15+(counter*8) downto 8 +  (counter*8))) <= std_logic_vector(new_B1);
+    plain(23+(counter*8) downto 16 + (counter*8))) <= std_logic_vector(new_B2);
+    plain(31+(counter*8) downto 24 + (counter*8))) <= std_logic_vector(new_B3);
 
     process (clk) is
     begin
