@@ -56,6 +56,11 @@ signal new_B1 : unsigned(7 downto 0) := "00000000";
 signal new_B2 : unsigned(7 downto 0) := "00000000";
 signal new_B3 : unsigned(7 downto 0) := "00000000";
 
+signal B0 : unsigned(7 downto 0) := "00000000";
+signal B1 : unsigned(7 downto 0) := "00000000";
+signal B2 : unsigned(7 downto 0) := "00000000";
+signal B3 : unsigned(7 downto 0) := "00000000";
+
 begin
 
     B0 <= unsigned(plain((to_integer(7  + counter)) downto (to_integer(0 + counter))));

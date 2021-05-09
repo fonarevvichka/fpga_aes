@@ -23,12 +23,19 @@ component r_sbox is
   );
 end component;
 
--- component r_row_shift is
---   port (
--- 	cipher : in std_logic_vector(127 downto 0);
--- 	plain  : out  std_logic_vector(127 downto 0)
---   );
--- end component;
+component r_row_shift is
+	port (
+		cipher : in std_logic_vector(127 downto 0);
+		plain  : out  std_logic_vector(127 downto 0)
+	);
+end component;
+
+component r_mix_cols is
+	port (
+		cipher : in std_logic_vector(127 downto 0);
+		plain  : out  std_logic_vector(127 downto 0)
+	);
+end component;
 
 --signals for S Box
 signal addr			: unsigned(7 downto 0);
