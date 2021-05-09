@@ -37,15 +37,15 @@ signal counter		: integer range 0 to 15 := 0;
 signal curr_sboxed	: std_logic_vector(127 downto 0);
 
 --Signals for row_shift
--- signal curr_shifted : std_logic_vector(127 downto 0);
+ signal curr_shifted : std_logic_vector(127 downto 0);
 
 begin
   -- sbx
 	addr <= unsigned(plain(127 - (counter  * 8) downto 120 - (counter * 8)));
-	cipher(127 - (counter  * 8) downto 120 - (counter  * 8)) <= subd_byte;
 
-	--curr_sboxed(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
-	--shf : row_shift port map(plain => curr_sboxed, cipher => cipher);
+    curr_sboxed(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
+    shf : row_shift port map(plain => curr_sboxed, cipher => curr_shifted);
+    mxc : mix_cols port map(plain => curr_shifted, cipher => cipher);
 
 	--data_encrypted <= counter(15);
 										   --1000000000000000
