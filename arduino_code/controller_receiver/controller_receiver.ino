@@ -2,24 +2,15 @@
 #include <esp_now.h>
 #include <WiFi.h>
 
-SPISettings settings(1000000, MSBFIRST, SPI_MODE0);
+SPISettings settings(100000, LSBFIRST, SPI_MODE1);
 SPIClass vspi(VSPI);
 #define dataReadyPin 21
 
 typedef struct struct_message {
     char encrypted_message[15];
 } struct_message;
-
-
 struct_message myMessage;
 
-//void charArrayToBytes(char* message, int len) {
-//  byte new_message[15];
-//  for (int i = 0; i < len; i++) {
-//    new_message[i] = (byte) message[i];
-//  }
-//  return new_message;
-//}
 void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   memcpy(&myMessage, incomingData, sizeof(myMessage));
   Serial.print("Bytes received: ");
@@ -36,8 +27,9 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
     
     vspi.beginTransaction(settings);
     digitalWrite(5, LOW);
-    Serial.print("Sending Byte: "); Serial.print(curr_byte); Serial.print(" Response Byte: "); Serial.println(vspi.transfer(curr_byte));
-    delay(330);
+    Serial.print("Sending Byte: "); Serial.print(curr_byte); Serial.print(" Response Byte: ");
+    Serial.println( vspi.transfer(curr_byte));
+    delay(10);
     digitalWrite(5, HIGH);  
     vspi.endTransaction();
   }
@@ -55,10 +47,10 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
     vspi.beginTransaction(settings);
     digitalWrite(5, LOW);
     Serial.print("Sending Byte: ");Serial.print(0); Serial.print(" Response Byte: ");
-    byte response_byte = vspi.transfer(0);
-    Serial.println(response_byte);
-    decrypted_message[i] = response_byte;
-    delay(300);
+    decrypted_message[i] = vspi.transfer(0);
+    Serial.println( (byte) decrypted_message[i]);
+//    decrypted_message[i] = response_byte;
+    delay(10);
     digitalWrite(5, HIGH);  
     vspi.endTransaction();
   }
@@ -66,7 +58,7 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
 
 //  byte byte_message[15] = charArrayToBytes(decrypted_message, 16);
   Serial.println(decrypted_message);
-  delay(1000);
+  delay(250);
 }
 
 void setup() {
