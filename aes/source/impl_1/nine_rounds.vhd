@@ -33,7 +33,6 @@ end component;
 --Signals for sbox
 signal addr        : unsigned(7 downto 0);
 signal subd_byte   : std_logic_vector(7 downto 0);
---signal counter     : unsigned(15 downto 0) := 16d"0";
 signal counter : integer range 0 to 15 := 0;
 signal curr_sboxed : std_logic_vector(127 downto 0);
 

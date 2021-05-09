@@ -68,26 +68,12 @@ architecture synth of Decrypt is
 	signal data_received	: std_logic;
 	signal data_decrypted	: std_logic := '0';
 	
-	signal ciphertext			: std_logic_vector(127 downto 0);
-	signal decrypted			: std_logic_vector(127 downto 0);
+	signal encrypted			: std_logic_vector(127 downto 0);
+	signal plaintext			: std_logic_vector(127 downto 0);
 	
-	signal ciphertext_temp		: std_logic_vector(127 downto 0);
-	signal decrypted_temp		: std_logic_vector(127 downto 0);
 begin
-	--led <= COPI;
 	rw_enable	<= data_decrypted;
 	data_ready	<= rw_enable;
-	
-	-- process (clk) begin
-	-- 	if rising_edge(clk) then
-	-- 		if (data_received = '1') then
-	-- 			plaintext <= plaintext_temp;
-	-- 		else
-	-- 			plaintext <=
-    --         end if;
-			
-		--end if;
-	--end process;
 	
 	spi_periph	: spi_peripheral port map (	clk				=> clk,
 											reset 			=> reset,
@@ -97,12 +83,13 @@ begin
 											CIPO			=> CIPO,
 											data_ready		=> data_received,
 											rw_enable		=> rw_enable,
-											data_out		=> ciphertext,
-											data_in			=> decrypted,
+											data_out		=> encrypted,
+											data_in			=> plaintext,
 											led             => led
-										);					
-	nr			: r_nine_rounds	port map (clk => clk, cipher => ciphertext,
-                                          plain => decrypted,
+										);
+										
+	nr			: r_nine_rounds	port map (clk => clk, cipher => encrypted,
+                                          plain => plaintext,
                                           data_ready => data_received,
                                           data_decrypted => data_decrypted);
 	
