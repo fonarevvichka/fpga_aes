@@ -45,7 +45,9 @@ begin
 
 	curr_sboxed(to_integer(127-counter) downto to_integer(120-counter)) <= subd_byte;
 
-	rshf : r_row_shift port map(cipher => curr_sboxed, plain => plain);
+	rshf : r_row_shift port map(cipher => curr_sboxed, plain => curr_shifted);
+
+    mxc : mix_cols port map(cipher => curr_shifted, plain => plain);
 
 	data_decrypted <= counter(15);
 
