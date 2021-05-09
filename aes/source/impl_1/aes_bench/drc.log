@@ -1,4 +1,0 @@
-DRC: Design Rule Check Radiant Software (64-bit) 2.2.0.97.3
-Fri May  7 12:48:08 2021
-
-ERROR - The total number of required ports [256] exceeds the total assignable pins available [39] in the target device.

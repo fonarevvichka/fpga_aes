@@ -1,8 +1,0 @@
-SLICE/CIN1 input enc.nr.SLICE_0 has no outgoing device arc
-SLICE/COUT0 GND  enc.nr.SLICE_2
-     *** enc.nr.SLICE_2/D1 is driven by constant or a pin on an incomplete path
-     *** enc.nr.SLICE_2/CIN1 is driven by constant or a pin on an incomplete path
-HFOSC/CLKHFPU input enc.His connected to a constant net
-HFOSC/CLKHFEN input enc.His connected to a constant net
-SLICE/F0 VCC  SLICE_255
-     *** enc.nr.SLICE_2/C1 is driven by constant or a pin on an incomplete path
