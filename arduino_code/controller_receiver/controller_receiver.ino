@@ -2,7 +2,7 @@
 #include <esp_now.h>
 #include <WiFi.h>
 
-SPISettings settings(100000, LSBFIRST, SPI_MODE1);
+SPISettings settings(10000, LSBFIRST, SPI_MODE1);
 SPIClass vspi(VSPI);
 #define dataReadyPin 21
 
@@ -26,37 +26,49 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
     byte curr_byte = (byte) myMessage.encrypted_message[i];
     
     vspi.beginTransaction(settings);
+    delay(10);
     digitalWrite(5, LOW);
+    delay(10);
+    
     Serial.print("Sending Byte: "); Serial.print(curr_byte); Serial.print(" Response Byte: ");
     Serial.println( vspi.transfer(curr_byte));
+    
     delay(10);
-    digitalWrite(5, HIGH);  
+    digitalWrite(5, HIGH);
+    delay(10);
     vspi.endTransaction();
-  }
-  
+  }  
+//  digitalWrite(22, HIGH);
+  delay(33);
   //Serial.println("waiting for data ready signal");
   while(digitalRead(dataReadyPin) == LOW) {
     delay(10);
   }
   Serial.println("recieved data ready signal");
 
-
   Serial.println("Read cycle");
-  char decrypted_message[15];
+  char decrypted_message[16];
+//  digitalWrite(22, LOW);
+  delay(50);
   for (byte i = 0; i < 16; i++) {
     vspi.beginTransaction(settings);
+    delay(10);
     digitalWrite(5, LOW);
+    delay(10);
+    
     Serial.print("Sending Byte: ");Serial.print(0); Serial.print(" Response Byte: ");
     decrypted_message[i] = vspi.transfer(0);
     Serial.println( (byte) decrypted_message[i]);
 //    decrypted_message[i] = response_byte;
     delay(10);
-    digitalWrite(5, HIGH);  
+    digitalWrite(5, HIGH);
+    delay(10);
     vspi.endTransaction();
   }
   digitalWrite(22, HIGH);
 
 //  byte byte_message[15] = charArrayToBytes(decrypted_message, 16);
+  decrypted_message[15] = '\0';
   Serial.println(decrypted_message);
   delay(250);
 }

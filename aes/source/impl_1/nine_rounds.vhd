@@ -23,26 +23,24 @@ component sbox is
   );
 end component;
 
-component row_shift is
-  port (
-    plain  : in  std_logic_vector(127 downto 0);
-	cipher : out std_logic_vector(127 downto 0)
-  );
-end component;
+-- component row_shift is
+--   port (
+--     plain  : in  std_logic_vector(127 downto 0);
+-- 	cipher : out std_logic_vector(127 downto 0)
+--   );
+-- end component;
 
 --Signals for sbox
-signal addr        : unsigned(7 downto 0);
-signal subd_byte   : std_logic_vector(7 downto 0);
-signal counter : integer range 0 to 15 := 0;
-signal curr_sboxed : std_logic_vector(127 downto 0);
+signal addr        	: unsigned(7 downto 0);
+signal subd_byte  	: std_logic_vector(7 downto 0);
+signal counter		: integer range 0 to 15 := 0;
+signal curr_sboxed	: std_logic_vector(127 downto 0);
 
 --Signals for row_shift
-signal curr_shifted : std_logic_vector(127 downto 0);
+-- signal curr_shifted : std_logic_vector(127 downto 0);
 
 begin
-
   -- sbx
-  -- or have counter increment by 8	
 	addr <= unsigned(plain(127 - (counter  * 8) downto 120 - (counter * 8)));
 	cipher(127 - (counter  * 8) downto 120 - (counter  * 8)) <= subd_byte;
 	

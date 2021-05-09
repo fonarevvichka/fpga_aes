@@ -3,7 +3,7 @@
 #include <WiFi.h>
 #define dataReadyPin 21
 
-SPISettings settings(100000, LSBFIRST, SPI_MODE1);
+SPISettings settings(10000, LSBFIRST, SPI_MODE1);
 SPIClass vspi(VSPI);
 uint8_t broadcastAddress[] = {0xF0, 0x08, 0xD1, 0xD1, 0x93, 0x30};
 
@@ -65,8 +65,9 @@ void loop() {
 //    Serial.println((char) vspi.transfer(message[i]));
     Serial.println(vspi.transfer(message[i]));
 
-    delay(100);
-    digitalWrite(5, HIGH);  
+    delay(10);
+    digitalWrite(5, HIGH);
+    delay(10);
     vspi.endTransaction();
   }
   
@@ -91,7 +92,7 @@ void loop() {
     Serial.println(response_byte);
 
     encrypted_message[i] = response_byte;
-    delay(100);
+    delay(10);
     digitalWrite(5, HIGH);  
     vspi.endTransaction();
   }

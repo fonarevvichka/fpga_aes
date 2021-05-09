@@ -23,24 +23,22 @@ component r_sbox is
   );
 end component;
 
-component r_row_shift is
-  port (
-	cipher : in std_logic_vector(127 downto 0);
-	plain  : out  std_logic_vector(127 downto 0)
-  );
-end component;
+-- component r_row_shift is
+--   port (
+-- 	cipher : in std_logic_vector(127 downto 0);
+-- 	plain  : out  std_logic_vector(127 downto 0)
+--   );
+-- end component;
 
 --signals for S Box
-signal curr_byte : unsigned(7 downto 0);
-signal subd_byte : std_logic_vector(7 downto 0);
-signal counter : integer range 0 to 15 := 0;
-signal curr_sboxed : std_logic_vector(127 downto 0);
+signal addr			: unsigned(7 downto 0);
+signal subd_byte	: std_logic_vector(7 downto 0);
+signal counter 		: integer range 0 to 15 := 0;
+signal curr_sboxed	: std_logic_vector(127 downto 0);
 
 begin
-
   -- sbx
-  -- or have counter increment by 8
-	curr_byte <= unsigned(cipher(127 - (counter  * 8) downto 120 - (counter * 8)));
+	addr <= unsigned(cipher(127 - (counter  * 8) downto 120 - (counter * 8)));
 	plain(127 - (counter  * 8) downto 120 - (counter * 8)) <= subd_byte;
 
 	-- rshf : r_row_shift port map(cipher => curr_sboxed, plain => plain);
@@ -60,5 +58,5 @@ begin
   --> ROM module for multiplying degree 8 polynomials
   
   --add_round_key
-	rsbx : r_sbox port map(addr => curr_byte, sub => subd_byte);
+	rsbx : r_sbox port map(addr => addr, sub => subd_byte);
 end;

@@ -1,3 +1,8 @@
 DRC: Design Rule Check Radiant Software (64-bit) 2.2.1.239.2
-Sat May  8 13:19:52 2021
+Sun May  9 15:02:20 2021
 
+ERROR - The pin [48] is assigned to port [reset] and cannot be assigned to port [reset]. Change the pin's assignment.
+ERROR - The pin [2] is assigned to port [controller_clk] and cannot be assigned to port [controller_clk]. Change the pin's assignment.
+ERROR - The pin [47] is assigned to port [COPI] and cannot be assigned to port [COPI]. Change the pin's assignment.
+ERROR - The pin [45] is assigned to port [CS] and cannot be assigned to port [CS]. Change the pin's assignment.
+ERROR - The pin [46] is assigned to port [CIPO] and cannot be assigned to port [CIPO]. Change the pin's assignment.

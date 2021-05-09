@@ -48,7 +48,7 @@ architecture synth of Decrypt is
 	
 	component HSOSC is
         generic (
-            CLKHF_DIV : String := "0b00"
+            CLKHF_DIV : String := "0b11"
         ); -- Divide 48MHz clock by 2^N (0-3)
         port(
             CLKHFPU : in std_logic	:= 'X'; -- Set to 1 to power up
@@ -61,15 +61,13 @@ architecture synth of Decrypt is
 
 	signal clk				: std_logic;
 	
-	signal curr				: STD_LOGIC_VECTOR(127 downto 0);
-	signal plain			: std_logic_vector(127 downto 0) := 128d"0";
 	signal rw_enable		: std_logic;
 	
 	signal data_received	: std_logic;
-	signal data_decrypted	: std_logic := '0';
+	signal data_decrypted	: std_logic;
 	
 	signal encrypted			: std_logic_vector(127 downto 0);
-	signal plaintext			: std_logic_vector(127 downto 0);
+	signal plaintext			: std_logic_vector(127 downto 0) ;
 	
 begin
 	rw_enable	<= data_decrypted;

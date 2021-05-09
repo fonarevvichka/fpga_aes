@@ -14,7 +14,7 @@ end sbox;
 architecture synth of sbox is
 
 begin
-	process (all) begin
+	process begin
 		case addr is
 			when "00000000" => sub <= "01100011";
 			when "00000001" => sub <= "01111100";
@@ -274,5 +274,6 @@ begin
 			when "11111111" => sub <= "00010110";
 			when others		=> sub <= "00000000";
 		end case;
+		wait for 1 ns;
 	end process;
 end;
