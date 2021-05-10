@@ -2,14 +2,15 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity mix_cols is
+entity r_mix_cols is
   port (
+    clk    : in std_logic;
     cipher  : in  std_logic_vector(127 downto 0);
     plain : out std_logic_vector(127 downto 0)
   );
-end mix_cols;
+end r_mix_cols;
 
-architecture synth of mix_cols is
+architecture synth of r_mix_cols is
 
 component r_row_0 is
   port(
@@ -61,6 +62,8 @@ signal B1 : unsigned(7 downto 0);
 signal B2 : unsigned(7 downto 0);
 signal B3 : unsigned(7 downto 0);
 
+signal counter : integer range 0 to 15 := 0;
+
 begin
 
     B0 <= unsigned(cipher(7  + (counter*8*4) downto 0 + (counter*8*4)));
@@ -92,15 +95,15 @@ begin
                          B3 => B3,
                          new_B3 => new_B3);
 
-    plain(7+(counter*8*4)  downto 0 +  (counter*8*4))) <= std_logic_vector(new_B0);
-    plain(15+(counter*8*4) downto 8 +  (counter*8*4))) <= std_logic_vector(new_B1);
-    plain(23+(counter*8*4) downto 16 + (counter*8*4))) <= std_logic_vector(new_B2);
-    plain(31+(counter*8*4) downto 24 + (counter*8*4))) <= std_logic_vector(new_B3);
+    plain(7+(counter*8*4)  downto 0 +  (counter*8*4)) <= std_logic_vector(new_B0);
+    plain(15+(counter*8*4) downto 8 +  (counter*8*4)) <= std_logic_vector(new_B1);
+    plain(23+(counter*8*4) downto 16 + (counter*8*4)) <= std_logic_vector(new_B2);
+    plain(31+(counter*8*4) downto 24 + (counter*8*4)) <= std_logic_vector(new_B3);
 
     process (clk) is
     begin
       if rising_edge(clk) then
-            counter <= counter + X"08";
+            counter <= counter + 1;
       end if;
     end process;
 end;
