@@ -22,6 +22,7 @@ architecture synth of spi_peripheral is
     signal controller_clk_last 		: std_logic := '0';
     signal controller_clk_last_last	: std_logic := '0';
     signal read_spi					: std_logic;
+	signal last_COPI				: std_logic;
     
     -- signal bit_counter				: unsigned (3 downto 0) := 4d"0";
     -- signal byte_counter				: unsigned (4 downto 0) := 5d"0";
@@ -47,6 +48,7 @@ begin
         elsif rising_edge(clk) then
             controller_clk_last <= controller_clk;
             controller_clk_last_last <= controller_clk_last;
+			last_COPI					<= COPI;
 
             if (cs = '0') then
                 if (read_spi = '1') then
@@ -55,14 +57,14 @@ begin
                     case s is
                         when READ =>
 							data_out(126 downto 0)		<= data_out(127 downto 1);
-							data_out(127)            	<= COPI;
+							data_out(127)            	<= last_COPI;
 							
                             -- if (bit_counter = "0111") then -- read 8 bits
                             if (bit_counter = 7) then -- read 8 bits
                                 byte_counter	<= byte_counter + 1;
                             end if;
 
-							CIPO <= COPI; -- 1 is recieved. i guess
+							CIPO <= last_COPI; -- 1 is recieved. i guess
 						when WRITE =>
                             if (bit_counter = 7) then -- wrote 8 bits
                                 byte_counter	<= byte_counter - 1;

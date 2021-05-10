@@ -2,7 +2,7 @@
 #include <esp_now.h>
 #include <WiFi.h>
 
-SPISettings settings(10000000, LSBFIRST, SPI_MODE1);
+SPISettings settings(1000000, LSBFIRST, SPI_MODE1);
 SPIClass vspi(VSPI);
 #define dataReadyPin 21
 
@@ -47,9 +47,9 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   Serial.println("recieved data ready signal");
 
   Serial.println("Read cycle");
-  char decrypted_message[16];
+  char decrypted_message[15];
 //  digitalWrite(22, LOW);
-  delay(50);
+
   for (byte i = 0; i < 16; i++) {
     vspi.beginTransaction(settings);
     delay(10);
