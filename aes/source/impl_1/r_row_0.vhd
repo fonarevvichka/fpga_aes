@@ -42,10 +42,10 @@ component mult_14 is
   );
 end component;
 
-signal result9 : unsigned(7 downto 0) := "00000000";
-signal result11 : unsigned(7 downto 0) := "00000000";
-signal result13 : unsigned(7 downto 0) := "00000000";
-signal result14 : unsigned(7 downto 0) := "00000000";
+signal result9 : unsigned(7 downto 0);
+signal result11 : unsigned(7 downto 0);
+signal result13 : unsigned(7 downto 0);
+signal result14 : unsigned(7 downto 0);
 
 begin
     mult9 : mult_9 port map(addr => B3, val => result9);

@@ -18,7 +18,7 @@ architecture synth of test_bench is
 	end component;
 
 	--signal plain : std_logic_vector(127 downto 0) := "01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101";
-    signal plain : std_logic_vector(127 downto 0) := 128d"0";
+    signal plain  : std_logic_vector(127 downto 0) := 128d"0";
     signal cipher : std_logic_vector(127 downto 0);
 begin
 

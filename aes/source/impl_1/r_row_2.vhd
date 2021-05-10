@@ -2,15 +2,15 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity r_row_0 is
+entity r_row_2 is
   port (
     B0  : in  unsigned(7 downto 0);
     B1  : in  unsigned(7 downto 0);
     B2  : in  unsigned(7 downto 0);
     B3  : in  unsigned(7 downto 0);
-    new_B0 : out unsigned(7 downto 0)
+    new_B2 : out unsigned(7 downto 0)
   );
-end r_row_0;
+end r_row_2;
 
 architecture synth of r_row_0 is
 
@@ -42,10 +42,10 @@ component mult_14 is
   );
 end component;
 
-signal result9 : unsigned(7 downto 0) := "00000000";
-signal result11 : unsigned(7 downto 0) := "00000000";
-signal result13 : unsigned(7 downto 0) := "00000000";
-signal result14 : unsigned(7 downto 0) := "00000000";
+signal result9 : unsigned(7 downto 0);
+signal result11 : unsigned(7 downto 0);
+signal result13 : unsigned(7 downto 0);
+signal result14 : unsigned(7 downto 0);
 
 begin
     mult9  : mult_9 port map(addr => B1, val => result9);

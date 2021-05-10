@@ -8,7 +8,7 @@ entity r_row_1 is
     B1  : in  unsigned(7 downto 0);
     B2  : in  unsigned(7 downto 0);
     B3  : in  unsigned(7 downto 0);
-    new_B0 : out unsigned(7 downto 0)
+    new_B1 : out unsigned(7 downto 0)
   );
 end r_row_1;
 
@@ -42,10 +42,10 @@ component mult_14 is
   );
 end component;
 
-signal result9 : unsigned(7 downto 0) := "00000000";
-signal result11 : unsigned(7 downto 0) := "00000000";
-signal result13 : unsigned(7 downto 0) := "00000000";
-signal result14 : unsigned(7 downto 0) := "00000000";
+signal result9 : unsigned(7 downto 0);
+signal result11 : unsigned(7 downto 0);
+signal result13 : unsigned(7 downto 0);
+signal result14 : unsigned(7 downto 0);
 
 begin
     mult9 : mult_9 port map(addr => B0, val => result9);
