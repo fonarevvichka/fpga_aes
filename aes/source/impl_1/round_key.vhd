@@ -39,7 +39,7 @@ begin
   s4 : sbox port map(addr => rot_temp(31 downto 24), val => sub_temp(31 downto 24));
   
   
-  process (all)
+  process (all) is
   begin
   
     if round < 4 then
@@ -55,7 +55,3 @@ begin
   
   end process;
 end;
-
-
-
-  
