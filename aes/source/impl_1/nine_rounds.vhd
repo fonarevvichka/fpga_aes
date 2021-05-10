@@ -51,7 +51,9 @@ signal data_encrypted_0 : std_logic;
 signal data_encrypted_1 : std_logic;
 
 begin
-        sbx : sbox port map(clk => clk,
+
+    -- plain text xord 1st
+    sbx : sbox port map(clk => clk,
                         plain => plain,
                         cipher => curr_sboxed,
                         data_ready => data_ready,
@@ -64,6 +66,8 @@ begin
                             cipher => cipher,
                             data_ready => data_ready,
                             data_encrypted_1 => data_encrypted_1);
+
+    -- state ciph xord
 
     data_encrypted <= data_encrypted_0 and data_encrypted_1;
 
