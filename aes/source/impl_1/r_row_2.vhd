@@ -12,7 +12,7 @@ entity r_row_2 is
   );
 end r_row_2;
 
-architecture synth of r_row_0 is
+architecture synth of r_row_2 is
 
 component mult_9 is
   port (
