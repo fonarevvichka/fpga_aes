@@ -53,5 +53,5 @@ begin
     mult13 : mult_13 port map(addr => B0, val => result13);
     mult14 : mult_14 port map(addr => B2, val => result14);
 
-    new_B0 <= result9 xor result11 xor result13 xor result14;
+    new_B2 <= result9 xor result11 xor result13 xor result14;
 end;
