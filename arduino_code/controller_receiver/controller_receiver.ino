@@ -2,7 +2,7 @@
 #include <esp_now.h>
 #include <WiFi.h>
 
-SPISettings settings(10000, LSBFIRST, SPI_MODE1);
+SPISettings settings(10000000, LSBFIRST, SPI_MODE1);
 SPIClass vspi(VSPI);
 #define dataReadyPin 21
 
