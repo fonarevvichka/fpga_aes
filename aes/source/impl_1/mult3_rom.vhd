@@ -270,6 +270,7 @@ begin
         when "11111101" => val <= "00011100";
         when "11111110" => val <= "00011001";
         when "11111111" => val <= "00011010";
-  end case;
+		when others     => val <= "00000000";
+      end case;
     end process;
 end;

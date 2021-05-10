@@ -4,6 +4,7 @@ use IEEE.numeric_std.all;
 
 entity mix_cols is
   port (
+    clk    : in std_logic;
     plain  : in  std_logic_vector(127 downto 0);
     cipher : out std_logic_vector(127 downto 0)
   );
@@ -53,22 +54,22 @@ end component;
 
 signal counter : integer range 0 to 15 := 0;
 
-signal new_B0 : unsigned(7 downto 0) := "00000000";
-signal new_B1 : unsigned(7 downto 0) := "00000000";
-signal new_B2 : unsigned(7 downto 0) := "00000000";
-signal new_B3 : unsigned(7 downto 0) := "00000000";
+signal new_B0 : unsigned(7 downto 0);
+signal new_B1 : unsigned(7 downto 0);
+signal new_B2 : unsigned(7 downto 0);
+signal new_B3 : unsigned(7 downto 0);
 
-signal B0 : unsigned(7 downto 0) := "00000000";
-signal B1 : unsigned(7 downto 0) := "00000000";
-signal B2 : unsigned(7 downto 0) := "00000000";
-signal B3 : unsigned(7 downto 0) := "00000000";
+signal B0 : unsigned(7 downto 0);
+signal B1 : unsigned(7 downto 0);
+signal B2 : unsigned(7 downto 0);
+signal B3 : unsigned(7 downto 0);
 
 begin
 
-    B0 <= unsigned(plain(7  + (counter*8) downto 0 + (counter*8)));
-    B1 <= unsigned(plain(15 + (counter*8) downto 8 + (counter*8)));
-    B2 <= unsigned(plain(23 + (counter*8) downto 16 + (counter*8)));
-    B3 <= unsigned(plain(31 + (counter*8) downto 24 + (counter*8)));
+    B0 <= unsigned(plain(7  + (counter*8*4) downto 0 + (counter*8*4)));
+    B1 <= unsigned(plain(15 + (counter*8*4) downto 8 + (counter*8*4)));
+    B2 <= unsigned(plain(23 + (counter*8*4) downto 16 + (counter*8*4)));
+    B3 <= unsigned(plain(31 + (counter*8*4) downto 24 + (counter*8*4)));
 
    r0 : row_0 port map(B0 => B0,
                        B1 => B1,
@@ -94,10 +95,10 @@ begin
                        B3 => B3,
                        new_B3 => new_B3);
 
-    cipher(7+(counter*8)  downto 0 +  (counter*8))) <= std_logic_vector(new_B0);
-    cipher(15+(counter*8) downto 8 +  (counter*8))) <= std_logic_vector(new_B1);
-    cipher(23+(counter*8) downto 16 + (counter*8))) <= std_logic_vector(new_B2);
-    cipher(31+(counter*8) downto 24 + (counter*8))) <= std_logic_vector(new_B3);
+    cipher(7 +(counter*8*4) downto 0  + (counter*8*4)) <= std_logic_vector(new_B0);
+    cipher(15+(counter*8*4) downto 8  + (counter*8*4)) <= std_logic_vector(new_B1);
+    cipher(23+(counter*8*4) downto 16 + (counter*8*4)) <= std_logic_vector(new_B2);
+    cipher(31+(counter*8*4) downto 24 + (counter*8*4)) <= std_logic_vector(new_B3);
 
     process (clk) is
     begin

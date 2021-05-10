@@ -32,6 +32,7 @@ end component;
 
 component mix_cols is
 	port (
+	    clk    : in std_logic;
 		plain  : in  std_logic_vector(127 downto 0);
 		cipher : out std_logic_vector(127 downto 0)
 	);
@@ -49,11 +50,14 @@ signal curr_sboxed	: std_logic_vector(127 downto 0);
 begin
   -- sbx
 	addr <= unsigned(plain(127 - (counter  * 8) downto 120 - (counter * 8)));
-
-    curr_sboxed((127 - counter) downto (120 - counter)) <= subd_byte;
+	
+	sbx : sbox port map(addr => addr, sub => subd_byte);
+    
+	curr_sboxed(127 - (counter*8) downto 120 - (counter*8)) <= subd_byte;
     
 	shf : row_shift port map(plain => curr_sboxed, cipher => curr_shifted);
-    mxc : mix_cols port map(plain => curr_shifted, cipher => cipher);
+	
+    mxc : mix_cols port map(clk => clk, plain => curr_shifted, cipher => cipher);
 
 	data_encrypted <= '1' when (counter = 15) else '0';
 
@@ -65,8 +69,6 @@ begin
 			end if;
       	end if;
   	end process;
-
-	sbx : sbox port map(addr => addr, sub => subd_byte);
 
   -- shf
   --> in place, won't have to access ROM
