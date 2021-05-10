@@ -51,8 +51,9 @@ void setup() {
 }
 
 void loop() {
-  
-  Serial.println("Write cycle");
+   digitalWrite(22, HIGH);
+   delay(100);
+   Serial.println("Write cycle");
   digitalWrite(22, LOW);
 //  byte message[] = {0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01};
   byte message[] = {0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x21, 0x21, 0x21, 0x00, 0x00};
@@ -96,7 +97,6 @@ void loop() {
     digitalWrite(5, HIGH);  
     vspi.endTransaction();
   }
-  digitalWrite(22, HIGH);
   
   //send data over wifi
   strcpy(myMessage.encrypted_message, encrypted_message);
