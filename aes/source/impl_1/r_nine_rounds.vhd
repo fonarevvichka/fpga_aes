@@ -50,9 +50,12 @@ begin
   -- sbx
 	addr <= unsigned(cipher(127 - (counter  * 8) downto 120 - (counter * 8)));
 
+	rsbx : r_sbox port map(addr => addr, sub => subd_byte);
+
 	curr_sboxed(127 - (counter  * 8) downto 120 - (counter * 8)) <= subd_byte;
 
     rshf : r_row_shift port map(cipher => curr_sboxed, plain => curr_shifted);
+
     rmxc : r_mix_cols port map(cipher => curr_shifted, plain => plain);
 
 	data_decrypted <= '1' when (counter = 15) else '0';
@@ -70,5 +73,4 @@ begin
   --> ROM module for multiplying degree 8 polynomials
 
   --add_round_key
-	rsbx : r_sbox port map(addr => addr, sub => subd_byte);
 end;

@@ -2,14 +2,14 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity mult_3 is
+entity mult_14 is
   port (
     addr : in  unsigned(7 downto 0);
     val  : out unsigned(7 downto 0)
   );
-end mult_3;
+end mult_14;
 
-architecture synth of mult_3 is
+architecture synth of mult_14 is
 begin
   process (addr) is
   begin
@@ -270,6 +270,7 @@ begin
         when "11111101" => val <= "10010001";
         when "11111110" => val <= "10000011";
         when "11111111" => val <= "10001101";
-  end case;
+        when others     => val <= "00000000";
+      end case;
     end process;
 end;
