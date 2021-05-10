@@ -2,16 +2,16 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity sbox is
+entity sbox_rom is
   port (
     --address is 1 byte into a lookup table where most significant nibble is the row, 
     --least significant nibble is the column
     addr : in  unsigned(7 downto 0);
 	sub  : out std_logic_vector(7 downto 0)
   );
-end sbox;
+end sbox_rom;
 
-architecture synth of sbox is
+architecture synth of sbox_rom is
 
 begin
     process (addr) is

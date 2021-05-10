@@ -15,12 +15,14 @@ end r_nine_rounds;
 architecture synth of r_nine_rounds is
 
 component r_sbox is
-  port (
-    --address is 1 byte into a lookup table where most significant nibble is the row,
-    --least significant nibble is the column
-    addr : in  unsigned(7 downto 0);
-	sub  : out std_logic_vector(7 downto 0)
-  );
+    port (
+        clk    : in std_logic;
+        cipher  : in  std_logic_vector(127 downto 0);
+        plain : out std_logic_vector(127 downto 0);
+
+    	data_ready	 : in std_logic;
+    	data_decrypted_0 : out std_logic
+    );
 end component;
 
 component r_row_shift is
@@ -32,45 +34,38 @@ end component;
 
 component r_mix_cols is
 	port (
+        clk    : in std_logic;
 		cipher : in std_logic_vector(127 downto 0);
 		plain  : out  std_logic_vector(127 downto 0)
+
+        data_ready	 : in std_logic;
+        data_decrypted_1 : out std_logic
 	);
 end component;
 
---signals for S Box
-signal addr			: unsigned(7 downto 0);
-signal subd_byte	: std_logic_vector(7 downto 0);
-signal counter 		: integer range 0 to 15 := 0;
 signal curr_sboxed	: std_logic_vector(127 downto 0);
 
---signals for Row Shift
 signal curr_shifted	: std_logic_vector(127 downto 0);
 
+signal data_decrypted_0 : std_logic := '0';
+signal data_decrypted_1 : std_logic := '0';
+
 begin
-  -- sbx
-	addr <= unsigned(cipher(127 - (counter  * 8) downto 120 - (counter * 8)));
-
-	rsbx : r_sbox port map(addr => addr, sub => subd_byte);
-
-	curr_sboxed(127 - (counter  * 8) downto 120 - (counter * 8)) <= subd_byte;
+    rsbx : r_sbox port map(clk => clk,
+                           cipher => cipher,
+                           plain => curr_sboxed,
+                           data_ready => data_ready,
+                           data_decrypted_0 => data_decrypted_0);
 
     rshf : r_row_shift port map(cipher => curr_sboxed, plain => curr_shifted);
 
-    rmxc : r_mix_cols port map(cipher => curr_shifted, plain => plain);
+    rmxc : r_mix_cols port map(clk => clk,
+                               cipher => curr_shifted,
+                               plain => plain,
+                               data_ready => data_ready,
+                               data_decrypted_1 => data_decrypted_1);
 
-	data_decrypted <= '1' when (counter = 15) else '0';
-
-    process (clk) is
-    begin
-        if rising_edge(clk) then
-	    	if (data_ready = '1') then
-	    		counter <= counter + 1;
-     		end if;
-        end if;
-    end process;
-
-  --mix columns
-  --> ROM module for multiplying degree 8 polynomials
+	data_decrypted <= data_decrypted_1 and data_decrypted_0;
 
   --add_round_key
 end;
