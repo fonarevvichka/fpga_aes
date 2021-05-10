@@ -2,7 +2,11 @@
 <RadiantProject version="4.1" title="aes" device="iCE40UP5K-SG48I" performance_grade="High-Performance_1.2V" default_implementation="impl_1">
     <Options/>
     <Implementation title="impl_1" dir="impl_1" description="impl_1" synthesis="lse" default_strategy="Strategy1">
+<<<<<<< HEAD
+        <Options def_top="Decrypt" top="Encrypt"/>
+=======
         <Options def_top="r_sbox_rom" top="Encrypt"/>
+>>>>>>> 6b513714d547f5a0d9d0aff3c377760bcd706875
         <Source name="source/impl_1/sbox_rom.vhd" type="VHDL" type_short="VHDL">
             <Options/>
         </Source>
@@ -28,6 +32,60 @@
             <Options/>
         </Source>
         <Source name="source/impl_1/row_shift.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/mix_cols.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/mult2_rom.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/mult3_rom.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/mult9_rom.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/mult11_rom.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/mult13_rom.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/mult14_rom.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/r_mix_cols.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/r_row_0.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/r_row_1.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/r_row_2.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/r_row_3.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/row_0.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/row_1.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/row_2.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/row_3.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/sbox.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="source/impl_1/r_sbox.vhd" type="VHDL" type_short="VHDL">
             <Options/>
         </Source>
         <Source name="source/impl_1.xcf" type="Programming Project File" type_short="Programming">
