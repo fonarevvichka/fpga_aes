@@ -36,7 +36,7 @@ component mix_cols is
 	port (
 	    clk    : in std_logic;
 		plain  : in  std_logic_vector(127 downto 0);
-		cipher : out std_logic_vector(127 downto 0)
+		cipher : out std_logic_vector(127 downto 0);
 
         data_ready	 : in std_logic;
         data_encrypted_1 : out std_logic
@@ -47,12 +47,11 @@ signal curr_sboxed	: std_logic_vector(127 downto 0);
 
 signal curr_shifted : std_logic_vector(127 downto 0);
 
-signal data_encrypted_0 : std_logic := '0';
-signal data_encrypted_1 : std_logic := '0';
+signal data_encrypted_0 : std_logic;
+signal data_encrypted_1 : std_logic;
 
 begin
-    
-    sbx : sbox port map(clk => clk,
+        sbx : sbox port map(clk => clk,
                         plain => plain,
                         cipher => curr_sboxed,
                         data_ready => data_ready,

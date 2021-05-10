@@ -6,7 +6,9 @@ entity r_mix_cols is
   port (
     clk    : in std_logic;
     cipher  : in  std_logic_vector(127 downto 0);
-    plain : out std_logic_vector(127 downto 0)
+    plain : out std_logic_vector(127 downto 0);
+	data_ready	 : in std_logic;
+	data_decrypted_1 : out std_logic
   );
 end r_mix_cols;
 
@@ -100,10 +102,14 @@ begin
     plain(23+(counter*8*4) downto 16 + (counter*8*4)) <= std_logic_vector(new_B2);
     plain(31+(counter*8*4) downto 24 + (counter*8*4)) <= std_logic_vector(new_B3);
 
+	data_decrypted_1 <= '1' when (counter = 15) else '0';
+
     process (clk) is
     begin
       if rising_edge(clk) then
+        if (data_ready = '1') then
             counter <= counter + 1;
+        end if;
       end if;
     end process;
 end;

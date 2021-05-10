@@ -33,7 +33,7 @@ begin
     
 	plain(127 - (counter*8) downto 120 - (counter*8)) <= subd_byte;
 
-	data_encrypted_0 <= '1' when (counter = 15) else '0';
+	data_decrypted_0 <= '1' when (counter = 15) else '0';
 
   	process (clk) is
   	begin

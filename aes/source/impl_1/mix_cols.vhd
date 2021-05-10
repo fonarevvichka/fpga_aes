@@ -7,7 +7,7 @@ entity mix_cols is
     clk    : in std_logic;
     plain  : in  std_logic_vector(127 downto 0);
     cipher : out std_logic_vector(127 downto 0);
-	data_ready_1	 : in std_logic;
+	data_ready	 : in std_logic;
 	data_encrypted_1 : out std_logic
   );
 end mix_cols;
@@ -107,7 +107,7 @@ begin
     process (clk) is
     begin
       if rising_edge(clk) then
-        if (data_ready_1 = '1') then
+        if (data_ready = '1') then
             counter <= counter + 1;
         end if;
       end if;
