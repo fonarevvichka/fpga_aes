@@ -20,7 +20,7 @@ architecture synth of Decrypt is
 
 -- component initial_key_add is
 
-	component r_nine_rounds is
+	component r_rounds is
 	  port(
 		clk    			: in std_logic;
 		cipher  		: in std_logic_vector(127 downto 0);
