@@ -1381,22 +1381,22 @@ begin
     begin
         if data_encrypted = '1' then
             --MULT COLS
-            B0  <= curr_shifted(7  downto 0 );
-            B1  <= curr_shifted(15 downto 8 );
-            B2  <= curr_shifted(23 downto 16);
-            B3  <= curr_shifted(31 downto 24);
-            B4  <= curr_shifted(39 downto 32);
-            B5  <= curr_shifted(47 downto 40);
-            B6  <= curr_shifted(55 downto 48);
-            B7  <= curr_shifted(63 downto 56);
-            B8  <= curr_shifted(71 downto 64);
-            B9  <= curr_shifted(79 downto 72);
-            B10 <= curr_shifted(87 downto 80);
-            B11 <= curr_shifted(95 downto 88);
-            B12 <= curr_shifted(103 downto 96);
-            B13 <= curr_shifted(111 downto 104);
-            B14 <= curr_shifted(119 downto 112);
-            B15 <= curr_shifted(127 downto 120);
+            B0  <= cipher(7  downto 0 );
+            B1  <= cipher(15 downto 8 );
+            B2  <= cipher(23 downto 16);
+            B3  <= cipher(31 downto 24);
+            B4  <= cipher(39 downto 32);
+            B5  <= cipher(47 downto 40);
+            B6  <= cipher(55 downto 48);
+            B7  <= cipher(63 downto 56);
+            B8  <= cipher(71 downto 64);
+            B9  <= cipher(79 downto 72);
+            B10 <= cipher(87 downto 80);
+            B11 <= cipher(95 downto 88);
+            B12 <= cipher(103 downto 96);
+            B13 <= cipher(111 downto 104);
+            B14 <= cipher(119 downto 112);
+            B15 <= cipher(127 downto 120);
 
             curr_mixed(7 downto 0)     <= MULT14(B0) xor MULT11(B1) xor MULT13(B2) xor MULT9(B3);
             curr_mixed(15 downto 8)    <= MULT9(B0) xor MULT14(B1) xor MULT11(B2) xor MULT13(B3);
@@ -1421,48 +1421,48 @@ begin
             wait for 10 ns;
 
             --ROW SHIFT
-            curr_shifted(7 downto 0)     <= curr_sboxed(7 downto 0);
-            curr_shifted(15 downto 8)    <= curr_sboxed(111 downto 104);
-            curr_shifted(23 downto 16)   <= curr_sboxed(87 downto 80);
-            curr_shifted(31 downto 24)   <= curr_sboxed(63 downto 56);
+            curr_shifted(7 downto 0)     <= curr_mixed(7 downto 0);
+            curr_shifted(15 downto 8)    <= curr_mixed(111 downto 104);
+            curr_shifted(23 downto 16)   <= curr_mixed(87 downto 80);
+            curr_shifted(31 downto 24)   <= curr_mixed(63 downto 56);
 
-            curr_shifted(39 downto 32)   <= curr_sboxed(39 downto 32);
-            curr_shifted(47 downto 40)   <= curr_sboxed(15 downto 8);
-            curr_shifted(55 downto 48)   <= curr_sboxed(119 downto 112);
-            curr_shifted(63 downto 56)   <= curr_sboxed(95 downto 88);
+            curr_shifted(39 downto 32)   <= curr_mixed(39 downto 32);
+            curr_shifted(47 downto 40)   <= curr_mixed(15 downto 8);
+            curr_shifted(55 downto 48)   <= curr_mixed(119 downto 112);
+            curr_shifted(63 downto 56)   <= curr_mixed(95 downto 88);
 
-            curr_shifted(71 downto 64)   <= curr_sboxed(71 downto 64); 
-            curr_shifted(79 downto 72)   <= curr_sboxed(47 downto 40);
-            curr_shifted(87 downto 80)   <= curr_sboxed(23 downto 16);
-            curr_shifted(95 downto 88)   <= curr_sboxed(127 downto 120);
+            curr_shifted(71 downto 64)   <= curr_mixed(71 downto 64); 
+            curr_shifted(79 downto 72)   <= curr_mixed(47 downto 40);
+            curr_shifted(87 downto 80)   <= curr_mixed(23 downto 16);
+            curr_shifted(95 downto 88)   <= curr_mixed(127 downto 120);
 
-            curr_shifted(103 downto 96)  <= curr_sboxed(103 downto 96);
-            curr_shifted(111 downto 104) <= curr_sboxed(79 downto 72);
-            curr_shifted(119 downto 112) <= curr_sboxed(55 downto 48);
-            curr_shifted(127 downto 120) <= curr_sboxed(95 downto 88);
+            curr_shifted(103 downto 96)  <= curr_mixed(103 downto 96);
+            curr_shifted(111 downto 104) <= curr_mixed(79 downto 72);
+            curr_shifted(119 downto 112) <= curr_mixed(55 downto 48);
+            curr_shifted(127 downto 120) <= curr_mixed(95 downto 88);
 
             wait for 10 ns;
 
             --SBOX
-            curr_sboxed(7   downto 0 )  <= R_SBOX(plain(7   downto 0 ));
-            curr_sboxed(15  downto 8 )  <= R_SBOX(plain(15  downto 8 ));
-            curr_sboxed(23  downto 16)  <= R_SBOX(plain(23  downto 16));
-            curr_sboxed(31  downto 24)  <= R_SBOX(plain(31  downto 24));
+            curr_sboxed(7   downto 0 )  <= R_SBOX(curr_shifted(7   downto 0 ));
+            curr_sboxed(15  downto 8 )  <= R_SBOX(curr_shifted(15  downto 8 ));
+            curr_sboxed(23  downto 16)  <= R_SBOX(curr_shifted(23  downto 16));
+            curr_sboxed(31  downto 24)  <= R_SBOX(curr_shifted(31  downto 24));
 
-            curr_sboxed(39  downto 32)  <= R_SBOX(plain(39  downto 32));
-            curr_sboxed(47  downto 40)  <= R_SBOX(plain(47  downto 40));
-            curr_sboxed(55  downto 48)  <= R_SBOX(plain(55  downto 48));
-            curr_sboxed(63  downto 56)  <= R_SBOX(plain(63  downto 56));
+            curr_sboxed(39  downto 32)  <= R_SBOX(curr_shifted(39  downto 32));
+            curr_sboxed(47  downto 40)  <= R_SBOX(curr_shifted(47  downto 40));
+            curr_sboxed(55  downto 48)  <= R_SBOX(curr_shifted(55  downto 48));
+            curr_sboxed(63  downto 56)  <= R_SBOX(curr_shifted(63  downto 56));
 
-            curr_sboxed(71  downto 64)  <= R_SBOX(plain(71  downto 64));
-            curr_sboxed(79  downto 72)  <= R_SBOX(plain(79  downto 72));
-            curr_sboxed(87  downto 80)  <= R_SBOX(plain(87  downto 80));
-            curr_sboxed(95  downto 88)  <= R_SBOX(plain(95  downto 88));
+            curr_sboxed(71  downto 64)  <= R_SBOX(curr_shifted(71  downto 64));
+            curr_sboxed(79  downto 72)  <= R_SBOX(curr_shifted(79  downto 72));
+            curr_sboxed(87  downto 80)  <= R_SBOX(curr_shifted(87  downto 80));
+            curr_sboxed(95  downto 88)  <= R_SBOX(curr_shifted(95  downto 88));
 
-            curr_sboxed(103 downto 96)  <= R_SBOX(plain(103 downto 96));
-            curr_sboxed(111 downto 104) <= R_SBOX(plain(111 downto 104));
-            curr_sboxed(119 downto 112) <= R_SBOX(plain(119 downto 112));
-            curr_sboxed(127 downto 120) <= R_SBOX(plain(127 downto 120));
+            curr_sboxed(103 downto 96)  <= R_SBOX(curr_shifted(103 downto 96));
+            curr_sboxed(111 downto 104) <= R_SBOX(curr_shifted(111 downto 104));
+            curr_sboxed(119 downto 112) <= R_SBOX(curr_shifted(119 downto 112));
+            curr_sboxed(127 downto 120) <= R_SBOX(curr_shifted(127 downto 120));
 
             wait for 100 ns;
 
