@@ -7,6 +7,7 @@ entity nine_rounds is
     clk    			: in std_logic;
 	plain  			: in std_logic_vector(127 downto 0);
 	cipher 			: out std_logic_vector(127 downto 0);
+  curr_key : in std_logic_vector(127 downto 0);
 	data_ready		: in std_logic;
 	data_encrypted 	: out std_logic
   );
@@ -16,12 +17,12 @@ architecture synth of nine_rounds is
 
 component sbox is
   port (
-    --clk    : in std_logic;
+    clk    : in std_logic;
     plain  : in  std_logic_vector(127 downto 0);
     cipher : out std_logic_vector(127 downto 0);
 
-	--data_ready	 : in std_logic;
-	--data_encrypted_0 : out std_logic
+	data_ready	 : in std_logic;
+	data_encrypted_0 : out std_logic
   );
 end component;
 
@@ -52,11 +53,12 @@ signal data_encrypted_1 : std_logic;
 begin
 
     -- plain text xord 1st
-    sbx : sbox port map(plain => plain,
-                        cipher => curr_sboxed);
+    sbx : sbox port map(clk => clk,
+                        plain => plain,
+                        cipher => curr_sboxed,
 						--cipher => cipher,
-                        --data_ready => data_ready,
-                        --data_encrypted_0 => data_encrypted_0);
+                        data_ready => data_ready,
+                        data_encrypted_0 => data_encrypted_0);
 
 	--data_encrypted_1 <= '1';
 	shf : row_shift port map(plain => curr_sboxed, cipher => curr_shifted);
@@ -65,5 +67,7 @@ begin
     mxc : mix_cols port map(plain => curr_shifted,
                             cipher => curr_mixed);
 
-    --data_encrypted <= data_encrypted_0;
+    cipher <= curr_mixed xor curr_key;
+
+    data_encrypted <= data_encrypted_0;
 end;

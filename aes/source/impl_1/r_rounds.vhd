@@ -348,7 +348,7 @@ begin
 
     process
     begin
-        if data_decrypted = '1' then
+        if data_ready = '1' then
             --MULT COLS
         B15 <= cipher(7  downto 0 );
         B14 <= cipher(15 downto 8 );
@@ -479,7 +479,7 @@ begin
 
             wait for 100 ns;
 
-            plain <= curr_mixed;
+            plain <= curr_sboxed;
 
             data_decrypted <= '1';
 
