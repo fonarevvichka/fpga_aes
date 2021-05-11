@@ -1379,7 +1379,7 @@ begin
 
     process
     begin
-        if data_encrypted = '1' then
+        if data_decrypted = '1' then
             --MULT COLS
             B0  <= cipher(7  downto 0 );
             B1  <= cipher(15 downto 8 );
@@ -1468,7 +1468,7 @@ begin
 
             plain <= curr_mixed;
 
-            data_encrypted <= '1';
+            data_decrypted <= '1';
 
         end if;
     end process;
