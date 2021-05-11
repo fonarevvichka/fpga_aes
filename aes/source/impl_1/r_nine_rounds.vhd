@@ -43,27 +43,27 @@ component r_mix_cols is
 	);
 end component;
 
-signal curr_sboxed	: std_logic_vector(127 downto 0);
-
+signal curr_mixed	: std_logic_vector(127 downto 0);
 signal curr_shifted	: std_logic_vector(127 downto 0);
 
 signal data_decrypted_0 : std_logic;
-
 signal data_decrypted_1 : std_logic;
 
 begin
+    rmxc : r_mix_cols port map(cipher => cipher,
+                               plain => curr_mixed);
+
+    rshf : r_row_shift port map(cipher => curr_mixed, plain => curr_shifted);
+
     rsbx : r_sbox port map(clk => clk,
-                           cipher => cipher,
-                           plain => curr_sboxed,
+                           cipher => curr_shifted,
+                           plain => plain,
                            data_ready => data_ready,
                            data_decrypted_0 => data_decrypted_0);
 
-    rshf : r_row_shift port map(cipher => curr_sboxed, plain => curr_shifted);
 
-    rmxc : r_mix_cols port map(cipher => curr_shifted,
-                               plain => plain);
 
 	--data_decrypted <= data_decrypted_1 and data_decrypted_0;
-    data_decrypted <= data_decrypted_1;
+    data_decrypted <= data_decrypted_0;
   --add_round_key
 end;

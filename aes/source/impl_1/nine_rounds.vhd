@@ -65,9 +65,6 @@ begin
 
     mxc : mix_cols port map(plain => curr_shifted,
                             cipher => cipher);
-                            --data_ready => data_encrypted_0,
-                            --data_encrypted_1 => data_encrypted_1);
 
-    --data_encrypted <= data_encrypted_0 and data_encrypted_1;
     data_encrypted <= data_encrypted_0;
 end;
