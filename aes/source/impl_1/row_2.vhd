@@ -32,9 +32,8 @@ signal result2 : unsigned(7 downto 0);
 signal result3 : unsigned(7 downto 0);
 
 begin
-
     mult2 : mult_2 port map(addr => B2, val => result2);
     mult3 : mult_3 port map(addr => B3, val => result3);
 
-    new_B2 <= result2 xor result3 xor B1 xor B2;
+    new_B2 <= B0 xor B1 xor result2 xor result3;
 end;

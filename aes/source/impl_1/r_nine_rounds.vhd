@@ -47,7 +47,9 @@ signal curr_sboxed	: std_logic_vector(127 downto 0);
 
 signal curr_shifted	: std_logic_vector(127 downto 0);
 
-signal data_decrypted_0 : std_logic;signal data_decrypted_1 : std_logic;
+signal data_decrypted_0 : std_logic;
+
+signal data_decrypted_1 : std_logic;
 
 begin
     rsbx : r_sbox port map(clk => clk,

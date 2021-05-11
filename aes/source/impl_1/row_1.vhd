@@ -36,5 +36,5 @@ begin
     mult2 : mult_2 port map(addr => B1, val => result2);
     mult3 : mult_3 port map(addr => B2, val => result3);
 
-    new_B1 <= result2 xor result3 xor B0 xor B3;
+    new_B1 <= B0 xor result2 xor result3 xor B3;
 end;
