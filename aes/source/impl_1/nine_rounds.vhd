@@ -18,7 +18,7 @@ component sbox is
   port (
     --clk    : in std_logic;
     plain  : in  std_logic_vector(127 downto 0);
-    cipher : out std_logic_vector(127 downto 0);
+    cipher : out std_logic_vector(127 downto 0)
 
 	--data_ready	 : in std_logic;
 	--data_encrypted_0 : out std_logic
@@ -63,7 +63,7 @@ begin
 	--shf : row_shift port map(plain => curr_sboxed, cipher => cipher);
 
     mxc : mix_cols port map(plain => curr_shifted,
-                            cipher => curr_mixed);
-
+                            cipher => cipher);
+	data_encrypted <= '1';
     --data_encrypted <= data_encrypted_0;
 end;

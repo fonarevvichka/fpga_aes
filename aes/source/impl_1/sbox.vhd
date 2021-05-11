@@ -5,13 +5,13 @@ use IEEE.numeric_std.all;
 entity sbox is
   port (
     plain  : in  std_logic_vector(127 downto 0);
-    cipher : out std_logic_vector(127 downto 0);
+    cipher : out std_logic_vector(127 downto 0)
   );
 end sbox;
 
 architecture synth of sbox is
 
-function SBOX (addr : in std_logic_vector(7 downto 0))
+function SBOX_FUNC (addr : in std_logic_vector(7 downto 0))
     return std_logic_vector is
     variable sub : std_logic_vector(7 downto 0);
 begin
@@ -276,26 +276,26 @@ begin
     end case;
 
     return sub;
-end function SBOX;
+end function SBOX_FUNC;
 
 begin
-    cipher(7   downto 0 )  <= SBOX(plain(7   downto 0 ));
-    cipher(15  downto 8 )  <= SBOX(plain(15  downto 8 ));
-    cipher(23  downto 16)  <= SBOX(plain(23  downto 16));
-    cipher(31  downto 24)  <= SBOX(plain(31  downto 24));
+    cipher(7   downto 0 )  <= SBOX_FUNC(plain(7   downto 0 ));
+    cipher(15  downto 8 )  <= SBOX_FUNC(plain(15  downto 8 ));
+    cipher(23  downto 16)  <= SBOX_FUNC(plain(23  downto 16));
+    cipher(31  downto 24)  <= SBOX_FUNC(plain(31  downto 24));
 
-    cipher(39  downto 32)  <= SBOX(plain(39  downto 32));
-    cipher(47  downto 40)  <= SBOX(plain(47  downto 40));
-    cipher(55  downto 48)  <= SBOX(plain(55  downto 48));
-    cipher(63  downto 56)  <= SBOX(plain(63  downto 56));
+    cipher(39  downto 32)  <= SBOX_FUNC(plain(39  downto 32));
+    cipher(47  downto 40)  <= SBOX_FUNC(plain(47  downto 40));
+    cipher(55  downto 48)  <= SBOX_FUNC(plain(55  downto 48));
+    cipher(63  downto 56)  <= SBOX_FUNC(plain(63  downto 56));
 
-    cipher(71  downto 64)  <= SBOX(plain(71  downto 64));
-    cipher(79  downto 72)  <= SBOX(plain(79  downto 72));
-    cipher(87  downto 80)  <= SBOX(plain(87  downto 80));
-    cipher(95  downto 88)  <= SBOX(plain(95  downto 88));
+    cipher(71  downto 64)  <= SBOX_FUNC(plain(71  downto 64));
+    cipher(79  downto 72)  <= SBOX_FUNC(plain(79  downto 72));
+    cipher(87  downto 80)  <= SBOX_FUNC(plain(87  downto 80));
+    cipher(95  downto 88)  <= SBOX_FUNC(plain(95  downto 88));
 
-    cipher(103 downto 96)  <= SBOX(plain(103 downto 96));
-    cipher(111 downto 104) <= SBOX(plain(111 downto 104));
-    cipher(119 downto 112) <= SBOX(plain(119 downto 112));
-    cipher(127 downto 120) <= SBOX(plain(127 downto 120));
+    cipher(103 downto 96)  <= SBOX_FUNC(plain(103 downto 96));
+    cipher(111 downto 104) <= SBOX_FUNC(plain(111 downto 104));
+    cipher(119 downto 112) <= SBOX_FUNC(plain(119 downto 112));
+    cipher(127 downto 120) <= SBOX_FUNC(plain(127 downto 120));
 end;
