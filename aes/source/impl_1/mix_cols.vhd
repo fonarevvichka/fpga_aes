@@ -19,9 +19,6 @@ function MULT_EN
 return std_logic_vector is
 
     variable curr    : std_logic_vector(7 downto 0);
-    variable temp1    : std_logic_vector(7 downto 0);
-    variable temp2    : std_logic_vector(7 downto 0);
-    variable temp3    : std_logic_vector(7 downto 0);
     variable and_mask : std_logic_vector(7 downto 0);
 
 begin

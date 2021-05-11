@@ -14,43 +14,43 @@ architecture synth of r_mix_cols is
 -- Multiply bits like they are polynomials in the Galois field
 function MULT_DE (a: std_logic_vector(7 downto 0); b: std_logic_vector(7 downto 0))
 return std_logic_vector is
-    variable temp: std_logic_vector(7 downto 0);
-    variable temp1: std_logic_vector(7 downto 0);
-    variable temp2: std_logic_vector(7 downto 0);
-    variable temp3: std_logic_vector(7 downto 0);
+    variable curr: std_logic_vector(7 downto 0);
+    variable curr1: std_logic_vector(7 downto 0);
+    variable curr2: std_logic_vector(7 downto 0);
+    variable curr3: std_logic_vector(7 downto 0);
     variable and_mask: std_logic_vector(7 downto 0);
 begin
 and_mask := b(7) & b(7) & b(7) & b(7) & b(7) & b(7) & b(7) & b(7);
 case a(3 downto 0) is
-    when "1001"=> temp1 := b(6 downto 0) & '0' xor (("00011011") and and_mask);
-                  and_mask := temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7);
-                  temp2 := temp1(6 downto 0) & '0' xor (("00011011") and and_mask);
-                  and_mask := temp2(7) & temp2(7) & temp2(7) & temp2(7) &
-                  temp2(7) & temp2(7) & temp2(7) & temp2(7);
-                  temp3 := temp2(6 downto 0) & '0' xor (("00011011") and and_mask);
-                  temp := temp3 xor b;
-    when "1011"=> temp1 := b(6 downto 0) & '0' xor (("00011011") and and_mask);
-                  and_mask := temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7);
-                  temp2 := temp1(6 downto 0) & '0' xor (("00011011") and and_mask);
-                  and_mask := temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7);
-                  temp3 := temp2(6 downto 0) & '0' xor (("00011011") and and_mask);
-                  temp := temp1 xor temp3 xor b;
-    when "1101" => temp1 := b(6 downto 0) & '0' xor (("00011011") and and_mask);
-                   and_mask := temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7);
-                   temp2 := temp1(6 downto 0) & '0' xor (("00011011") and and_mask);
-                   and_mask := temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7);
-                   temp3 := temp2(6 downto 0) & '0' xor (("00011011") and and_mask);
-                   temp := temp2 xor temp3 xor b;
-    when "1110"=> temp1 := b(6 downto 0) & '0' xor (("00011011") and and_mask);
-                  and_mask := temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7);
-                  temp2 := temp1(6 downto 0) & '0' xor (("00011011") and and_mask);
-                  and_mask := temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7);
-                  temp3 := temp2(6 downto 0) & '0' xor (("00011011") and and_mask);
-                  temp := temp1 xor temp2 xor temp3;
-    when others => temp := (others => '0');
+    when "1001"=> curr1 := b(6 downto 0) & '0' xor (("00011011") and and_mask);
+                  and_mask := curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7);
+                  curr2 := curr1(6 downto 0) & '0' xor (("00011011") and and_mask);
+                  and_mask := curr2(7) & curr2(7) & curr2(7) & curr2(7) &
+                  curr2(7) & curr2(7) & curr2(7) & curr2(7);
+                  curr3 := curr2(6 downto 0) & '0' xor (("00011011") and and_mask);
+                  curr := curr3 xor b;
+    when "1011"=> curr1 := b(6 downto 0) & '0' xor (("00011011") and and_mask);
+                  and_mask := curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7);
+                  curr2 := curr1(6 downto 0) & '0' xor (("00011011") and and_mask);
+                  and_mask := curr2(7) & curr2(7) & curr2(7) & curr2(7) & curr2(7) & curr2(7) & curr2(7) & curr2(7);
+                  curr3 := curr2(6 downto 0) & '0' xor (("00011011") and and_mask);
+                  curr := curr1 xor curr3 xor b;
+    when "1101" => curr1 := b(6 downto 0) & '0' xor (("00011011") and and_mask);
+                   and_mask := curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7);
+                   curr2 := curr1(6 downto 0) & '0' xor (("00011011") and and_mask);
+                   and_mask := curr2(7) & curr2(7) & curr2(7) & curr2(7) & curr2(7) & curr2(7) & curr2(7) & curr2(7);
+                   curr3 := curr2(6 downto 0) & '0' xor (("00011011") and and_mask);
+                   curr := curr2 xor curr3 xor b;
+    when "1110"=> curr1 := b(6 downto 0) & '0' xor (("00011011") and and_mask);
+                  and_mask := curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7) & curr1(7);
+                  curr2 := curr1(6 downto 0) & '0' xor (("00011011") and and_mask);
+                  and_mask := curr2(7) & curr2(7) & curr2(7) & curr2(7) & curr2(7) & curr2(7) & curr2(7) & curr2(7);
+                  curr3 := curr2(6 downto 0) & '0' xor (("00011011") and and_mask);
+                  curr := curr1 xor curr2 xor curr3;
+    when others => curr := (others => '0');
 
 end case;
-return temp;
+return curr;
 end function MULT_DE;
 
 signal B0  : std_logic_vector(7 downto 0);
