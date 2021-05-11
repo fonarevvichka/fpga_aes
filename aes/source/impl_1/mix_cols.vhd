@@ -130,23 +130,30 @@ begin
     r2_3 : row_2 port map(B0 => B12, B1 => B13, B2 => B14, B3 => B15, new_B2 => new_B14);
     r3_3 : row_3 port map(B0 => B12, B1 => B13, B2 => B14, B3 => B15, new_B3 => new_B15);
 
-    cipher(7 downto 0)   <= std_logic_vector(new_B0);
-    cipher(15 downto 8)  <= std_logic_vector(new_B1);
-    cipher(23 downto 16) <= std_logic_vector(new_B2);
-    cipher(31 downto 24) <= std_logic_vector(new_B3);
+    wait for 10 ns;
 
-    cipher(39 downto 32) <= std_logic_vector(new_B4);
-    cipher(47 downto 40) <= std_logic_vector(new_B5);
-    cipher(55 downto 48) <= std_logic_vector(new_B6);
-    cipher(63 downto 56) <= std_logic_vector(new_B7);
+    cipher(7 downto 0)     <= MULT2(B0) xor MULT3(B1) xor B2 xor B3;
+    cipher(15 downto 8)    <= B0 xor MULT2(B1) xor MULT3(B2) xor B3;
+    cipher(23 downto 16)   <= B0 xor B1 xor MULT2(B2) xor MULT3(B3);
+    cipher(31 downto 24)   <= MULT3(B0) xor B1 xor B2 xor MULT2(B3);
 
-    cipher(71 downto 64) <= std_logic_vector(new_B8);
-    cipher(79 downto 72) <= std_logic_vector(new_B9);
-    cipher(87 downto 80) <= std_logic_vector(new_B11);
-    cipher(95 downto 88) <= std_logic_vector(new_B12);
+    cipher(39 downto 32)   <= MULT2(B4) xor MULT3(B5) xor B6 xor B7;
+    cipher(47 downto 40)   <= B4 xor MULT2(B5) xor MULT3(B6) xor B7;
+    cipher(55 downto 48)   <= B4 xor B5 xor MULT2(B6) xor MULT3(B7);
+    cipher(63 downto 56)   <= MULT3(B4) xor B5 xor B6 xor MULT2(B7);
 
-    cipher(103 downto 96)  <= std_logic_vector(new_B12);
-    cipher(111 downto 104) <= std_logic_vector(new_B13);
-    cipher(119 downto 112) <= std_logic_vector(new_B14);
-    cipher(127 downto 120) <= std_logic_vector(new_B15); 
-end;
+    cipher(71 downto 64)   <= MULT2(B8) xor MULT3(B9) xor B10 xor B11;
+    cipher(79 downto 72)   <= B8 xor MULT2(B9) xor MULT3(B10) xor B11;
+    cipher(87 downto 80)   <= B8 xor B9 xor MULT2(B10) xor MULT3(B11);
+    cipher(95 downto 88)   <= MULT3(B8) xor B9 xor B10 xor MULT2(B11);
+
+    cipher(103 downto 96)  <= MULT2(B12) xor MULT3(B13) xor B14 xor B15;
+    cipher(111 downto 104) <= B12 xor MULT2(B13) xor MULT3(B14) xor B15;
+    cipher(119 downto 112) <= B12 xor B13 xor MULT2(B14) xor MULT3(B15);
+    cipher(127 downto 120) <= MULT3(B12) xor B13 xor B14 xor MULT2(B15);
+
+end;                                                     
+                              std_logic_vector(new_B12);
+                              std_logic_vector(new_B13);
+                              std_logic_vector(new_B14);
+                              std_logic_vector(new_B15); 
