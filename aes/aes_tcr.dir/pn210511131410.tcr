@@ -1,0 +1,12 @@
+#Start recording tcl command: 5/11/2021 13:05:48
+#Project Location: C:/Users/fonar/Documents/CS Remote/es4/fpga_aes/aes; Project name: aes
+prj_open "C:/Users/fonar/Documents/CS Remote/es4/fpga_aes/aes/aes.rdf"
+prj_run Synthesis -impl impl_1
+prj_run Map -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+prj_run Synthesis -impl impl_1
+prj_run Map -impl impl_1
+prj_run PAR -impl impl_1
+prj_run Export -impl impl_1
+#Stop recording: 5/11/2021 13:14:10

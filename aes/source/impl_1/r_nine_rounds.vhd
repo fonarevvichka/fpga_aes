@@ -16,12 +16,12 @@ architecture synth of r_nine_rounds is
 
 component r_sbox is
     port (
-        clk    : in std_logic;
+        --clk    : in std_logic;
         cipher  : in  std_logic_vector(127 downto 0);
-        plain : out std_logic_vector(127 downto 0);
+        plain : out std_logic_vector(127 downto 0)
 
-    	data_ready	 : in std_logic;
-    	data_decrypted_0 : out std_logic
+    	--data_ready	 : in std_logic;
+    	--data_decrypted_0 : out std_logic
     );
 end component;
 
@@ -65,6 +65,6 @@ begin
                            plain => plain);
 
 	--data_decrypted <= data_decrypted_1 and data_decrypted_0;
-    --data_decrypted <= data_decrypted_0;
+    data_decrypted <= '1';
   --add_round_key
 end;
