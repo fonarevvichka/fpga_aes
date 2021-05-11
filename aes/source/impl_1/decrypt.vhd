@@ -16,10 +16,6 @@ end Decrypt;
 
 architecture synth of Decrypt is
 
--- component key_schedule is
-
--- component initial_key_add is
-
 	component r_nine_rounds is
 	  port(
 		clk    			: in std_logic;
@@ -86,7 +82,8 @@ begin
 											led             => led
 										);
 										
-	nr			: r_nine_rounds	port map (clk => clk, cipher => encrypted,
+	nr			: r_nine_rounds	port map (clk => clk,
+                                          cipher => encrypted,
                                           plain => plaintext,
                                           data_ready => data_received,
                                           data_decrypted => data_decrypted);

@@ -280,6 +280,7 @@ function R_SBOX_FUNC (addr : in std_logic_vector(7 downto 0))
 end function R_SBOX_FUNC;
 
 begin
+
     plain(7   downto 0 )  <= R_SBOX_FUNC(cipher(7   downto 0 ));
     plain(15  downto 8 )  <= R_SBOX_FUNC(cipher(15  downto 8 ));
     plain(23  downto 16)  <= R_SBOX_FUNC(cipher(23  downto 16));
@@ -299,4 +300,5 @@ begin
     plain(111 downto 104) <= R_SBOX_FUNC(cipher(111 downto 104));
     plain(119 downto 112) <= R_SBOX_FUNC(cipher(119 downto 112));
     plain(127 downto 120) <= R_SBOX_FUNC(cipher(127 downto 120));
+
 end;

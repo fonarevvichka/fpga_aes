@@ -6,14 +6,12 @@ entity r_mix_cols is
   port (
     cipher  : in  std_logic_vector(127 downto 0);
     plain : out std_logic_vector(127 downto 0)
-    --clk    : in std_logic;
-	--data_ready	 : in std_logic;
-	--data_encrypted_1 : out std_logic
   );
 end r_mix_cols;
 
 architecture synth of r_mix_cols is
 
+-- Multiply bits like they are polynomials in the Galois field
 function MULT_DE (a: std_logic_vector(7 downto 0); b: std_logic_vector(7 downto 0))
 return std_logic_vector is
     variable temp: std_logic_vector(7 downto 0);
@@ -27,22 +25,22 @@ case a(3 downto 0) is
     when "1001"=> temp1 := b(6 downto 0) & '0' xor (("00011011") and and_mask);
                   and_mask := temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7);
                   temp2 := temp1(6 downto 0) & '0' xor (("00011011") and and_mask);
-    and_mask := temp2(7) & temp2(7) & temp2(7) & temp2(7) &
-                temp2(7) & temp2(7) & temp2(7) & temp2(7);
-                temp3 := temp2(6 downto 0) & '0' xor (("00011011") and and_mask);
-                temp := temp3 xor b;
+                  and_mask := temp2(7) & temp2(7) & temp2(7) & temp2(7) &
+                  temp2(7) & temp2(7) & temp2(7) & temp2(7);
+                  temp3 := temp2(6 downto 0) & '0' xor (("00011011") and and_mask);
+                  temp := temp3 xor b;
     when "1011"=> temp1 := b(6 downto 0) & '0' xor (("00011011") and and_mask);
-                and_mask := temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7);
-                temp2 := temp1(6 downto 0) & '0' xor (("00011011") and and_mask);
-                and_mask := temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7);
-                temp3 := temp2(6 downto 0) & '0' xor (("00011011") and and_mask);
-                temp := temp1 xor temp3 xor b;
+                  and_mask := temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7);
+                  temp2 := temp1(6 downto 0) & '0' xor (("00011011") and and_mask);
+                  and_mask := temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7);
+                  temp3 := temp2(6 downto 0) & '0' xor (("00011011") and and_mask);
+                  temp := temp1 xor temp3 xor b;
     when "1101" => temp1 := b(6 downto 0) & '0' xor (("00011011") and and_mask);
-                    and_mask := temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7);
-                    temp2 := temp1(6 downto 0) & '0' xor (("00011011") and and_mask);
-                    and_mask := temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7);
-                    temp3 := temp2(6 downto 0) & '0' xor (("00011011") and and_mask);
-                    temp := temp2 xor temp3 xor b;
+                   and_mask := temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7);
+                   temp2 := temp1(6 downto 0) & '0' xor (("00011011") and and_mask);
+                   and_mask := temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7) & temp2(7);
+                   temp3 := temp2(6 downto 0) & '0' xor (("00011011") and and_mask);
+                   temp := temp2 xor temp3 xor b;
     when "1110"=> temp1 := b(6 downto 0) & '0' xor (("00011011") and and_mask);
                   and_mask := temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7) & temp1(7);
                   temp2 := temp1(6 downto 0) & '0' xor (("00011011") and and_mask);
@@ -73,7 +71,6 @@ signal B14 : std_logic_vector(7 downto 0);
 signal B15 : std_logic_vector(7 downto 0);
 
 begin
-
     --gets one row of bytes from plain text split into 4Byte X 4Byte matrix
     B15 <= cipher(7  downto 0 );
     B14 <= cipher(15 downto 8 );
@@ -93,67 +90,67 @@ begin
     B0  <= cipher(127 downto 120);
 
     plain(127 downto 120) <= MULT_DE("00001110", B0) xor
-                         MULT_DE("00001011", B1) xor
-                         MULT_DE("00001101", B2) xor
-                         MULT_DE("00001001", B3);
+                             MULT_DE("00001011", B1) xor
+                             MULT_DE("00001101", B2) xor
+                             MULT_DE("00001001", B3);
     plain(119 downto 112) <= MULT_DE("00001001", B0) xor
-                        MULT_DE("00001110", B1) xor
-                        MULT_DE("00001011", B2) xor
-                        MULT_DE("00001101", B3);
+                             MULT_DE("00001110", B1) xor
+                             MULT_DE("00001011", B2) xor
+                             MULT_DE("00001101", B3);
     plain(111 downto 104) <= MULT_DE("00001101", B0) xor
-                        MULT_DE("00001001", B1) xor
-                        MULT_DE("00001110", B2) xor
-                        MULT_DE("00001011", B3);
+                             MULT_DE("00001001", B1) xor
+                             MULT_DE("00001110", B2) xor
+                            MULT_DE("00001011", B3);
     plain(103 downto 96) <= MULT_DE("00001011", B0) xor
-                        MULT_DE("00001101", B1) xor
-                        MULT_DE("00001001", B2) xor
-                        MULT_DE("00001110", B3);
+                            MULT_DE("00001101", B1) xor
+                            MULT_DE("00001001", B2) xor
+                            MULT_DE("00001110", B3);
     plain(95 downto 88) <= MULT_DE("00001110", B4) xor
-                        MULT_DE("00001011", B5) xor
-                        MULT_DE("00001101", B6) xor
-                        MULT_DE("00001001", B7) ;
+                           MULT_DE("00001011", B5) xor
+                           MULT_DE("00001101", B6) xor
+                           MULT_DE("00001001", B7) ;
     plain(87 downto 80) <= MULT_DE("00001001", B4) xor
-                        MULT_DE("00001110", B5) xor
-                        MULT_DE("00001011", B6) xor
-                        MULT_DE("00001101", B7);
+                           MULT_DE("00001110", B5) xor
+                           MULT_DE("00001011", B6) xor
+                           MULT_DE("00001101", B7);
     plain(79 downto 72) <= MULT_DE("00001101", B4) xor
-                        MULT_DE("00001001", B5) xor
-                        MULT_DE("00001110", B6) xor
-                        MULT_DE("00001011", B7);
+                           MULT_DE("00001001", B5) xor
+                           MULT_DE("00001110", B6) xor
+                           MULT_DE("00001011", B7);
     plain(71 downto 64) <= MULT_DE("00001011", B4) xor
-                        MULT_DE("00001101", B5) xor
-                        MULT_DE("00001001", B6) xor
-                        MULT_DE("00001110", B7); 
+                           MULT_DE("00001101", B5) xor
+                           MULT_DE("00001001", B6) xor
+                           MULT_DE("00001110", B7); 
     plain(63 downto 56) <= MULT_DE("00001110", B8) xor
-                        MULT_DE("00001011", B9) xor
-                        MULT_DE("00001101", B10) xor
-                        MULT_DE("00001001", B11) ;
+                           MULT_DE("00001011", B9) xor
+                           MULT_DE("00001101", B10) xor
+                           MULT_DE("00001001", B11) ;
     plain(55 downto 48) <= MULT_DE("00001001", B8) xor
-                        MULT_DE("00001110", B9) xor
-                        MULT_DE("00001011", B10) xor
-                        MULT_DE("00001101", B11);
+                           MULT_DE("00001110", B9) xor
+                           MULT_DE("00001011", B10) xor
+                           MULT_DE("00001101", B11);
     plain(47 downto 40) <= MULT_DE("00001101", B8) xor
-                        MULT_DE("00001001", B9) xor
-                        MULT_DE("00001110", B10) xor
-                        MULT_DE("00001011", B11);
+                           MULT_DE("00001001", B9) xor
+                           MULT_DE("00001110", B10) xor
+                           MULT_DE("00001011", B11);
     plain(39 downto 32) <= MULT_DE("00001011", B8) xor
-                        MULT_DE("00001101", B9) xor
-                        MULT_DE("00001001", B10) xor
-                        MULT_DE("00001110", B11);
+                           MULT_DE("00001101", B9) xor
+                           MULT_DE("00001001", B10) xor
+                           MULT_DE("00001110", B11);
     plain(31 downto 24) <= MULT_DE("00001110", B12) xor
-                        MULT_DE("00001011", B13) xor
-                        MULT_DE("00001101", B14) xor
-                        MULT_DE("00001001", B15);
+                           MULT_DE("00001011", B13) xor
+                           MULT_DE("00001101", B14) xor
+                           MULT_DE("00001001", B15);
     plain(23 downto 16) <= MULT_DE("00001001", B12) xor
-                        MULT_DE("00001110", B13) xor
-                        MULT_DE("00001011", B14) xor
-                        MULT_DE("00001101", B15);
+                           MULT_DE("00001110", B13) xor
+                           MULT_DE("00001011", B14) xor
+                           MULT_DE("00001101", B15);
     plain(15 downto 8) <= MULT_DE("00001101", B12) xor
-                        MULT_DE("00001001", B13) xor
-                        MULT_DE("00001110", B14) xor
-                        MULT_DE("00001011", B15);
+                          MULT_DE("00001001", B13) xor
+                          MULT_DE("00001110", B14) xor
+                          MULT_DE("00001011", B15);
     plain(7 downto 0) <= MULT_DE("00001011", B12) xor
-                     MULT_DE("00001101", B13) xor
-                     MULT_DE("00001001", B14) xor
-                     MULT_DE("00001110", B15);
+                         MULT_DE("00001101", B13) xor
+                         MULT_DE("00001001", B14) xor
+                         MULT_DE("00001110", B15);
 end;

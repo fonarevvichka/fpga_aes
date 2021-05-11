@@ -5,7 +5,7 @@ use IEEE.numeric_std.all;
 entity r_row_shift is
     port (
         cipher  : in  std_logic_vector(127 downto 0);
-	    plain : out std_logic_vector(127 downto 0)
+	    plain   : out std_logic_vector(127 downto 0)
   );
 end r_row_shift;
 

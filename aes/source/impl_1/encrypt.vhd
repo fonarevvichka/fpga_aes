@@ -85,9 +85,9 @@ begin
 										);
 										
 	nr			: nine_rounds	port map (clk => clk, plain => plaintext,
-										cipher => encrypted,
-										data_ready => data_received,
-										data_encrypted => data_encrypted);
+										  cipher => encrypted,
+										  data_ready => data_received,
+										  data_encrypted => data_encrypted);
 	
 	H			: HSOSC			port map (CLKHFPU => '1', CLKHFEN => '1', CLKHF => clk);
 end;

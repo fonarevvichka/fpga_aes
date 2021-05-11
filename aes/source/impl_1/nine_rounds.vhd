@@ -46,9 +46,6 @@ end component;
 signal curr_sboxed	: std_logic_vector(127 downto 0);
 signal curr_shifted : std_logic_vector(127 downto 0);
 
-signal data_encrypted_0 : std_logic;
-signal data_encrypted_1 : std_logic;
-
 begin
     sbx : sbox port map(plain => plain,
 						cipher => curr_sboxed);

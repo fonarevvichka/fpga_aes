@@ -82,17 +82,44 @@ begin
 											led             => led
 										);
 
-    signal key0 : std_logic_vector(127 downto 0);
+    signal key1, key2, key3 : std_logic_vector(127 downto 0);
+    signal enc_0, enc_1, enc_2 : std_logic_vector(127 downto 0);
+
     signal init_key : std_logic_vector(127 downto 0)
     := "10101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010";
-    key : round_key port map(key_in => init_key, key_out => key0,
-                             e_or_d => '0', round_num => 0);
-    plain <= plain xor key0;
 
-	  nr  : nine_rounds	port map (clk => clk, plain => plaintext,
-										  cipher => encrypted, curr_key => key0
-										  data_ready => data_received,
-										  data_encrypted => data_encrypted);
+    --key : round_key port map(key_in => init_key, key_out => key0,
+    --                        e_or_d => '0', round_num => 0);
+    key_1 : round_key port map(key_in => key0, key_out => key1,
+                             e_or_d => '0', round_num => 1);
+    key_2 : round_key port map(key_in => key1, key_out => key2,
+                             e_or_d => '0', round_num => 2);
+    key_3 : round_key port map(key_in => key2, key_out => key3,
+                             e_or_d => '0', round_num => 3);
+
+    plain <= plain xor init_key;
+
+   nr1  : nine_rounds port map (clk => clk, plain => plaintext,
+								cipher => enc_0,
+								data_ready => data_received,
+								data_encrypted => data_encrypted);
+
+   curr_0 <= enc_0 xor key1;
+
+   nr2  : nine_rounds port map (clk => clk, plain => curr_0,
+							   cipher => enc_1,
+							   data_ready => data_received,
+							   data_encrypted => data_encrypted);
+
+   curr_1 <= enc_1 xor key2;
+
+   nr3  : nine_rounds port map (clk => clk, plain => enc0,
+                  cipher => encrypted,
+                  data_ready => data_received,
+                  data_encrypted => data_encrypted);
+
+   curr_3 <= enc_2 xor key3;
+   cipher <= curr_3;
 
 	H			: HSOSC			port map (CLKHFPU => '1', CLKHFEN => '1', CLKHF => clk);
 end;
