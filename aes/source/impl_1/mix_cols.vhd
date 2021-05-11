@@ -16,7 +16,7 @@ architecture synth of mix_cols is
 
 function MULT_EN
 (a: std_logic_vector(7 downto 0); b : std_logic_vector(7 downto 0) )
-return std_logic_vector(7 downto 0) is
+return std_logic_vector is
     variable temp     : std_logic_vector(7 downto 0);
     variable temp1    : std_logic_vector(7 downto 0);
     variable temp2    : std_logic_vector(7 downto 0);
