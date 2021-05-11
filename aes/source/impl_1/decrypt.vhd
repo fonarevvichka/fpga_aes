@@ -67,7 +67,7 @@ architecture synth of Decrypt is
 	signal data_decrypted	: std_logic;
 	
 	signal encrypted			: std_logic_vector(127 downto 0);
-	signal plaintext			: std_logic_vector(127 downto 0) ;
+	signal plaintext			: std_logic_vector(127 downto 0);
 	
 begin
 	rw_enable	<= data_decrypted;

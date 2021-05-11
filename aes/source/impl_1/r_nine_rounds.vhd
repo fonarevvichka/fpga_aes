@@ -55,18 +55,18 @@ begin
     rsbx : r_sbox port map(clk => clk,
                            cipher => cipher,
                            plain => curr_sboxed,
-						   --plain => plain,
                            data_ready => data_ready,
                            data_decrypted_0 => data_decrypted_0);
 
-    rshf : r_row_shift port map(cipher => curr_sboxed, plain => curr_shifted);
+    --rshf : r_row_shift port map(cipher => curr_sboxed, plain => curr_shifted);
+    rshf : r_row_shift port map(cipher => curr_sboxed, plain => plain);
 
-    rmxc : r_mix_cols port map(clk => clk,
-                               cipher => curr_shifted,
-                               plain => plain,
-                               data_ready => data_ready,
-                               data_decrypted_1 => data_decrypted_1);
-	--data_decrypted_1 <= '1';
+    --rmxc : r_mix_cols port map(clk => clk,
+                               --cipher => curr_shifted,
+                               --plain => plain,
+                               --data_ready => data_decrypted_0,
+                               --data_decrypted_1 => data_decrypted_1);
+	data_decrypted_1 <= '1';
 	data_decrypted <= data_decrypted_1 and data_decrypted_0;
 
   --add_round_key

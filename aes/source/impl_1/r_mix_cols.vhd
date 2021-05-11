@@ -64,7 +64,7 @@ signal B1 : unsigned(7 downto 0);
 signal B2 : unsigned(7 downto 0);
 signal B3 : unsigned(7 downto 0);
 
-signal counter : integer range 0 to 15 := 0;
+signal counter : integer range 0 to 4 := 0;
 
 begin
 
@@ -97,18 +97,23 @@ begin
                          B3 => B3,
                          new_B3 => new_B3);
 
-    plain(7+(counter*8*4)  downto 0 +  (counter*8*4)) <= std_logic_vector(new_B0);
-    plain(15+(counter*8*4) downto 8 +  (counter*8*4)) <= std_logic_vector(new_B1);
-    plain(23+(counter*8*4) downto 16 + (counter*8*4)) <= std_logic_vector(new_B2);
-    plain(31+(counter*8*4) downto 24 + (counter*8*4)) <= std_logic_vector(new_B3);
+    --plain(7+(counter*8*4)  downto 0 +  (counter*8*4)) <= std_logic_vector(new_B0);
+    --plain(15+(counter*8*4) downto 8 +  (counter*8*4)) <= std_logic_vector(new_B1);
+    --plain(23+(counter*8*4) downto 16 + (counter*8*4)) <= std_logic_vector(new_B2);
+    --plain(31+(counter*8*4) downto 24 + (counter*8*4)) <= std_logic_vector(new_B3);
 
-	data_decrypted_1 <= '1' when (counter = 15) else '0';
+	data_decrypted_1 <= '1' when (counter = 4) else '0';
 
     process (clk) is
     begin
       if rising_edge(clk) then
         if (data_ready = '1') then
             counter <= counter + 1;
+			
+			 plain(7+(counter*8*4)  downto 0 +  (counter*8*4)) <= std_logic_vector(new_B0);
+			plain(15+(counter*8*4) downto 8 +  (counter*8*4)) <= std_logic_vector(new_B1);
+			plain(23+(counter*8*4) downto 16 + (counter*8*4)) <= std_logic_vector(new_B2);
+			plain(31+(counter*8*4) downto 24 + (counter*8*4)) <= std_logic_vector(new_B3);
         end if;
       end if;
     end process;

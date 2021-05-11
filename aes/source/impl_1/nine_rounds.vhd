@@ -62,10 +62,11 @@ begin
 
 	--data_encrypted_1 <= '1';
 	shf : row_shift port map(plain => curr_sboxed, cipher => curr_shifted);
+	--shf : row_shift port map(plain => curr_sboxed, cipher => cipher);
     mxc : mix_cols port map(clk => clk,
                            plain => curr_shifted,
                             cipher => cipher,
-                            data_ready => data_ready,
+                            data_ready => data_encrypted_0,
                             data_encrypted_1 => data_encrypted_1);
 
     -- state ciph xord

@@ -7,7 +7,7 @@ SPIClass vspi(VSPI);
 #define dataReadyPin 21
 
 typedef struct struct_message {
-    char encrypted_message[15];
+    char encrypted_message[16];
 } struct_message;
 struct_message myMessage;
 
@@ -47,7 +47,7 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   Serial.println("recieved data ready signal");
 
   Serial.println("Read cycle");
-  char decrypted_message[15];
+  char decrypted_message[16];
 //  digitalWrite(22, LOW);
 
   for (byte i = 0; i < 16; i++) {
@@ -68,7 +68,7 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   digitalWrite(22, HIGH);
 
 //  byte byte_message[15] = charArrayToBytes(decrypted_message, 16);
-  decrypted_message[15] = '\0';
+//  decrypted_message[15] = '\0';
   Serial.println(decrypted_message);
   delay(250);
 }
