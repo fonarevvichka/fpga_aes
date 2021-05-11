@@ -4,8 +4,8 @@ use IEEE.numeric_std.all;
 
 entity r_mix_cols is
   port (
-    plain  : in  std_logic_vector(127 downto 0);
-    cipher : out std_logic_vector(127 downto 0);
+    cipher  : in  std_logic_vector(127 downto 0);
+    plain : out std_logic_vector(127 downto 0)
     --clk    : in std_logic;
 	--data_ready	 : in std_logic;
 	--data_encrypted_1 : out std_logic

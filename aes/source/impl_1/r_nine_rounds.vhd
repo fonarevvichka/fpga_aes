@@ -34,12 +34,12 @@ end component;
 
 component r_mix_cols is
 	port (
-        clk    : in std_logic;
 		cipher : in std_logic_vector(127 downto 0);
-		plain  : out  std_logic_vector(127 downto 0);
+		plain  : out  std_logic_vector(127 downto 0)
 
-        data_ready	 : in std_logic;
-        data_decrypted_1 : out std_logic
+        --clk    : in std_logic;
+        --data_ready	 : in std_logic;
+        --data_decrypted_1 : out std_logic
 	);
 end component;
 
@@ -58,16 +58,12 @@ begin
                            data_ready => data_ready,
                            data_decrypted_0 => data_decrypted_0);
 
-    --rshf : r_row_shift port map(cipher => curr_sboxed, plain => curr_shifted);
-    rshf : r_row_shift port map(cipher => curr_sboxed, plain => plain);
+    rshf : r_row_shift port map(cipher => curr_sboxed, plain => curr_shifted);
 
-    --rmxc : r_mix_cols port map(clk => clk,
-                               --cipher => curr_shifted,
-                               --plain => plain,
-                               --data_ready => data_decrypted_0,
-                               --data_decrypted_1 => data_decrypted_1);
-	data_decrypted_1 <= '1';
-	data_decrypted <= data_decrypted_1 and data_decrypted_0;
+    rmxc : r_mix_cols port map(cipher => curr_shifted,
+                               plain => plain);
 
+	--data_decrypted <= data_decrypted_1 and data_decrypted_0;
+    data_decrypted <= data_decrypted_1;
   --add_round_key
 end;
