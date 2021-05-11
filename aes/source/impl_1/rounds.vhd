@@ -822,11 +822,27 @@ signal curr_sboxed	: std_logic_vector(127 downto 0);
 signal curr_shifted : std_logic_vector(127 downto 0);
 signal curr_mixed   : std_logic_vector(127 downto 0);
 
-begin
+signal B0			: std_logic_vector(7 downto 0);
+signal B1			: std_logic_vector(7 downto 0);
+signal B2			: std_logic_vector(7 downto 0);
+signal B3			: std_logic_vector(7 downto 0);
+signal B4			: std_logic_vector(7 downto 0);
+signal B5			: std_logic_vector(7 downto 0);
+signal B6			: std_logic_vector(7 downto 0);
+signal B7			: std_logic_vector(7 downto 0);
+signal B8			: std_logic_vector(7 downto 0);
+signal B9			: std_logic_vector(7 downto 0);
+signal B10			: std_logic_vector(7 downto 0);
+signal B11			: std_logic_vector(7 downto 0);
+signal B12			: std_logic_vector(7 downto 0);
+signal B13			: std_logic_vector(7 downto 0);
+signal B14			: std_logic_vector(7 downto 0);
+signal B15			: std_logic_vector(7 downto 0);
 
-    process () is
-    begin
-        if data encrypted = '1' then
+begin
+    process
+	begin
+        if data_encrypted = '1' then
             --SBOX
             curr_sboxed(7   downto 0 )  <= SBOX(cipher(7   downto 0 ));
             curr_sboxed(15  downto 8 )  <= SBOX(cipher(15  downto 8 ));
@@ -874,22 +890,22 @@ begin
             wait for 10ns;
 
             --MULT COLS
-            B0  <= unsigned(curr_shifted(7  downto 0 ));
-            B1  <= unsigned(curr_shifted(15 downto 8 ));
-            B2  <= unsigned(curr_shifted(23 downto 16));
-            B3  <= unsigned(curr_shifted(31 downto 24));
-            B4  <= unsigned(curr_shifted(39 downto 32));
-            B5  <= unsigned(curr_shifted(47 downto 40));
-            B6  <= unsigned(curr_shifted(55 downto 48));
-            B7  <= unsigned(curr_shifted(63 downto 56));
-            B8  <= unsigned(curr_shifted(71 downto 64));
-            B9  <= unsigned(curr_shifted(79 downto 72));
-            B10 <= unsigned(curr_shifted(87 downto 80));
-            B11 <= unsigned(curr_shifted(95 downto 88));
-            B12 <= unsigned(curr_shifted(103 downto 96));
-            B13 <= unsigned(curr_shifted(111 downto 104));
-            B14 <= unsigned(curr_shifted(119 downto 112));
-            B15 <= unsigned(curr_shifted(127 downto 120));
+            B0  <= curr_shifted(7  downto 0 );
+            B1  <= curr_shifted(15 downto 8 );
+            B2  <= curr_shifted(23 downto 16);
+            B3  <= curr_shifted(31 downto 24);
+            B4  <= curr_shifted(39 downto 32);
+            B5  <= curr_shifted(47 downto 40);
+            B6  <= curr_shifted(55 downto 48);
+            B7  <= curr_shifted(63 downto 56);
+            B8  <= curr_shifted(71 downto 64);
+            B9  <= curr_shifted(79 downto 72);
+            B10 <= curr_shifted(87 downto 80);
+            B11 <= curr_shifted(95 downto 88);
+            B12 <= curr_shifted(103 downto 96);
+            B13 <= curr_shifted(111 downto 10);
+            B14 <= curr_shifted(119 downto 11);
+            B15 <= curr_shifted(127 downto 12);
 
             curr_mixed(7 downto 0)     <= MULT2(B0) xor MULT3(B1) xor B2 xor B3;
             curr_mixed(15 downto 8)    <= B0 xor MULT2(B1) xor MULT3(B2) xor B3;
@@ -911,12 +927,11 @@ begin
             curr_mixed(119 downto 112) <= B12 xor B13 xor MULT2(B14) xor MULT3(B15);
             curr_mixed(127 downto 120) <= MULT3(B12) xor B13 xor B14 xor MULT2(B15);
 
-            wait for 10 ns;
+            wait for 100 ns;
 
             cipher <= curr_mixed;
 
             data_encrypted <= '1';
-
         end if;
     end process;
 end;
