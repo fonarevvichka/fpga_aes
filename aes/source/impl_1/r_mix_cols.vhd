@@ -128,23 +128,23 @@ begin
     r2_3 : r_row_2 port map(B0 => B12, B1 => B13, B2 => B14, B3 => B15, new_B2 => new_B14);
     r3_3 : r_row_3 port map(B0 => B12, B1 => B13, B2 => B14, B3 => B15, new_B3 => new_B15);
 
-    plain(7 downto 0)   <= new_B0;
-    plain(15 downto 8)  <= new_B1;
-    plain(23 downto 16) <= new_B2;
-    plain(31 downto 24) <= new_B3;
+    plain(7 downto 0)   <= std_logic_vector(new_B0);
+    plain(15 downto 8)  <= std_logic_vector(new_B1);
+    plain(23 downto 16) <= std_logic_vector(new_B2);
+    plain(31 downto 24) <= std_logic_vector(new_B3);
 
-    plain(39 downto 32) <= new_B4;
-    plain(47 downto 40) <= new_B5;
-    plain(55 downto 48) <= new_B6;
-    plain(63 downto 56) <= new_B7;
+    plain(39 downto 32) <= std_logic_vector(new_B4);
+    plain(47 downto 40) <= std_logic_vector(new_B5);
+    plain(55 downto 48) <= std_logic_vector(new_B6);
+    plain(63 downto 56) <= std_logic_vector(new_B7);
 
-    plain(71 downto 64) <= new_B8;
-    plain(79 downto 72) <= new_B9;
-    plain(87 downto 80) <= new_B10;
-    plain(95 downto 88) <= new_B11;
+    plain(71 downto 64) <= std_logic_vector(new_B8);
+    plain(79 downto 72) <= std_logic_vector(new_B9);
+    plain(87 downto 80) <= std_logic_vector(new_B11);
+    plain(95 downto 88) <= std_logic_vector(new_B12);
 
-    plain(103 downto 96)  <= new_B12;
-    plain(111 downto 104) <= new_B13;
-    plain(119 downto 112) <= new_B14;
-    plain(127 downto 120) <= new_B15; 
+    plain(103 downto 96)  <= std_logic_vector(new_B12);
+    plain(111 downto 104) <= std_logic_vector(new_B13);
+    plain(119 downto 112) <= std_logic_vector(new_B14);
+    plain(127 downto 120) <= std_logic_vector(new_B15); 
 end;

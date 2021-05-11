@@ -5,7 +5,7 @@ use IEEE.numeric_std.all;
 entity mix_cols is
   port (
     plain  : in  std_logic_vector(127 downto 0);
-    cipher : out std_logic_vector(127 downto 0);
+    cipher : out std_logic_vector(127 downto 0)
     --clk    : in std_logic;
     --data_ready	 : in std_logic;
     --data_encrypted_1 : out std_logic
@@ -130,23 +130,23 @@ begin
     r2_3 : row_2 port map(B0 => B12, B1 => B13, B2 => B14, B3 => B15, new_B2 => new_B14);
     r3_3 : row_3 port map(B0 => B12, B1 => B13, B2 => B14, B3 => B15, new_B3 => new_B15);
 
-    cipher(7 downto 0)   <= new_B0;
-    cipher(15 downto 8)  <= new_B1;
-    cipher(23 downto 16) <= new_B2;
-    cipher(31 downto 24) <= new_B3;
+    cipher(7 downto 0)   <= std_logic_vector(new_B0);
+    cipher(15 downto 8)  <= std_logic_vector(new_B1);
+    cipher(23 downto 16) <= std_logic_vector(new_B2);
+    cipher(31 downto 24) <= std_logic_vector(new_B3);
 
-    cipher(39 downto 32) <= new_B4;
-    cipher(47 downto 40) <= new_B5;
-    cipher(55 downto 48) <= new_B6;
-    cipher(63 downto 56) <= new_B7;
+    cipher(39 downto 32) <= std_logic_vector(new_B4);
+    cipher(47 downto 40) <= std_logic_vector(new_B5);
+    cipher(55 downto 48) <= std_logic_vector(new_B6);
+    cipher(63 downto 56) <= std_logic_vector(new_B7);
 
-    cipher(71 downto 64) <= new_B8;
-    cipher(79 downto 72) <= new_B9;
-    cipher(87 downto 80) <= new_B10;
-    cipher(95 downto 88) <= new_B11;
+    cipher(71 downto 64) <= std_logic_vector(new_B8);
+    cipher(79 downto 72) <= std_logic_vector(new_B9);
+    cipher(87 downto 80) <= std_logic_vector(new_B11);
+    cipher(95 downto 88) <= std_logic_vector(new_B12);
 
-    cipher(103 downto 96)  <= new_B12;
-    cipher(111 downto 104) <= new_B13;
-    cipher(119 downto 112) <= new_B14;
-    cipher(127 downto 120) <= new_B15; 
+    cipher(103 downto 96)  <= std_logic_vector(new_B12);
+    cipher(111 downto 104) <= std_logic_vector(new_B13);
+    cipher(119 downto 112) <= std_logic_vector(new_B14);
+    cipher(127 downto 120) <= std_logic_vector(new_B15); 
 end;
