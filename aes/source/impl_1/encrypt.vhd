@@ -20,7 +20,7 @@ architecture synth of Encrypt is
 
 -- component initial_key_add is
 
-	component nine_rounds is
+	component rounds is
 	  port(
 		clk    			: in std_logic;
 		plain  			: in std_logic_vector(127 downto 0);
@@ -85,9 +85,9 @@ begin
 										);
 										
 	nr			: rounds	port map (clk => clk, plain => plaintext,
-										  cipher => encrypted,
-										  data_ready => data_received,
-										  data_encrypted => data_encrypted);
+										cipher => encrypted,
+										data_ready => data_received,
+										data_encrypted => data_encrypted);
 	
 	H			: HSOSC			port map (CLKHFPU => '1', CLKHFEN => '1', CLKHF => clk);
 end;

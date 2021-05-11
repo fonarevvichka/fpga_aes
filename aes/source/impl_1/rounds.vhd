@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity nine_rounds is
+entity rounds is
   port(
     clk    			: in std_logic;
 	plain  			: in std_logic_vector(127 downto 0);
@@ -10,9 +10,9 @@ entity nine_rounds is
 	data_ready		: in std_logic;
 	data_encrypted 	: out std_logic
   );
-end nine_rounds;
+end rounds;
 
-architecture synth of nine_rounds is
+architecture synth of rounds is
 
 function SBOX (addr : in std_logic_vector(7 downto 0))
     return std_logic_vector is
