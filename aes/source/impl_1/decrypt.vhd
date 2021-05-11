@@ -86,7 +86,7 @@ begin
 											led             => led
 										);
 										
-	nr			: r_nine_rounds	port map (clk => clk, cipher => encrypted,
+	nr			: r_rounds	port map (clk => clk, cipher => encrypted,
                                           plain => plaintext,
                                           data_ready => data_received,
                                           data_decrypted => data_decrypted);
