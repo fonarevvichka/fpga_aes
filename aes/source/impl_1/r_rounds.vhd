@@ -8,7 +8,7 @@ entity r_rounds is
 	cipher  			: in std_logic_vector(127 downto 0);
 	plain 			: out std_logic_vector(127 downto 0);
 	data_ready		: in std_logic;
-	data_encrypted 	: out std_logic
+	data_decrypted 	: out std_logic
   );
 end r_rounds;
 
@@ -543,7 +543,7 @@ function MULT9 (addr : in std_logic_vector(7 downto 0))
         when "11111101" => val := "01010100";
         when "11111110" => val := "01001111";
         when "11111111" => val := "01000110";
-        when others      => val:<= "00000000";
+        when others     => val:= "00000000";
       end case;
 
     return val;
@@ -1358,9 +1358,26 @@ signal curr_sboxed	: std_logic_vector(127 downto 0);
 signal curr_shifted : std_logic_vector(127 downto 0);
 signal curr_mixed   : std_logic_vector(127 downto 0);
 
+signal B0			: std_logic_vector(7 downto 0);
+signal B1			: std_logic_vector(7 downto 0);
+signal B2			: std_logic_vector(7 downto 0);
+signal B3			: std_logic_vector(7 downto 0);
+signal B4			: std_logic_vector(7 downto 0);
+signal B5			: std_logic_vector(7 downto 0);
+signal B6			: std_logic_vector(7 downto 0);
+signal B7			: std_logic_vector(7 downto 0);
+signal B8			: std_logic_vector(7 downto 0);
+signal B9			: std_logic_vector(7 downto 0);
+signal B10			: std_logic_vector(7 downto 0);
+signal B11			: std_logic_vector(7 downto 0);
+signal B12			: std_logic_vector(7 downto 0);
+signal B13			: std_logic_vector(7 downto 0);
+signal B14			: std_logic_vector(7 downto 0);
+signal B15			: std_logic_vector(7 downto 0);
+
 begin
 
-    process () is
+    process
     begin
         if data_encrypted = '1' then
             --MULT COLS
@@ -1449,7 +1466,7 @@ begin
 
             wait for 100 ns;
 
-            cipher <= curr_mixed;
+            plain <= curr_mixed;
 
             data_encrypted <= '1';
 
