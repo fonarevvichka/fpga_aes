@@ -99,7 +99,7 @@ void loop() {
   digitalWrite(22, HIGH);
   
   //send data over wifi
-  strcpy(myMessage.encrypted_message, encrypted_message);
+  memcpy(myMessage.encrypted_message, encrypted_message, 16);
   // Send message via ESP-NOW
   esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &myMessage, sizeof(myMessage));
    
