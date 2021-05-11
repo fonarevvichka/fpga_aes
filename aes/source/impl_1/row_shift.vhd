@@ -12,6 +12,7 @@ end row_shift;
 architecture synth of row_shift is
 
 begin
+
     cipher(127 downto 120) <= plain(127 downto 120);
     cipher(119 downto 112) <= plain(87 downto 80);
     cipher(111 downto 104) <= plain(47 downto 40);
