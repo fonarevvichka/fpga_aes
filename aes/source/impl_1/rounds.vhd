@@ -839,10 +839,15 @@ signal B13			: std_logic_vector(7 downto 0);
 signal B14			: std_logic_vector(7 downto 0);
 signal B15			: std_logic_vector(7 downto 0);
 
+signal data_encrypted_setter : std_logic := '0';
+
+
 begin
+	data_encrypted <= data_encrypted_setter;
+	
     process
 	begin
-        if data_encrypted = '1' then
+        if data_ready = '1' then
             --SBOX
             curr_sboxed(7   downto 0 )  <= SBOX(cipher(7   downto 0 ));
             curr_sboxed(15  downto 8 )  <= SBOX(cipher(15  downto 8 ));
@@ -864,7 +869,7 @@ begin
             curr_sboxed(119 downto 112) <= SBOX(cipher(119 downto 112));
             curr_sboxed(127 downto 120) <= SBOX(cipher(127 downto 120));
 
-            wait for 10ns;
+            wait for 100 ns;
 
             --ROW SHIFT
             curr_shifted(7 downto 0)     <= curr_sboxed(7 downto 0);
@@ -887,7 +892,7 @@ begin
             curr_shifted(119 downto 112) <= curr_sboxed(55 downto 48);
             curr_shifted(127 downto 120) <= curr_sboxed(95 downto 88);
             
-            wait for 10ns;
+            wait for 100 ns;
 
             --MULT COLS
             B0  <= curr_shifted(7  downto 0 );
@@ -903,9 +908,9 @@ begin
             B10 <= curr_shifted(87 downto 80);
             B11 <= curr_shifted(95 downto 88);
             B12 <= curr_shifted(103 downto 96);
-            B13 <= curr_shifted(111 downto 10);
-            B14 <= curr_shifted(119 downto 11);
-            B15 <= curr_shifted(127 downto 12);
+            B13 <= curr_shifted(111 downto 104);
+            B14 <= curr_shifted(119 downto 112);
+            B15 <= curr_shifted(127 downto 120);
 
             curr_mixed(7 downto 0)     <= MULT2(B0) xor MULT3(B1) xor B2 xor B3;
             curr_mixed(15 downto 8)    <= B0 xor MULT2(B1) xor MULT3(B2) xor B3;
@@ -931,7 +936,7 @@ begin
 
             cipher <= curr_mixed;
 
-            data_encrypted <= '1';
+           data_encrypted_setter <= '1';
         end if;
     end process;
 end;
