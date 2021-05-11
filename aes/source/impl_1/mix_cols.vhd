@@ -17,23 +17,23 @@ architecture synth of mix_cols is
 function MULT_EN
 (a: std_logic_vector(7 downto 0); b : std_logic_vector(7 downto 0) )
 return std_logic_vector is
-    variable temp     : std_logic_vector(7 downto 0);
-    variable temp1    : std_logic_vector(7 downto 0);
-    variable temp2    : std_logic_vector(7 downto 0);
-    variable temp3    : std_logic_vector(7 downto 0);
+
+    variable curr    : std_logic_vector(7 downto 0);
     variable and_mask : std_logic_vector(7 downto 0);
+
 begin
 
     and_mask := b(7) & b(7) & b(7) & b(7) & b(7) & b(7) & b(7) & b(7);
 
     case a(3 downto 0) is
-        when "0001" => temp := b;
-        when "0010" =>temp := b(6 downto 0) & '0' xor (("00011011") and and_mask);
-        when "0011"=> temp := b(6 downto 0) & '0' xor (("00011011") and and_mask) xor b;
-        when others => temp := (others => '0');
+        when "0001" => curr := b;
+        when "0010" => curr := b(6 downto 0) & '0' xor (("00011011") and and_mask);
+        when "0011" => curr := b(6 downto 0) & '0' xor (("00011011") and and_mask) xor b;
+        when others => curr := (others => '0');
     end case;
 
-return temp;
+return curr;
+
 end function MULT_EN; 
 
 signal B0  : std_logic_vector(7 downto 0);
