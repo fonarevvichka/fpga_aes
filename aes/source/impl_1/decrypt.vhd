@@ -21,7 +21,6 @@ architecture synth of Decrypt is
 		clk    			: in std_logic;
 		cipher  		: in std_logic_vector(127 downto 0);
 		plain 			: out std_logic_vector(127 downto 0);
-		data_ready		: in std_logic;
 		data_decrypted 	: out std_logic
 	  );
 	end component;
@@ -85,7 +84,7 @@ begin
 	nr			: r_nine_rounds	port map (clk => clk,
                                           cipher => encrypted,
                                           plain => plaintext,
-                                          data_ready => data_received,
+                                          --data_ready => data_received,
                                           data_decrypted => data_decrypted);
 	
 	H			: HSOSC			port map (CLKHFPU => '1', CLKHFEN => '1', CLKHF => clk);

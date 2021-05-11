@@ -47,10 +47,10 @@ signal curr_sboxed	: std_logic_vector(127 downto 0);
 signal curr_shifted : std_logic_vector(127 downto 0);
 
 begin
-    sbx : sbox port map(plain => plain,
-						cipher => curr_sboxed);
+    --sbx : sbox port map(plain => plain,
+						--cipher => curr_sboxed);
 						
-	shf : row_shift port map(plain => curr_sboxed, cipher => curr_shifted);
+	shf : row_shift port map(plain => plain, cipher => curr_shifted);
 	
     mxc : mix_cols port map(plain => curr_shifted,
                            cipher => cipher);

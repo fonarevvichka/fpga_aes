@@ -41,10 +41,10 @@ begin
     rmxc : r_mix_cols port map(cipher => cipher,
                                plain => curr_mixed);
 
-    rshf : r_row_shift port map(cipher => curr_mixed, plain => curr_shifted);
+    rshf : r_row_shift port map(cipher => curr_mixed, plain => plain);
 
-    rsbx : r_sbox port map(cipher => curr_shifted,
-                           plain => plain);
+    --rsbx : r_sbox port map(cipher => curr_shifted,
+                           --plain => plain);
 
     data_decrypted <= '1';
 end;
