@@ -50,20 +50,12 @@ signal data_encrypted_0 : std_logic;
 signal data_encrypted_1 : std_logic;
 
 begin
-
-    -- plain text xord 1st
     sbx : sbox port map(plain => plain,
-                        cipher => curr_sboxed);
-						--cipher => cipher,
-                        --data_ready => data_ready,
-                        --data_encrypted_0 => data_encrypted_0);
-
-	--data_encrypted_1 <= '1';
+						cipher => curr_sboxed);
+						
 	shf : row_shift port map(plain => curr_sboxed, cipher => curr_shifted);
-	--shf : row_shift port map(plain => curr_sboxed, cipher => cipher);
-
+	
     mxc : mix_cols port map(plain => curr_shifted,
-                            cipher => cipher);
+                           cipher => cipher);
 	data_encrypted <= '1';
-    --data_encrypted <= data_encrypted_0;
 end;

@@ -55,12 +55,6 @@ begin
 
     rshf : r_row_shift port map(cipher => curr_mixed, plain => curr_shifted);
 
-    --rsbx : r_sbox port map(clk => clk,
-                           --cipher => curr_shifted,
-                           --plain => plain,
-                           --data_ready => data_ready,
-                           --data_decrypted_0 => data_decrypted_0);
-
     rsbx : r_sbox port map(cipher => curr_shifted,
                            plain => plain);
 
