@@ -7,7 +7,7 @@ entity nine_rounds is
     clk    			: in std_logic;
 	plain  			: in std_logic_vector(127 downto 0);
 	cipher 			: out std_logic_vector(127 downto 0);
-  curr_key : in std_logic_vector(127 downto 0);
+    curr_key : in std_logic_vector(127 downto 0);
 	data_ready		: in std_logic;
 	data_encrypted 	: out std_logic
   );
@@ -68,6 +68,5 @@ begin
                             cipher => curr_mixed);
 
     cipher <= curr_mixed xor curr_key;
-
     data_encrypted <= data_encrypted_0;
 end;

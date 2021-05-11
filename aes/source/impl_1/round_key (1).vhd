@@ -1,4 +1,4 @@
-/* code based on that found at 
+/* code based on that found at
 https://web.csulb.edu/projects/npu/Rijndael_AES/AES_FULL/key_schedule.vhd
 */
 
@@ -10,14 +10,14 @@ entity round_key is
 port(
     key_in	    :   in  std_logic_vector(127 downto 0);
     key_out	    :   out std_logic_vector(127 downto 0);
-    e_or_d          :   in  std_logic;       --encrypt is 0 decrypt is 1
+    e_or_d       :   in  std_logic;       --encrypt is 0 decrypt is 1
     round_num  :	in  std_logic_vector(7 downto 0);
     );
 end round_key;
 
 architecture synth of round_key is
 
-component s_box_4 
+component s_box_4
 port(
     s_box_4_in    :	in  std_logic_vector(31 downto 0);
     s_box_4_out   :	out std_logic_vector(31 downto 0)
@@ -48,14 +48,14 @@ signal upperbyte   : std_logic_vector(7 downto 0);
 signal round_constant_e : std_logic_vector(7 downto 0);
 signal round_constant_d : std_logic_vector(7 downto 0);
 
-type word_array is array (3 downto 0) of std_logic_vector(31 downto 0); 
+type word_array is array (3 downto 0) of std_logic_vector(31 downto 0);
 signal key_word, next_key_word : word_array;
 
 begin
 
 r_constant_e : rcon_e port map(addr => round_num, val => round_constant_e);
 r_constant_d : rcon_d port map(addr => round_num, val => round_constant_d);
-round_constant <= round_constant_e when e_or_d = '0' else 
+round_constant <= round_constant_e when e_or_d = '0' else
                   round_constant_d;
 
 key_reg_out <= key_in when round_num = "00000000" else --1st round
@@ -102,6 +102,6 @@ key_word(3) <= key_reg_out(31 downto 0);
  upperbyte <= sbox(31 downto 24) xor round_constant;
 
  U <= upperbyte & sbox(23 downto 0);
- 
+
 key_out <= key_reg_out;
 end synth;
